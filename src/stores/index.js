@@ -1,7 +1,5 @@
-import CounterStore from './CounterStore'
-
-const counterStore = new CounterStore()
+import authStore from '../Authentication/stores'
 
 export default {
-  counterStore,
+  authStore
 }
