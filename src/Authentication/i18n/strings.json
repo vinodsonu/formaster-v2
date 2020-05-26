@@ -1,0 +1,19 @@
+{
+    "webTitle":"formaster",
+    "signInpage":{
+        "greetingMessage":"Hello, who’s this?",
+        "usernameFeild":{
+            "type":"text",
+            "label":"username",
+            "placeholder":"muneeraShaik"
+        },
+        "passwordFeild":{
+            "type":"password",
+            "label":"password",
+            "placeholder":"At least 8 charactors"
+        },
+        "primaryButtonText":{
+            "displayText":"Log in to formaster"
+        }
+    }
+}

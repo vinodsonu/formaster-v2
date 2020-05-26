@@ -32,7 +32,7 @@ class DummyComponent extends React.Component{
         }
     }
     render(){
-        //clearUserSession();
+        clearUserSession();
         return null;
     }
 }

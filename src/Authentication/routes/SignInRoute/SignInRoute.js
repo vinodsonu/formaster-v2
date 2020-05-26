@@ -1,5 +1,5 @@
 import React from 'react';
-import {observable,reaction} from 'mobx';
+import {observable,reaction,computed} from 'mobx';
 import {observer,inject} from 'mobx-react';
 import {withRouter,Redirect} from 'react-router-dom';
 import SignInPage from '../../components/SignInPage';
@@ -26,6 +26,7 @@ class SignInRoute extends React.Component{
     @observable username
     @observable password
     @observable errorMessage
+    @observable isClickedLogin
     
     
     constructor(){
@@ -33,6 +34,7 @@ class SignInRoute extends React.Component{
         this.username = '';
         this.password = '';
         this.errorMessage = '';
+        this.isClickedLogin = false;
     }
     
     
@@ -49,18 +51,21 @@ class SignInRoute extends React.Component{
         return authStore;
     }
     
+    @computed get isUsernameEmpty(){
+        return validateUsername(this.username)&&this.isClickedLogin
+    }
+    
+    @computed get isPasswordError(){
+        return validatePassword(this.password)&&this.isClickedLogin;
+    }    
+    
+    
     checkForError = () =>{
-        if(validateUsername(this.username))
-            this.errorMessage = 'Please enter username';
-        else if(validatePassword(this.password))
-            this.errorMessage = 'Please enter password';
-        else
-            this.errorMessage = '';
-        return this.errorMessage.length!==0;
+        return (this.isPasswordError||this.isUsernameEmpty)
     }
     
     onClickSignIn = () =>{
-        
+        this.isClickedLogin = true;
         if(!this.checkForError())
         {   
             const {
@@ -81,7 +86,8 @@ class SignInRoute extends React.Component{
 
     onSuccessUserLogin = reaction(()=>{
         try{const {getUserSignInAPIStatus,getUserProfileAPIStatus} = this.getStore();
-            return getUserSignInAPIStatus===API_SUCCESS && getUserProfileAPIStatus===API_SUCCESS;
+            // console.log(getUserSignInAPIStatus===API_SUCCESS && getUserProfileAPIStatus===API_SUCCESS);
+            return getUserSignInAPIStatus===API_SUCCESS;
         }
         catch(e){}
     },
@@ -95,6 +101,7 @@ class SignInRoute extends React.Component{
     
     
     render(){
+        const {isSigningIn}  = this.getStore();
         return <SignInPage  
         
                     username = {this.username}
@@ -102,6 +109,10 @@ class SignInRoute extends React.Component{
                     onChangeUsername = {this.onChangeUsername}
                     password = {this.password}
                     onClickSignIn = {this.onClickSignIn}
+                    errorMessage = {this.errorMessage}
+                    isSigningIn = {isSigningIn}
+                    isUsernameEmpty = {this.isUsernameEmpty}
+                    isPasswordError = {this.isPasswordError}
                     errorMessage = {this.errorMessage}
                     
                 />

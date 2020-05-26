@@ -1,96 +1,69 @@
 import React from 'react';
-import {observable,reaction} from 'mobx';
-import {observer,inject} from 'mobx-react';
+import {observer} from 'mobx-react';
+import strings from '../../i18n/strings.json';
+import InputFeild from '../../../Common/components/InputFeild';
+import PrimaryButton from '../../../Common/components/PrimaryButton'
 
 import {
-    LoginForm,
-    Username,
-    Password,
-    SubmitButton,
-    ErrorMessage,
-    SinInHeading,
-    LoginPage
+    LoginFormContainer,
+    WebTitle,
+    GreetingMessage,
+    ErrorMessage
     
-} from './styledComponents.js';
-
-export function SignInButtonComponent(props){
-    return <SubmitButton data-testid='sign-in-button' onClick = {props.onClick}>
-                        Sign In
-                    </SubmitButton>
-}
-
-export function InputUsername(props){
-    const {
-        text,
-        value,
-        onChange,
-        placeholder
-    } = props;
-    return <Username
-                        type={text}
-                        value={value} 
-                        onChange = {onChange}
-                        placeholder = {placeholder}
-                        
-                    />
-}
+    
+} from './styledComponents';
 
 @observer
 class SignInPage extends React.Component{
     
-     userNameRef = React.createRef();
-     passwordRef = React.createRef();
-     
-     componentDidMount(){
-         console.log(this.userNameRef)
-         this.userNameRef.current.focus();
-     }
     
     render(){
-        
         const {
             username,
             onChangePassword,
             onChangeUsername,
             password,
             onClickSignIn,
+            isSigningIn,
+            isUsernameEmpty,
+            isPasswordError,
             errorMessage
             
         } = this.props;
         
-        if(errorMessage === 'Please enter password'){
-            this.passwordRef.current.focus();
-        }
+        const {
+            webTitle,
+            signInpage:{greetingMessage,
+                usernameFeild,
+                passwordFeild,
+                primaryButtonText
+                
+            }
+        } = strings;
         
         return(
-            <LoginPage>
-            <LoginForm>
-            
-                    <SinInHeading>Sign in</SinInHeading>
-                    
-                    <Username  type='text'
-                                    value={username} 
-                                    onChange = {onChangeUsername}
-                                    placeholder = "Username"
-                                    ref = {this.userNameRef}
-                    />
-                
-                    
-                    
-                    <Password 
-                        type='password'
-                        value = {password}
-                        onChange = {onChangePassword}
-                        placeholder = "Password"
-                        ref = {this.passwordRef}
-                    />
-                    
-                    <SignInButtonComponent onClick = {onClickSignIn}/>
-                    
+                <LoginFormContainer>
+                    <WebTitle>{webTitle}</WebTitle>
+                    <GreetingMessage>{greetingMessage}</GreetingMessage>
                     <ErrorMessage>{errorMessage}</ErrorMessage>
-                
-            </LoginForm>
-            </LoginPage>
+                    <InputFeild handleOnChange = {onChangeUsername}
+                                value = {username}
+                                type = {usernameFeild.type}
+                                label = {usernameFeild.label}
+                                placeholder = {usernameFeild.placeholder}
+                                isFeildError = {isUsernameEmpty}
+                    />
+                    <InputFeild handleOnChange = {onChangePassword}
+                                value = {password}
+                                type = {passwordFeild.type}
+                                label = {passwordFeild.label}
+                                placeholder = {passwordFeild.placeholder}
+                                isFeildError = {isPasswordError}
+                    />
+                    <PrimaryButton isDisable = {isSigningIn} 
+                                    handleOnClick={onClickSignIn} 
+                                    displayText = {primaryButtonText.displayText}/>
+                </LoginFormContainer>
             );
     }
     

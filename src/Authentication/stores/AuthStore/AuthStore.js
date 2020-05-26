@@ -1,7 +1,8 @@
-import {observable,action} from 'mobx';
+import {observable,action,computed} from 'mobx';
 import {
     API_INITIAL,
-    API_FAILURE
+    API_FAILURE,
+    API_SUCCESS
 } from '@ib/api-constants';
 
 import {bindPromiseWithOnSuccess} from '@ib/mobx-promise';
@@ -91,7 +92,6 @@ export default class AuthStore{
     @action.bound
     setUserProfileAPIResponse = (response) =>{
         this.userProfileDetails = response;
-        console.log(response);
     }
     
     @action.bound
@@ -100,6 +100,10 @@ export default class AuthStore{
         return bindPromiseWithOnSuccess(userProfilePromise)
         .to(this.setGetUserProfileAPIStatus,this.setUserProfileAPIResponse)
         .catch(this.setGetUserProfileAPIError);
+    }
+    
+    @computed get isSigningIn(){
+        return !(this.getUserProfileAPIStatus!==API_SUCCESS && this.getUserSignInAPIStatus!==API_SUCCESS);
     }
     
     @action.bound
