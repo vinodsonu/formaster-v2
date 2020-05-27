@@ -3,20 +3,21 @@ import {networkCallWithApisauce} from '../../../utils/APIUtils';
 import {apiMethods} from '../../../constants/APIConstants';
 import endpoints from '../endpoints';
 
-export default class AuthService{
+export default class FormApiService{
     api
     constructor(){
         this.api = create({
                 baseURL : 'https://5ea1a14db9f5ca00166c1f27.mockapi.io/api/'
             });
     }
-    getUserProfile(accessToken){
+    
+    getForms(access_token){
         return networkCallWithApisauce(
                 
                     this.api,
-                    endpoints.userProfile,
+                    endpoints.forms,
                     {
-                        accessToken:accessToken
+                        access_token:access_token
                     },
                     apiMethods.get
                 
@@ -24,4 +25,3 @@ export default class AuthService{
         
     }
 }
-

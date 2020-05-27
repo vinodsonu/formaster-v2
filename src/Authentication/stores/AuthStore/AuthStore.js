@@ -31,7 +31,7 @@ export default class AuthStore{
     init(){
         this.getUserSignInAPIStatus = API_INITIAL ;
         this.getUserSignInAPIError = null ;
-        this.geetUserProfileAPIStatus = API_INITIAL ;
+        this.getUserProfileAPIStatus = API_INITIAL ;
         this.getUserProfileAPIError = null;
         this.userProfileDetails = null;
         this.username = null ;
@@ -50,7 +50,6 @@ export default class AuthStore{
     
     @action.bound
     setGetUserSignInAPIStatus(status){
-        console.log(status)
         this.getUserSignInAPIStatus = status ;
         
     }

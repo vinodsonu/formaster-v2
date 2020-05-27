@@ -1,5 +1,7 @@
-import authStore from '../Authentication/stores'
+import authStore from '../Authentication/stores';
+import {formStore} from '../AdminPage/stores'
 
 export default {
-  authStore
+  authStore,
+  formStore
 }

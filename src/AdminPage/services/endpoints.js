@@ -1,6 +1,5 @@
 const endpoints = {
-    signIn:'/login',
-    userProfile:'/userProfile'
+    forms:"/forms/v1"
 }
 
 export default endpoints;

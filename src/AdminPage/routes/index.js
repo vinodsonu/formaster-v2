@@ -3,14 +3,15 @@ import {
   Route
 } from 'react-router-dom';
 
-import DummyComponent from '../components/DummyComponent';
+import {ADMIN_PAGE_PATH} from '../constants/RouteConstants';
+import {ProtectedRoute} from  '../../Common/ProtectedRoute';
+import AdminRoute from './AdminRoute'
 
 
 
-
-const DefaultRoute = [
-  <Route key={'/'} path='/' component={DummyComponent} />
+const AdminPageRoutes = [
+  <ProtectedRoute key={ADMIN_PAGE_PATH} path={ADMIN_PAGE_PATH} component={AdminRoute} />
 ];
 
 
-export default DefaultRoute;
+export default AdminPageRoutes
