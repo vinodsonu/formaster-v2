@@ -50,7 +50,7 @@ export default class AuthStore{
     
     @action.bound
     setGetUserSignInAPIStatus(status){
-        
+        console.log(status)
         this.getUserSignInAPIStatus = status ;
         
     }
@@ -92,6 +92,7 @@ export default class AuthStore{
     @action.bound
     setUserProfileAPIResponse = (response) =>{
         this.userProfileDetails = response;
+        console.log(response)
     }
     
     @action.bound

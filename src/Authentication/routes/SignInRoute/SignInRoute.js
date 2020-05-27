@@ -15,7 +15,7 @@ import {
 } from '@ib/api-constants';
 
 
-import {PRODUCTS_PAGE_PATH} from '../../constants/RouteConstants';
+import {ADMIN_PAGE_PATH,USER_PAGE_PATH} from '../../constants/RouteConstants';
 
 
 
@@ -51,30 +51,32 @@ class SignInRoute extends React.Component{
         return authStore;
     }
     
-    @computed get isUsernameEmpty(){
+    isUsernameEmpty=()=>{
         return validateUsername(this.username)&&this.isClickedLogin
     }
     
-    @computed get isPasswordError(){
+    isPasswordError=()=>{
         return validatePassword(this.password)&&this.isClickedLogin;
     }    
     
     
     checkForError = () =>{
-        return (this.isPasswordError||this.isUsernameEmpty)
+        return (this.isPasswordError()||this.isUsernameEmpty())
     }
     
-    onClickSignIn = () =>{
+    onClickSignIn = async () =>{
         this.isClickedLogin = true;
+        
         if(!this.checkForError())
         {   
+            console.log('onClickSignIn')
             const {
                 setUsername,
                 setPassword
             } = this.getStore()
             setPassword(this.password);
             setUsername(this.username);
-            this.getStore().userSignIn();
+            await this.getStore().userSignIn();
         }
         
     }
@@ -94,8 +96,9 @@ class SignInRoute extends React.Component{
     (status)=>{
         
             const {history} = this.props;
+            
             if(status)
-                history.replace({pathname:'/signup'})
+                history.replace({pathname:'/'})
     })
     
     
@@ -111,8 +114,8 @@ class SignInRoute extends React.Component{
                     onClickSignIn = {this.onClickSignIn}
                     errorMessage = {this.errorMessage}
                     isSigningIn = {isSigningIn}
-                    isUsernameEmpty = {this.isUsernameEmpty}
-                    isPasswordError = {this.isPasswordError}
+                    isUsernameEmpty = {this.isUsernameEmpty()}
+                    isPasswordError = {this.isPasswordError()}
                     errorMessage = {this.errorMessage}
                     
                 />

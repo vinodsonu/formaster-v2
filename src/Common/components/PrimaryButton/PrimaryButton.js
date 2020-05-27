@@ -6,14 +6,19 @@ import {
 
 class PrimaryButton extends React.Component{
     
+    onClick = () =>{
+        const {handleOnClick} = this.props;
+        handleOnClick();
+    }
+    
     render(){
         const {
                 displayText,
                 handleOnClick,
-                isSigningIn
+                isDisable
             } = this.props;
-        return <PrimaryButtonElement onClick= {handleOnClick}
-                                disabled = {isSigningIn}
+        return <PrimaryButtonElement onClick= {this.onClick}
+                                disabled = {isDisable}
                  >{displayText}</PrimaryButtonElement>
     }
 }

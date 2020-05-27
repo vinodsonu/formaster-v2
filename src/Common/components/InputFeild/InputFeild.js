@@ -18,7 +18,6 @@ class InputFeild extends React.Component{
             isFeildError
         } = this.props;
         
-        console.log(isFeildError,type)
         
         return(
             <InputWithLabel>
