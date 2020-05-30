@@ -1,26 +1,35 @@
-import styled from "@emotion/styled";
-import tw from "tailwind.macro";
+import styled from '@emotion/styled'
+import tw from 'tailwind.macro'
 
 const PrimaryButtonElement = styled.button`
-    ${tw`mt-2 mb-2`}
-    display: block;
-    font-size: 16px;
-    line-height: 28px;
-    width: 256px;
-    height: 40px;
-    padding: 3px 16px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(38, 38, 39);
-    font-family: inherit;
-    text-decoration: none;
-    border-radius: 2px;
-    vertical-align: middle;
-    -moz-appearance: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease 0s;
-    border: medium none;
-`;
+   ${tw`flex items-center justify-center`}
+   width: 320px;
 
-export {
-    PrimaryButtonElement
-}
+   height: 40px;
+
+   border-radius: 4px;
+
+   background-color: #0b69ff;
+`
+
+const ButtonText = styled.span`
+   height: 24px;
+
+   font-family: Rubik;
+
+   font-size: 14px;
+
+   font-weight: 500;
+
+   font-stretch: normal;
+
+   font-style: normal;
+
+   line-height: 1.71;
+
+   letter-spacing: normal;
+
+   color: #ffffff;
+`
+
+export { PrimaryButtonElement, ButtonText }

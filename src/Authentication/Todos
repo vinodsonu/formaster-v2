@@ -1,0 +1,67 @@
+Sign in page error displaying 
+feilds focus on enter
+sign in on enter
+
+
+
+Form DashBoard.......................
+1. Need show toast on failure
+2.settings component
+3.Pagination
+4.Form delete update
+5.questionDelete
+
+
+User.....................
+1.Preview
+2.
+
+
+
+
+Features tobe implemented.........................................
+User Page
+  1.list Of forms
+  2.preview form on Click
+  3.if user logged in showing the previous data
+
+CreatePage
+  1.settings Freature
+      1.is required
+      2.change placeholder
+      3.Mcq option onChange
+  
+  2.Side Preview
+  
+  3.Pagination
+  
+  
+  
+tap-mini-project 
+  
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+/questions/{question_id}/submit/v1
+/forms/{form_id}/preview/v1
+{
+  "question_id": 0,
+  "text_response_details": {
+    "response_text": "string"
+  },
+  "choice_response_details": {
+    "response_choice": 0
+  }
+}

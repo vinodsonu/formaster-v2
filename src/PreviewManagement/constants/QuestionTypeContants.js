@@ -1,0 +1,5 @@
+export const WELCOME_SCREEN = 'WELCOME_SCREEN'
+export const THANK_YOU_SCREEN = 'THANK_YOU_SCREEN'
+export const SHORT_TEXT = 'SHORT_TEXT'
+export const LONG_TEXT = 'LONG_TEXT'
+export const MULTIPLE_CHOICE = 'MULTIPLE_CHOICE'

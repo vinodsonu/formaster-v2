@@ -1,38 +1,32 @@
-import styled from "@emotion/styled";
-import tw from "tailwind.macro";
+import styled from '@emotion/styled'
+import tw from 'tailwind.macro'
 
 const InputElement = styled.input`
+   width: 320px;
 
-    display: block;
-    font-size: 16px;
-    width: 256px;
-    height: 40px;
-    margin: 3px 0px;
-    border-radius: 3px;
-    padding: 0px 14px;
-    color: rgb(76, 76, 76);
-    border:${props=>props.isFeildError?'1px solid red':'1px solid rgb(204, 204, 204)'};
-    font-family: inherit;
-    transition: border-color 0.2s ease 0s;
+   height: 40px;
 
-`;
+   border-radius: 2px;
+
+   border: solid 1px #7e858e;
+
+   background-color: #ffffff;
+
+   padding: 5px;
+
+   padding-left: 10px;
+`
 
 const InputWithLabel = styled.div`
-
-    ${tw`flex flex-col mt-2 mb-2`}
-
-`;
+   ${tw`flex flex-col `}
+   margin-bottom:30px;
+`
 
 const InputLabel = styled.span`
+   font-size: 16px;
+   line-height: 24px;
+   color: rgb(38, 38, 39);
+   margin-bottom: 10px;
+`
 
-    font-size: 16px;
-    line-height: 24px;
-    color: rgb(38, 38, 39);
-`;
-
-export {
-    InputElement,
-    InputWithLabel,
-    InputLabel
-}
-
+export { InputElement, InputWithLabel, InputLabel }

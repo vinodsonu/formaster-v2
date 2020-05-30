@@ -1,5 +1,5 @@
-import {getAccessToken} from './StorageUtils';
+import { getAccessToken } from './StorageUtils'
 
-export const isLoggedin = () =>{
-    return getAccessToken()!==undefined;
+export const isLoggedin = () => {
+   return getAccessToken() !== undefined
 }

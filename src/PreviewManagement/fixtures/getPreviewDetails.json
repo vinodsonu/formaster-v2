@@ -1,0 +1,89 @@
+[
+  {
+  "total_questions": 3,
+  "question": {
+    "question_id": 0,
+    "question_type": "WELCOME_SCREEN",
+    "question_text": "Welcome To Our Hotel",
+    "required": true,
+    "description": "You are our guest",
+    "image_url": "./",
+    "multiple_choice_question_details": "null",
+    "text_response_details": "null",
+    "choice_response_details":"null"
+    }
+  },
+  {
+  "total_questions": 3,
+  "question": {
+    "question_id": 1,
+    "question_type": "SHORT_TEXT",
+    "question_text": "What is your first name ?",
+    "required": true,
+    "description": "Enter your first name",
+    "image_url": "./",
+    "multiple_choice_question_details": "null",
+    "text_response_details": "",
+    "choice_response_details":"null"
+    }
+  },
+  {
+  "total_questions": 3,
+  "question": {
+    "question_id": 2,
+    "question_type": "MULTIPLE_CHOICE",
+    "question_text": "Your native place ?",
+    "required": true,
+    "description": "select your native place ?",
+    "image_url": "./",
+    "multiple_choice_question_details": {
+      "choices":[
+          {
+            "choice_id":0,
+            "choice_text":"Kadapa"
+          },
+          {
+            "choice_id":1,
+           "choice_text":"Kurnool"
+          },
+          {
+            "choice_id":2,
+            "choice_text":"Nelluru"
+          }
+        ]
+    },
+    "text_response_details": "null",
+    "choice_response_details":{
+      "response_choice":"null"
+      }
+    }
+  },
+  {
+  "total_questions": 3,
+  "question": {
+    "question_id": 3,
+    "question_type": "LONG_TEXT",
+    "question_text": "Your address ?",
+    "required": true,
+    "description": "Enter your native address",
+    "image_url": "./",
+    "multiple_choice_question_details": "null",
+    "text_response_details": "",
+    "choice_response_details":"null"
+    }
+  },
+  {
+  "total_questions": 3,
+  "question": {
+    "question_id": 4,
+    "question_type": "THANK_YOU_SCREEN",
+    "question_text": "Thank you for your response",
+    "required": true,
+    "description": "press submit to send your response",
+    "image_url": "./",
+    "multiple_choice_question_details": "null",
+    "text_response_details": "null",
+    "choice_response_details":"null"
+    }
+  }
+]

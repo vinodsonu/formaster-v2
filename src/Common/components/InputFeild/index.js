@@ -1,2 +1,2 @@
-import {InputFeild} from './InputFeild';
-export default InputFeild;
+import { InputFeild } from './InputFeild'
+export default InputFeild

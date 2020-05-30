@@ -1,16 +1,8 @@
-import React from 'react';
-import {
-  Route
-} from 'react-router-dom';
+import React from 'react'
+import { Route } from 'react-router-dom'
 
-import DummyComponent from '../components/DummyComponent';
+import DummyComponent from '../components/DummyComponent'
 
+const DefaultRoute = [<Route key={'/'} path='/' component={DummyComponent} />]
 
-
-
-const DefaultRoute = [
-  <Route key={'/'} path='/' component={DummyComponent} />
-];
-
-
-export default DefaultRoute;
+export default DefaultRoute

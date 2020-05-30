@@ -1,2 +1,2 @@
-import DummyComponent from './DummyComponent';
-export default DummyComponent;
+import DummyComponent from './DummyComponent'
+export default DummyComponent

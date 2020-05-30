@@ -1,0 +1,8 @@
+{
+    "QuestionPlaceholder":"Type Your answer here...",
+    "shortTextQuestionInputType":"text",
+    "longTextQuestionInputType":"text",
+    "mcqTextQuestionType":"checkbox",
+    "startButtonText":"start",
+    "nextButtonText":"next"
+}

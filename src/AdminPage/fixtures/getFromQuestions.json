@@ -1,0 +1,49 @@
+{
+      "form_id": 1,
+      "form_name": "SnackForm",
+      "questions": [
+        {
+          "question_id": 0,
+          "question_type": "WELCOME_SCREEN",
+          "description":"Welcome screen text",
+          "question_text":"Welcom to our Website",
+          "image_url":"./",
+          "required":true,
+          "multiple_choice_question_details": "null"
+        },
+        {
+          "question_id": 1,
+          "question_type": "SHORT_TEXT",
+          "description":"Enter A short Question",
+          "question_text":"What is your name ?",
+          "image_url":"./",
+          "required":true,
+          "multiple_choice_question_details": "null"
+        },
+        {
+          "question_id": 2,
+          "question_type": "MULTIPLE_CHOICE",
+          "description":"Multiple answers can be choosed",
+          "question_text":"your known languages ? ",
+          "image_url":"./",
+          "required":true,
+          "multiple_choice_question_details":{
+            "choices": [
+                  {
+                    "choice_id": 0,
+                    "choice_text": "Urdu"
+                  },
+                  {
+                    "choice_id": 1,
+                    "choice_text": "English"
+                  },
+                  {
+                    "choice_id": 2,
+                    "choice_text": "Hindi"
+                  }
+                ]
+        }
+        
+        }
+      ]
+}
