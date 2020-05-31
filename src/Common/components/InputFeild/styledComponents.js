@@ -15,6 +15,10 @@ const InputElement = styled.input`
    padding: 5px;
 
    padding-left: 10px;
+   
+   &:focus {
+    border-color:blue;
+  }
 `
 
 const InputWithLabel = styled.div`
@@ -29,4 +33,31 @@ const InputLabel = styled.span`
    margin-bottom: 10px;
 `
 
-export { InputElement, InputWithLabel, InputLabel }
+const ErrorDisplay = styled.span`
+
+
+  height: 16px;
+
+  font-family: HKGrotesk;
+
+  font-size: 12px;
+
+  font-weight: normal;
+
+  font-stretch: normal;
+
+  font-style: normal;
+
+  line-height: 1.33;
+
+  letter-spacing: normal;
+
+  color: #ff0b37;
+  
+  margin-top:5px;
+
+`
+
+export { InputElement, InputWithLabel, InputLabel,ErrorDisplay }
+
+

@@ -16,15 +16,16 @@
       "autoprefixer": "^9.7.5",
       "babel-plugin-macros": "^2.8.0",
       "js-cookie": "2.2.1",
+      "material-ui": "0.20.2",
       "mobx": "5.15.0",
       "mobx-react": "6.1.4",
+      "model": "6.0.1",
       "postcss-cli": "^7.1.0",
-      "react": "^16.13.0",
+      "rc-menu": "8.3.1",
+      "react": "16.13.1",
       "react-dom": "^16.13.0",
       "react-icons": "3.10.0",
-      "react-laag": "1.7.3",
       "react-loading": "2.0.3",
-      "react-modal": "3.11.2",
       "react-router-dom": "^5.1.2",
       "react-scripts": "3.4.0",
       "tailwind.macro": "^1.0.0-alpha.10",
@@ -35,7 +36,7 @@
       "watch:css": "postcss src/index.css -o src/styles/tailwind.css",
       "start": "npm run watch:css & react-app-rewired start",
       "build": "npm run build:css & react-app-rewired build",
-      "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
+      "test": "react-app-rewired test",
       "eject": "react-app-rewired eject",
       "ts:start": "npm run watch:css & react-scripts start",
       "ts:build": "npm run build:css & react-scripts build",
@@ -43,19 +44,7 @@
       "ts:eject": "react-scripts eject",
       "deploy": "export PUBLIC_URL=/2019/$C9_USER/react && npm run build && ./deploy.sh",
       "storybook": "start-storybook -p 8080 -s public",
-      "build-storybook": "build-storybook -s public",
-      "pretty": "npx prettier --write \"src/**/*.js\""
-   },
-   "husky": {
-      "hooks": {
-         "pre-commit": "lint-staged"
-      }
-   },
-   "lint-staged": {
-      "./src/*.{js,jsx,ts,tsx}": [
-         "npx prettier --write",
-         "eslint src/*.js --fix-dry-run"
-      ]
+      "build-storybook": "build-storybook -s public"
    },
    "eslintConfig": {
       "extends": "react-app"
@@ -89,9 +78,7 @@
       "@testing-library/react": "10.0.3",
       "babel-eslint": "10.0.3",
       "customize-cra": "0.9.1",
-      "husky": "4.2.5",
       "jest-environment-jsdom-sixteen": "1.0.3",
-      "lint-staged": "10.2.6",
       "react-app-rewired": "2.1.5",
       "tailwindcss": "^1.2.0"
    }

@@ -16,8 +16,7 @@ export default class AuthStore {
    @observable getUserProfileAPIStatus
    @observable getUserProfileAPIError
    @observable userProfileDetails
-   @observable username
-   @observable password
+
 
    constructor(authService, userProfileService) {
       this.authAPIService = authService
@@ -32,8 +31,7 @@ export default class AuthStore {
       this.getUserProfileAPIStatus = API_INITIAL
       this.getUserProfileAPIError = null
       this.userProfileDetails = null
-      this.username = null
-      this.password = null
+   
    }
 
    @action.bound
@@ -67,11 +65,8 @@ export default class AuthStore {
    }
 
    @action.bound
-   userSignIn() {
-      const userSigninPromise = this.authAPIService.getAuth(
-         this.username,
-         this.password
-      )
+   userSignIn(userAuthenticationDetails) {
+      const userSigninPromise = this.authAPIService.getAuth(userAuthenticationDetails)
       return bindPromiseWithOnSuccess(userSigninPromise)
          .to(this.setGetUserSignInAPIStatus, this.setUserSignInAPIResponse)
          .catch(this.setGetUserSignInAPIError)

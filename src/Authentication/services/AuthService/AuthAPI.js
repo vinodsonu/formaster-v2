@@ -1,6 +1,6 @@
 import { create } from 'apisauce'
 import { networkCallWithApisauce } from '../../../utils/APIUtils'
-import { apiMethods } from '../../../constants/APIConstants'
+import { apiMethods } from '../../../Common/constants/APIConstants'
 import endpoints from '../endpoints'
 
 export default class AuthService {
@@ -10,13 +10,12 @@ export default class AuthService {
          baseURL: 'https://5ea1a14db9f5ca00166c1f27.mockapi.io/api/'
       })
    }
-   getAuth(username, password) {
+   getAuth(authDetails) {
       return networkCallWithApisauce(
          this.api,
          endpoints.signIn,
          {
-            username: username,
-            password: password
+           authDetails
          },
          apiMethods.get
       )

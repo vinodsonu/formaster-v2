@@ -14,6 +14,10 @@
         },
         "primaryButtonText":{
             "displayText":"Log in to formaster"
-        }
+        },
+        "ibhubsLogo":"ibhubs-logo",
+        "inValidUsernameOrPasswordMsg":"invalid username or password",
+        "usernameEmptyMsg":"username should not be empty",
+        "passwordErrorDisplay":"contains at least 8 charactors"
     }
 }

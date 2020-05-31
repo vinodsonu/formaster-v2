@@ -1,6 +1,6 @@
 import { create } from 'apisauce'
 import { networkCallWithApisauce } from '../../../utils/APIUtils'
-import { apiMethods } from '../../../constants/APIConstants'
+import { apiMethods } from '../../../Common/constants/APIConstants'
 import endpoints from '../endpoints'
 
 export default class FormApiService {

@@ -1,6 +1,6 @@
 import getData from '@ib/api'
 
-import { apiMethods } from '../constants/APIConstants'
+import { apiMethods } from '../Common/constants/APIConstants'
 
 import { getAccessToken } from './StorageUtils'
 

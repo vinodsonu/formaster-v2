@@ -15,49 +15,79 @@ import { ADMIN_PAGE_PATH, USER_PAGE_PATH } from '../../constants/RouteConstants'
 class SignInRoute extends React.Component {
    @observable username
    @observable password
-   @observable errorMessage
-   @observable isClickedLogin
-
+   @observable isUsernameError
+   @observable isPasswordError
+   signInPageRef
+   
+   componentDidMount(){
+      this.signInPageRef.current.usernameRef.current.inputFeildRef.current.focus();
+   }
+   
    constructor() {
       super()
-      this.username = ''
-      this.password = ''
-      this.errorMessage = ''
-      this.isClickedLogin = false
+      this.username = '';
+      this.password = '';
+      this.isPasswordError = false;
+      this.isUsernameError = false;
+      this.signInPageRef = React.createRef();
    }
 
    onChangeUsername = event => {
-      this.username = event.target.value
+      this.username = event.target.value;
+      this.checkUsernameError();
+   }
+   
+   onKeyDownUsername = event =>{
+      if(event.keyCode===13)
+       {  
+          this.checkUsernameError();
+          if(!this.isUsernameError)
+            this.signInPageRef.current.passwordRef.current.inputFeildRef.current.focus();
+       }
+   }
+   
+   onKeyDownPassword = event =>{
+      if( event.keyCode===13 && !this.checkForError())
+         this.onClickSignIn();
    }
 
    onChangePassword = event => {
-      this.password = event.target.value
+      this.password = event.target.value;
+      
    }
 
    getAuthStore = () => {
       const { authStore } = this.props
       return authStore
    }
-
-   isUsernameEmpty = () => {
-      return validateUsername(this.username) && this.isClickedLogin
+   
+   checkUsernameError = () =>{
+      if(validateUsername(this.username))
+         this.isUsernameError = true;
+      else
+         this.isUsernameError = false;
+      return this.isUsernameError;
+   }
+   
+   checkPasswordError = () =>{
+      if(validatePassword(this.password))
+         this.isPasswordError = true;
+      else
+         this.isPasswordError = false;
+      return this.isPasswordError;
    }
 
-   isPasswordError = () => {
-      return validatePassword(this.password) && this.isClickedLogin
-   }
 
    checkForError = () => {
-      return this.isPasswordError() || this.isUsernameEmpty()
+      this.checkPasswordError();
+      this.checkUsernameError();
+      return this.isUsernameError||this.isPasswordError;
+      
    }
 
    onClickSignIn = async () => {
-      this.isClickedLogin = true
       if (!this.checkForError()) {
-         const { setUsername, setPassword } = this.getAuthStore()
-         setPassword(this.password)
-         setUsername(this.username)
-         await this.getAuthStore().userSignIn()
+         await this.getAuthStore().userSignIn({username:this.username,password:this.password})
       }
    }
 
@@ -77,7 +107,6 @@ class SignInRoute extends React.Component {
          const { history } = this.props
          if (status) {
             this.getUserProfile()
-            // history.replace({ pathname:ADMIN_PAGE_PATH })
          }
       }
    )
@@ -98,7 +127,7 @@ class SignInRoute extends React.Component {
    )
 
    getUserProfile = async () => {
-      this.getAuthStore().userProfile()
+      await this.getAuthStore().userProfile()
    }
 
    render() {
@@ -112,9 +141,12 @@ class SignInRoute extends React.Component {
             onClickSignIn={this.onClickSignIn}
             errorMessage={this.errorMessage}
             isSigningIn={isSigningIn}
-            isUsernameEmpty={this.isUsernameEmpty()}
-            isPasswordError={this.isPasswordError()}
             errorMessage={this.errorMessage}
+            ref = {this.signInPageRef}
+            onKeyDownPassword={this.onKeyDownPassword}
+            onKeyDownUsername={this.onKeyDownUsername}
+            isUsernameError = {this.isUsernameError}
+            isPasswordError = {this.isPasswordError}
          />
       )
    }

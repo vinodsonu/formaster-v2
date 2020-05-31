@@ -1,10 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import { InputElement, InputWithLabel, InputLabel } from './styledComponents'
+import { InputElement, InputWithLabel, InputLabel,ErrorDisplay } from './styledComponents'
 
 @observer
 class InputFeild extends React.Component {
+   inputFeildRef = React.createRef();
    render() {
       const {
          value,
@@ -12,8 +13,10 @@ class InputFeild extends React.Component {
          type,
          label,
          placeholder,
-         isFeildError
+         fieldErrorMsg,
+         hamdleOnKeyDown
       } = this.props
+      
 
       return (
          <InputWithLabel>
@@ -23,8 +26,10 @@ class InputFeild extends React.Component {
                type={type}
                value={value}
                onChange={handleOnChange}
-               isRedBorder={isFeildError}
+               ref={this.inputFeildRef}
+               onKeyDown={hamdleOnKeyDown}
             />
+            <ErrorDisplay>{fieldErrorMsg}</ErrorDisplay>
          </InputWithLabel>
       )
    }

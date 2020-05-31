@@ -15,6 +15,10 @@ import {
 
 @observer
 class SignInPage extends React.Component {
+   
+   usernameRef = React.createRef();
+   passwordRef = React.createRef();
+   
    render() {
       const {
          username,
@@ -23,9 +27,11 @@ class SignInPage extends React.Component {
          password,
          onClickSignIn,
          isSigningIn,
-         isUsernameEmpty,
+         isUsernameError,
          isPasswordError,
-         errorMessage
+         errorMessage,
+         onKeyDownPassword,
+         onKeyDownUsername
       } = this.props
 
       const {
@@ -34,14 +40,21 @@ class SignInPage extends React.Component {
             greetingMessage,
             usernameFeild,
             passwordFeild,
-            primaryButtonText
+            primaryButtonText,
+            ibhubsLogo,
+            usernameEmptyMsg,
+            passwordErrorDisplay
          }
       } = strings
+      
+      const usernameErrorMsg = isUsernameError?usernameEmptyMsg:null;
+      const passwordErrorMsg = isPasswordError?passwordErrorDisplay:null;
+      
 
       return (
          <LoginFormContainer>
             <LoginForm>
-               <WebTitle src={logo} alt='ibhubs-logo'></WebTitle>
+               <WebTitle src={logo} alt={ibhubsLogo}></WebTitle>
                <GreetingMessage>{greetingMessage}</GreetingMessage>
                <ErrorMessage>{errorMessage}</ErrorMessage>
                <InputFeild
@@ -50,7 +63,10 @@ class SignInPage extends React.Component {
                   type={usernameFeild.type}
                   label={usernameFeild.label}
                   placeholder={usernameFeild.placeholder}
-                  isFeildError={isUsernameEmpty}
+                  ref={this.usernameRef}
+                  hamdleOnKeyDown={onKeyDownUsername}
+                  fieldErrorMsg = {usernameErrorMsg}
+                  
                />
                <InputFeild
                   handleOnChange={onChangePassword}
@@ -59,6 +75,9 @@ class SignInPage extends React.Component {
                   label={passwordFeild.label}
                   placeholder={passwordFeild.placeholder}
                   isFeildError={isPasswordError}
+                  ref={this.passwordRef}
+                  hamdleOnKeyDown={onKeyDownPassword}
+                  fieldErrorMsg={passwordErrorMsg}
                />
                <PrimaryButton
                   isDisable={isSigningIn}
