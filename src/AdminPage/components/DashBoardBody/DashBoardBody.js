@@ -10,7 +10,8 @@ class DashBoardBody extends React.Component {
          forms,
          onCreateNewForm,
          onFormClick,
-         createNewQuestionLoadingStatus
+         createNewQuestionLoadingStatus,
+         onDeleteForm
       } = this.props
       return (
          <DashBoard>
@@ -21,7 +22,7 @@ class DashBoardBody extends React.Component {
                      createNewQuestionLoadingStatus
                   }
                />
-               <FormCards forms={forms} onFormClick={onFormClick} />
+               <FormCards forms={forms} onFormClick={onFormClick} onDeleteForm={onDeleteForm} />
             </FormSection>
          </DashBoard>
       )

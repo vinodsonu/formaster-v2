@@ -10,7 +10,11 @@ import {
    WebTitle,
    GreetingMessage,
    ErrorMessage,
-   LoginForm
+   LoginForm,
+   SignUpFeild,
+   SignUpText,
+   SignUpLink
+   
 } from './styledComponents'
 
 @observer
@@ -31,7 +35,8 @@ class SignInPage extends React.Component {
          isPasswordError,
          errorMessage,
          onKeyDownPassword,
-         onKeyDownUsername
+         onKeyDownUsername,
+         onSignUp
       } = this.props
 
       const {
@@ -43,9 +48,13 @@ class SignInPage extends React.Component {
             primaryButtonText,
             ibhubsLogo,
             usernameEmptyMsg,
-            passwordErrorDisplay
+            passwordErrorDisplay,
+            dontHaveAnAccountText,
+            signUpText
          }
       } = strings
+      
+   
       
       const usernameErrorMsg = isUsernameError?usernameEmptyMsg:null;
       const passwordErrorMsg = isPasswordError?passwordErrorDisplay:null;
@@ -80,11 +89,16 @@ class SignInPage extends React.Component {
                   fieldErrorMsg={passwordErrorMsg}
                />
                <PrimaryButton
-                  isDisable={isSigningIn}
                   handleOnClick={onClickSignIn}
                   displayText={primaryButtonText.displayText}
                   loadingStatus={isSigningIn}
                />
+               
+               <SignUpFeild>
+                  <SignUpText>{dontHaveAnAccountText}</SignUpText>
+                  <SignUpLink onClick={onSignUp}>{signUpText}</SignUpLink>
+               </SignUpFeild>
+               
             </LoginForm>
          </LoginFormContainer>
       )

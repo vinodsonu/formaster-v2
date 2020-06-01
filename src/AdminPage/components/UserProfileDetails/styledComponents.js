@@ -45,6 +45,7 @@ export const ProfileAndLogout = styled.div`
 `
 
 export const LogoutButton = styled.button`
+   width:100%;
    display: block;
    font-size: 14px;
    line-height: 20px;

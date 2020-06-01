@@ -16,6 +16,8 @@ export default class AuthStore {
    @observable getUserProfileAPIStatus
    @observable getUserProfileAPIError
    @observable userProfileDetails
+   @observable getSignupApiStatus
+   @observable getSignupApiError
 
 
    constructor(authService, userProfileService) {
@@ -30,7 +32,9 @@ export default class AuthStore {
       this.getUserSignInAPIError = null
       this.getUserProfileAPIStatus = API_INITIAL
       this.getUserProfileAPIError = null
-      this.userProfileDetails = null
+      this.userProfileDetails = null;
+      this.getSignupApiStatus = API_INITIAL;
+      this.getSignupApiError = null;
    
    }
 
@@ -100,6 +104,36 @@ export default class AuthStore {
          this.getUserProfileAPIStatus === API_FETCHING ||
          this.getUserSignInAPIStatus === API_FETCHING
       )
+   }
+   
+   @action
+   setGetSignupApiStatus = status =>{
+      console.log(status)
+      this.getSignupApiStatus = status;
+   }
+   
+   @action
+   setSignUpResponse = response =>{
+      
+   }
+   
+   @action
+   setGetSignupApiError = error =>{
+      this.getSignupApiError = error;
+   }
+   
+   @action.bound
+   userSignUp(details){
+      const userSignUpPromise = this.authAPIService.onUserSignup(details);
+      return bindPromiseWithOnSuccess(userSignUpPromise)
+         .to(this.setGetSignupApiStatus, this.setSignUpResponse)
+         .catch(this.setGetSignupApiError)
+   }
+   
+   @computed
+   get isSigningup(){
+      
+      return this.getSignupApiStatus===API_FETCHING;
    }
 
    @action.bound

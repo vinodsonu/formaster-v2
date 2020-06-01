@@ -1,10 +1,16 @@
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer } from 'mobx-react';
+import {observable} from 'mobx';
 
-import { FormCard, FormTitle, FormEditOptions } from './styledComponents.js'
+
+
+import { FormCard, FormTitle, FormEditOptions } from './styledComponents.js';
+import FormOptionsMenu from './formOptionMenu';
 
 @observer
 class EachFormCard extends React.Component {
+   @observable isFormNameEmpty = false;
+   
    onClickFormCard = () => {
       const {
          onFormClick,
@@ -12,13 +18,50 @@ class EachFormCard extends React.Component {
       } = this.props
       onFormClick(formId)
    }
+   
+   onUpdateFormName = (event) =>{
+      const {
+         form
+      } = this.props;
+      form.onChangeFormName(event.target.value)
+      
+   }
+   
+   checkForFormNameEmpty = () =>{
+      const {form:{formName}} = this.props;
+      if(formName.trim()!=='')
+         this.isFormNameEmpty = false;
+      else
+         this.isFormNameEmpty = true;
+   }
+   
+   onSubmitFormName = event =>{
+      if(event.keyCode===13)
+         this.onClickUpdate();
+   }
+   
+   onClickUpdate = () =>{
+      this.checkForFormNameEmpty();
+      const {form} = this.props;
+      if(!this.isFormNameEmpty)
+         form.onUpdateFormName();
+   }
 
    render() {
-      const { formName } = this.props.form
+      const { form:{formName},onDeleteForm } = this.props
       return (
-         <FormCard onClick={this.onClickFormCard}>
-            <FormTitle>{formName}</FormTitle>
-            <FormEditOptions>...</FormEditOptions>
+         <FormCard>
+            <FormTitle onClick={this.onClickFormCard} >{formName}</FormTitle>
+            <FormEditOptions><FormOptionsMenu
+                     
+                     onDeleteForm = {onDeleteForm}
+                     onUpdateFormName = {this.onUpdateFormName}
+                     onSubmitFormName = {this.onSubmitFormName}
+                     onClickUpdate = {this.onClickUpdate}
+                     updatedFormName = {formName}
+                     isFormNameEmpty = {this.isFormNameEmpty}
+            
+            /></FormEditOptions>
          </FormCard>
       )
    }

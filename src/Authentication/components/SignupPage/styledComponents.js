@@ -3,17 +3,17 @@ import tw from 'tailwind.macro';
 
 import {darkBlueGrey,brightBlue,iceBlue,white} from '../../themes/colors';
 
-export const LoginFormContainer = styled.div`
+
+export const SignUpPageContainer = styled.div`
    ${tw`flex  justify-center`}
    background-color:${iceBlue};
 `
 
-export const LoginForm = styled.div`
+export const SignUpPage = styled.div`
    ${tw`flex flex-col items-center justify-center`}
 
    width: 536px;
 
-   height: 687px;
 
    border-radius: 8px;
 
@@ -58,7 +58,7 @@ export const ErrorMessage = styled.span`
    color: red;
 `
 
-export const SignUpFeild = styled.div`
+export const SignInFeild = styled.div`
 
    ${tw`flex justify-center items-center`}
 
@@ -83,14 +83,15 @@ export const SignUpFeild = styled.div`
   color: ${darkBlueGrey};
   
   margin-top:32px;
+  margin-bottom:32px;
 `
-export const SignUpText = styled.span`
+export const SignInText = styled.span`
 
 
    
 `
 
-export const SignUpLink = styled.a`
+export const SignInLink = styled.a`
    color:${brightBlue};
    text-decoration:none;
    cursor:pointer;

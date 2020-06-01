@@ -8,7 +8,9 @@ import { validatePassword, validateUsername } from '../../utils/ValidationUtils'
 
 import { API_SUCCESS, API_FAILURE } from '@ib/api-constants'
 
-import { ADMIN_PAGE_PATH, USER_PAGE_PATH } from '../../constants/RouteConstants'
+import { ADMIN_PAGE_PATH, USER_PAGE_PATH ,SIGN_UP_PATH} from '../../constants/RouteConstants'
+
+import strings from '../../i18n/strings.json';
 
 @inject('authStore')
 @observer
@@ -38,7 +40,10 @@ class SignInRoute extends React.Component {
    }
    
    onKeyDownUsername = event =>{
-      if(event.keyCode===13)
+      const {
+         signInpage:{enterKeyCode}
+      }  = strings;
+      if(event.keyCode===enterKeyCode)
        {  
           this.checkUsernameError();
           if(!this.isUsernameError)
@@ -47,7 +52,10 @@ class SignInRoute extends React.Component {
    }
    
    onKeyDownPassword = event =>{
-      if( event.keyCode===13 && !this.checkForError())
+      const {
+         signInpage:{enterKeyCode}
+      } = strings
+      if( event.keyCode===enterKeyCode && !this.checkForError())
          this.onClickSignIn();
    }
 
@@ -89,6 +97,11 @@ class SignInRoute extends React.Component {
       if (!this.checkForError()) {
          await this.getAuthStore().userSignIn({username:this.username,password:this.password})
       }
+   }
+   
+   onSignUp = () =>{
+      const {history} = this.props;
+      history.replace({pathname:SIGN_UP_PATH});
    }
 
    componentWillUnmount() {
@@ -147,6 +160,7 @@ class SignInRoute extends React.Component {
             onKeyDownUsername={this.onKeyDownUsername}
             isUsernameError = {this.isUsernameError}
             isPasswordError = {this.isPasswordError}
+            onSignUp = {this.onSignUp}
          />
       )
    }

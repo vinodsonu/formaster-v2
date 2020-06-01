@@ -13,7 +13,8 @@ class AdminDashBoardPage extends React.Component {
          forms,
          onCreateNewForm,
          onFormClick,
-         createNewQuestionLoadingStatus
+         createNewQuestionLoadingStatus,
+         onDeleteForm
       } = this.props
       return (
          <AdminDashBoardContainer>
@@ -26,6 +27,7 @@ class AdminDashBoardPage extends React.Component {
                onCreateNewForm={onCreateNewForm}
                onFormClick={onFormClick}
                createNewQuestionLoadingStatus={createNewQuestionLoadingStatus}
+               onDeleteForm = {onDeleteForm}
             />
          </AdminDashBoardContainer>
       )

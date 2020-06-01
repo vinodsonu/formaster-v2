@@ -7,12 +7,13 @@ import EachFormCard from '../EachFormCard'
 @observer
 class FormCards extends React.Component {
    renderForms = () => {
-      const { forms, onFormClick } = this.props
+      const { forms, onFormClick,onDeleteForm } = this.props
       return Array.from(forms.values()).map(form => (
          <EachFormCard
             key={form.formId}
             form={form}
             onFormClick={onFormClick}
+            onDeleteForm={onDeleteForm}
          />
       ))
    }

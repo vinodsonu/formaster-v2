@@ -6,16 +6,12 @@ import { AiFillDelete } from 'react-icons/ai'
 
 import TransparentInputFeild from '../../../Common/components/TransparentInputFeild'
 import strings from '../../i18n/strings.json'
-import welcomeScreen from '../icons/welcomeScreen.svg'
-import settings from '../icons/settings.svg'
 
 import {
    GreetingsFeild,
    ScreenText,
    ThankYouButton,
-   Icon,
    EditOptions,
-   SettingsIcon,
    DeleteButton,
    WelcomeButton
 } from './styledComponents.js'

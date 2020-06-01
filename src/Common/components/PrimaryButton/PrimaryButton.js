@@ -27,7 +27,6 @@ class PrimaryButton extends React.Component {
 
    render() {
       const { loadingStatus } = this.props
-
       return (
          <PrimaryButtonElement onClick={this.onClick} disabled={loadingStatus}>
             <ButtonText>{this.renderDisplayValue()}</ButtonText>

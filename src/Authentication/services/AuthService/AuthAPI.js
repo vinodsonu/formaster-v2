@@ -17,7 +17,18 @@ export default class AuthService {
          {
            authDetails
          },
-         apiMethods.get
+         apiMethods.post
+      )
+   }
+   
+   onUserSignup(signUpDetails){
+      return networkCallWithApisauce(
+         this.api,
+         endpoints.signUp,
+         {
+           signUpDetails
+         },
+         apiMethods.post
       )
    }
 }

@@ -1,2 +1,2 @@
-import  UserProfileDetails  from './UserProfileDetails'
+import  {UserProfileDetails}  from './UserProfileDetails'
 export default UserProfileDetails

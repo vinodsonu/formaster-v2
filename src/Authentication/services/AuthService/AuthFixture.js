@@ -8,4 +8,13 @@ export default class AuthFixtureService {
          }, 1000)
       })
    }
+   
+   onUserSignup(signUpDetails){
+      return new Promise((resolve, reject) => {
+         setTimeout(() => {
+            
+            resolve()
+         }, 2000)
+      })
+   }
 }

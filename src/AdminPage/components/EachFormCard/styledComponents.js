@@ -8,6 +8,9 @@ export const FormCard = styled.div`
    border-radius: 4px;
    background-color: #ffffff;
    cursor: pointer;
+   &:hover{
+      ${tw`shadow-xl`}
+   }
 `
 export const FormTitle = styled.span`
    ${tw`h-4/5 flex justify-center items-center `}
@@ -17,7 +20,7 @@ export const FormTitle = styled.span`
    overflow-wrap: break-word;
    flex-grow: 1;
 `
-export const FormEditOptions = styled.button`
+export const FormEditOptions = styled.div`
    ${tw`h-1/5 flex justify-center items-center m-3`}
    background-color: transparent;
    border: 1px solid transparent;

@@ -37,6 +37,7 @@ class AdminRoute extends React.Component {
 
    @action
    userSignOut = () => {
+      
       const { userSignOut } = this.props.authStore
       const { history } = this.props
       userSignOut()
@@ -63,6 +64,15 @@ class AdminRoute extends React.Component {
             alert('Something went wrong....')
       }
    )
+   
+   onUpdateFormName = () =>{
+      alert("update")
+   }
+   
+   
+   onDeleteForm = () =>{
+      alert("delete")
+   }
 
    onFormClick = formId => {
       const { history } = this.props
@@ -88,6 +98,7 @@ class AdminRoute extends React.Component {
             createNewQuestionLoadingStatus={
                getCreateFormApiStatus === API_FETCHING
             }
+            onDeleteForm = {this.onDeleteForm}
          />
       )
    }

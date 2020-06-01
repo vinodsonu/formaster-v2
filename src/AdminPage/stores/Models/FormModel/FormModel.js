@@ -18,6 +18,11 @@ class FormModel {
    onChangeFormName(formName) {
       this.formName = formName
    }
+   
+   @action
+   onUpdateFormName = async() =>{
+      alert("onUpdateFormName");
+   }
 }
 
 export { FormModel }
