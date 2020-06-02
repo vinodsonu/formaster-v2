@@ -15,6 +15,8 @@ class FormsStore {
    @observable getFormApiError
    @observable getCreateFormApiStatus
    @observable getCreateFormApiError
+   @observable getUpdateFormNameApiStatus
+   @observable getUpdateFormNameApiError
    @observable forms
 
    constructor(formService, questionsStore) {
@@ -30,6 +32,8 @@ class FormsStore {
       this.getFormApiError = null
       this.getCreateFormApiStatus = API_INITIAL
       this.getCreateFormApiError = null
+      this.getUpdateFormNameApiStatus =API_INITIAL
+      this.getUpdateFormNameApiError = null;
    }
 
    @action.bound
@@ -87,6 +91,18 @@ class FormsStore {
          .to(this.setGetCreateFormApiStatus, this.setCreateFormApiResponse)
          .catch(this.setGetCreateFormApiError)
    }
+
+   @action
+   updateFormName = updatedName =>{
+      return alert(updatedName)
+   }
+
+   @action
+   onDeleteForm = formId =>{
+      
+      this.forms.delete(formId);
+   }
+   
 
    @action
    getFormDetails = async formId => {

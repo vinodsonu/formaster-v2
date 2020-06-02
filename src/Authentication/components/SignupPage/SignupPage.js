@@ -72,7 +72,7 @@ class SignupPage extends React.Component{
         const usernameError = isUsernameError?usernameField.fieldErrorMsg:emptyString;
         const passwordError = isPasswordError?passwordField.fieldErrorMsg:emptyString;
         const confirmPasswordError = isConfirmPasswordError?confirmPasswordField.fieldErrorMsg:emptyString;
-        
+        console.log(SignUpPageContainer )
         return <SignUpPageContainer>
                 
                 <SignUpPage>

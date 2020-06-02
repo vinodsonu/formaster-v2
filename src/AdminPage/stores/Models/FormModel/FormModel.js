@@ -1,5 +1,7 @@
 import { observable, action } from 'mobx'
+import {inject} from "mobx-react";
 
+import {formStore} from '../../index.js';
 class FormModel {
    @observable formName
    constructor(form) {
@@ -21,7 +23,10 @@ class FormModel {
    
    @action
    onUpdateFormName = async() =>{
-      alert("onUpdateFormName");
+      const {
+         updateFormName
+      }  = formStore;
+      await updateFormName(this.formName);
    }
 }
 

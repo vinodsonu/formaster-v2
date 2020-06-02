@@ -66,12 +66,15 @@ class AdminRoute extends React.Component {
    )
    
    onUpdateFormName = () =>{
-      alert("update")
+      
    }
    
    
-   onDeleteForm = () =>{
-      alert("delete")
+   onDeleteForm = (formId) =>{
+      const {
+         onDeleteForm
+      } = this.getFormStore()
+      onDeleteForm(formId)
    }
 
    onFormClick = formId => {

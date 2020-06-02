@@ -47,14 +47,22 @@ class EachFormCard extends React.Component {
          form.onUpdateFormName();
    }
 
+   onDeleteForm = () =>{
+      const {
+         form:{formId},
+         onDeleteForm
+      } = this.props;
+      onDeleteForm(formId)
+   }
+
    render() {
-      const { form:{formName},onDeleteForm } = this.props
+      const { form:{formName} } = this.props
       return (
          <FormCard>
             <FormTitle onClick={this.onClickFormCard} >{formName}</FormTitle>
             <FormEditOptions><FormOptionsMenu
                      
-                     onDeleteForm = {onDeleteForm}
+                     onDeleteForm = {this.onDeleteForm}
                      onUpdateFormName = {this.onUpdateFormName}
                      onSubmitFormName = {this.onSubmitFormName}
                      onClickUpdate = {this.onClickUpdate}

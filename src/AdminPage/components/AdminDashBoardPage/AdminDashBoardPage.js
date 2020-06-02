@@ -1,10 +1,12 @@
 import React from 'react'
+import {observer} from 'mobx-react';
 import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
 import DashBoardBody from '../DashBoardBody'
 import DashBoardHeader from '../DashBoardHeader'
 
 import { AdminDashBoardContainer } from './styledComponents.js'
 
+@observer
 class AdminDashBoardPage extends React.Component {
    render() {
       const {
