@@ -1,0 +1,77 @@
+Sign in page error displaying 
+feilds focus on enter
+sign in on enter
+
+
+
+Form DashBoard.......................
+1. Need show toast on failure
+2.settings component
+3.Pagination
+4.Form delete update
+5.questionDelete
+
+
+User.....................
+1.Preview
+2.
+
+
+
+
+Features tobe implemented.........................................
+User Page
+  1.list Of forms
+  2.preview form on Click
+  3.if user logged in showing the previous data
+
+CreatePage
+  1.settings Freature
+      1.is required
+      2.change placeholder
+      3.Mcq option onChange
+  
+  2.Side Preview
+  
+  3.Pagination
+  
+  
+  
+tap-mini-project 
+
+    knowledgeGap
+      1.KeyCode clarity forgetting everytime
+    
+    Functionnality
+      missing some plannings
+      need to cover all the scenarios of test cases
+      
+    
+    Styling
+      need to have some more clarity in styling like
+        shadow,positions
+    
+    
+    clean code
+      need some more detailed knowledge in the project structure
+      managing constants in other files
+      
+      some clarity in typos
+      
+      
+      
+Immediate Todos
+  1.Common Components Update And test cases
+  2.react menus
+      
+      
+    
+    
+  
+      
+  
+
+
+Day Plan
+1.Sign in Page validations
+2.Self Review and betterments

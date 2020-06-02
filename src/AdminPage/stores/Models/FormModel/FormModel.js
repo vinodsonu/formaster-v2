@@ -1,5 +1,10 @@
 import { observable, action } from 'mobx'
-import {inject} from "mobx-react";
+import {
+   API_INITIAL,
+   API_FAILURE,
+   API_SUCCESS,
+   API_FETCHING
+} from '@ib/api-constants'
 
 import {formStore} from '../../index.js';
 class FormModel {
@@ -22,11 +27,13 @@ class FormModel {
    }
    
    @action
-   onUpdateFormName = async() =>{
-      const {
-         updateFormName
-      }  = formStore;
-      await updateFormName(this.formName);
+   onUpdateFormName = async(updateFormName) =>{
+      
+      
+      await formStore.updateFormName({
+         form_id:this.formId,
+         form_name:updateFormName
+      });
    }
 }
 

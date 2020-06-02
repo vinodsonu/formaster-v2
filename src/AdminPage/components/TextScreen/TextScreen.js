@@ -40,6 +40,14 @@ class TextScreen extends React.Component {
       onChangeQuestionText(event.target.value)
    }
 
+   onClickQuestion = () =>{
+      const {
+         onClickQuestion,
+         question:{questionId}
+      } = this.props;
+      onClickQuestion(questionId)
+   }
+
    render() {
       const {
          createRoute: {
@@ -48,7 +56,7 @@ class TextScreen extends React.Component {
       } = strings
       const { questionText, questionId } = this.props.question
       return (
-         <TextScreenContainer>
+         <TextScreenContainer onClick={this.onClickQuestion}>
             <ScreenText>
                {this.renderIconButton()}
                <TransparentInputFeild

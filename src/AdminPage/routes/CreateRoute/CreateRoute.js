@@ -19,14 +19,16 @@ class CreateRoute extends React.Component {
       return this.props.authStore
    }
 
-   componentDidMount() {
-      this.getFormDetails()
+   async componentDidMount() {
+      await this.getFormDetails()
    }
 
    getFormDetails = async () => {
       const { match } = this.props
       const { formId } = match.params
       const { getTheCurrentFormDetails } = this.getQuestionStore()
+      const {userProfile} = this.getAuthStore()
+      await userProfile();
       await getTheCurrentFormDetails(formId)
    }
 
@@ -37,7 +39,7 @@ class CreateRoute extends React.Component {
       history.replace({ pathname: SIGN_IN_PATH })
    }
 
-   renderSuccessUi = () => {
+   renderSuccessUi = observer(() => {
       const {
          questions,
          getFormDetailsApiStatus,
@@ -45,7 +47,11 @@ class CreateRoute extends React.Component {
          getTheCurrentFormDetails,
          addNewQuestion,
          form,
-         onPublish
+         onPublish,
+         currentQuestionPreview,
+         onClickQuestion,
+         getNextQuestion,
+         getPreviousQuestion
       } = this.getQuestionStore()
 
       const { userProfileDetails } = this.getAuthStore()
@@ -61,9 +67,14 @@ class CreateRoute extends React.Component {
             form={form}
             userProfileDetails={userProfileDetails}
             onPublish={onPublish}
+            currentQuestionPreview = {currentQuestionPreview}
+            onClickQuestion = {onClickQuestion}
+            key={Math.random()}
+            getNextQuestion={getNextQuestion}
+            getPreviousQuestion={getPreviousQuestion}
          />
       )
-   }
+   })
 
    render() {
       const {

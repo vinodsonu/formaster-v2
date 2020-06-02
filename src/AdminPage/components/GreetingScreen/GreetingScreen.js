@@ -30,16 +30,24 @@ class GreetingScreen extends React.Component {
       onToggleShouldShowSettings(question)
    }
 
+   onClickQuestion = () =>{
+      const {
+         onClickQuestion,
+         question:{questionId}
+      } = this.props;
+      onClickQuestion(questionId)
+   }
+
    renderTheThankYouScrren = () => {
       const {
          createRoute: {
             thankYouScreen: { placeholder, type }
          }
       } = strings
-      const { questionId, questionText } = this.props.question
+      const { question:{questionId, questionText} } = this.props
 
       return (
-         <GreetingsFeild>
+         <GreetingsFeild onClick = {this.onClickQuestion}>
             <ScreenText>
                <ThankYouButton>
                   <GiSpotedFlower />

@@ -24,8 +24,18 @@ class CreateFormPage extends React.Component {
    }
 
    renderSuccessUI = () => {
-      const { questions, addNewQuestion, form } = this.props
+      const { 
+         questions, 
+         addNewQuestion, 
+         form,
+         onClickQuestion,
+         currentQuestionPreview,
+         getPreviousQuestion,
+         getNextQuestion
+      } = this.props
+      
       return (
+         
          <CreatePageBody>
             {this.shouldShowSettings ? (
                <Settings
@@ -38,8 +48,13 @@ class CreateFormPage extends React.Component {
                addNewQuestion={addNewQuestion}
                onToggleShouldShowSettings={this.onToggleShouldShowSettings}
                form={form}
+               onClickQuestion = {onClickQuestion}
             />
-            <PreviewResult />
+            <PreviewResult 
+                  currentQuestionPreview={currentQuestionPreview}
+                  getPreviousQuestion = {getPreviousQuestion}
+                  getNextQuestion = {getNextQuestion}
+            />
          </CreatePageBody>
       )
    }

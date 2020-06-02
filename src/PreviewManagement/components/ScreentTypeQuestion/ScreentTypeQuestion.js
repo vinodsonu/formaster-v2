@@ -1,11 +1,13 @@
 import React from 'react'
+import {FaRegImage} from 'react-icons/fa'
+
 import strings from '../../i18n/strings.json'
 
-import { ScreenQuestion, ScreenText, StartButton } from './styledComponents.js'
+import { ScreenQuestion, ScreenText, StartButton,ImageContainer } from './styledComponents.js'
 
 class ScreentTypeQuestion extends React.Component {
    getNextQuestion = () => {
-      const { getNextQuestion } = this.props
+      const { getNextQuestion ,getPreviousQuestion} = this.props
       getNextQuestion()
    }
 
@@ -16,6 +18,9 @@ class ScreentTypeQuestion extends React.Component {
       const { startButtonText } = strings
       return (
          <ScreenQuestion>
+            <ImageContainer>
+               <FaRegImage/>
+            </ImageContainer>
             <ScreenText>{questionText}</ScreenText>
             <StartButton onClick={this.getNextQuestion}>
                {startButtonText}

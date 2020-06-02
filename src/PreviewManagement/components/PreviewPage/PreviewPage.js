@@ -12,17 +12,34 @@ import {
 import McqTypeQuestion from '../McqTypeQuestion'
 import ScreentTypeQuestion from '../ScreentTypeQuestion'
 import TextTypeQuestion from '../TextTypeQuestion'
+import ProgressBar from './ProgressBar';
+import QuestionNavigator from './QuestionNavigator';
 
-import { PreviewPageCOntainer } from './styledComponents.js'
+import { PreviewPageContainer,ProgressBarAndQuestionNavigator } from './styledComponents.js'
 
 @observer
 class PreviewPage extends React.Component {
+   
+   componentDidMount(){
+      const {
+         getNextQuestion,
+         getPreviousQuestion
+      } = this.props;
+      document.onkeydown = function(event){ 
+         if(event.keyCode==38)
+            getPreviousQuestion()
+         else if(event.keyCode==40)
+            getNextQuestion()
+     }
+   }
+
    renderQuestion = () => {
       const {
          question,
          questionNumber,
          question: { questionType },
-         getNextQuestion
+         getNextQuestion,
+         getPreviousQuestion
       } = this.props
 
       switch (questionType) {
@@ -32,6 +49,7 @@ class PreviewPage extends React.Component {
                   question={question}
                   questionNumber={questionNumber}
                   getNextQuestion={getNextQuestion}
+                  getPreviousQuestion = {getPreviousQuestion}
                />
             )
          case THANK_YOU_SCREEN:
@@ -40,6 +58,7 @@ class PreviewPage extends React.Component {
                   question={question}
                   questionNumber={questionNumber}
                   getNextQuestion={getNextQuestion}
+                  getPreviousQuestion = {getPreviousQuestion}
                />
             )
          case SHORT_TEXT:
@@ -48,6 +67,7 @@ class PreviewPage extends React.Component {
                   question={question}
                   questionNumber={questionNumber}
                   getNextQuestion={getNextQuestion}
+                  getPreviousQuestion = {getPreviousQuestion}
                />
             )
          case LONG_TEXT:
@@ -56,6 +76,7 @@ class PreviewPage extends React.Component {
                   question={question}
                   questionNumber={questionNumber}
                   getNextQuestion={getNextQuestion}
+                  getPreviousQuestion={getPreviousQuestion}
                />
             )
          case MULTIPLE_CHOICE:
@@ -64,14 +85,22 @@ class PreviewPage extends React.Component {
                   question={question}
                   questionNumber={questionNumber}
                   getNextQuestion={getNextQuestion}
+                  getPreviousQuestion={getPreviousQuestion}
                />
             )
       }
    }
 
    render() {
+      const {totalQuestions} = this.props;
       return (
-         <PreviewPageCOntainer>{this.renderQuestion()}</PreviewPageCOntainer>
+         <PreviewPageContainer>
+               {this.renderQuestion()}
+               <ProgressBarAndQuestionNavigator>
+                  <ProgressBar/>
+                  <QuestionNavigator/>
+               </ProgressBarAndQuestionNavigator>
+         </PreviewPageContainer>
       )
    }
 }

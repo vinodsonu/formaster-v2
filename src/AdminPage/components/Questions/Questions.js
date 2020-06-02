@@ -16,7 +16,7 @@ import Mcq from '../Mcq'
 @observer
 class Questions extends React.Component {
    renderQuestions = () => {
-      const { questions, onToggleShouldShowSettings } = this.props
+      const { questions, onToggleShouldShowSettings,onClickQuestion } = this.props
       return Array.from(questions.values()).map(each => {
          switch (each.questionType) {
             case WELCOME_SCREEN:
@@ -25,6 +25,7 @@ class Questions extends React.Component {
                      key={each.questionId}
                      question={each}
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
+                     onClickQuestion={onClickQuestion}
                   />
                )
             case THANK_YOU_SCREEN:
@@ -33,6 +34,7 @@ class Questions extends React.Component {
                      key={each.questionId}
                      question={each}
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
+                     onClickQuestion={onClickQuestion}
                   />
                )
             case SHORT_TEXT:
@@ -41,6 +43,7 @@ class Questions extends React.Component {
                      key={each.questionId}
                      question={each}
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
+                     onClickQuestion={onClickQuestion}
                   />
                )
             case LONG_TEXT:
@@ -49,6 +52,7 @@ class Questions extends React.Component {
                      key={each.questionId}
                      question={each}
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
+                     onClickQuestion={onClickQuestion}
                   />
                )
             case MULTIPLE_CHOICE:
@@ -57,6 +61,7 @@ class Questions extends React.Component {
                      key={each.questionId}
                      question={each}
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
+                     onClickQuestion={onClickQuestion}
                   />
                )
          }

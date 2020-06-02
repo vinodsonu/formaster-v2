@@ -28,17 +28,18 @@ class PreviewRoute extends React.Component {
       const { userPreview } = this.getPreviewStore()
       const { match } = this.props
       const { formId } = match.params
-      console.log(this.questionOffset)
       await userPreview(formId, this.questionOffset)
    }
 
    renderSuccessUi = () => {
-      const { question } = this.getPreviewStore()
+      const { question ,totalQuestions} = this.getPreviewStore()
       return (
          <PreviewPage
             question={question}
             questionNumber={this.questionOffset + 1}
             getNextQuestion={this.getNextQuestion}
+            totalQuestions = {totalQuestions}
+            getPreviousQuestion = {getPreviousQuestion}
          />
       )
    }

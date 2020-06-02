@@ -5,8 +5,9 @@ import { Provider } from 'mobx-react'
 import stores from './Common/stores'
 import AuthenticationRoutes from './Authentication/routes'
 import AdminPageRoutes from './AdminPage/routes'
-import DummyComponent from './Common/components/DummyComponent'
-import UserRoutes from './PreviewManagement/routes'
+import DefaultRoute from './Common/routes'
+import PreviewRoutes from './PreviewManagement/routes'
+import UserRoutes from './User/routes';
 
 import './App.css'
 
@@ -18,7 +19,8 @@ const App = () => {
                {AuthenticationRoutes}
                {AdminPageRoutes}
                {UserRoutes}
-               <Route path='/' component={DummyComponent} />
+               {PreviewRoutes}
+               {DefaultRoute}
             </Switch>
          </Router>
       </Provider>

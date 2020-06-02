@@ -1,9 +1,16 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
+import {  Menu,  
+   MenuList,  
+   MenuButton,  
+   MenuItem,  
+} from "@reach/menu-button";
+import "@reach/menu-button/styles.css";
+
+
 import strings from '../../i18n/strings.json'
 import Questions from '../Questions'
-import withToggle from '../../hocs/withToggle'
 
 import {
    AddQuestion,
@@ -18,11 +25,12 @@ import {
 @observer
 class AddQuestionsPanel extends React.Component {
    renderListOfQuestions = () => {
-      const { questions, onToggleShouldShowSettings } = this.props
+      const { questions, onToggleShouldShowSettings,onClickQuestion } = this.props
       return (
          <Questions
             questions={questions}
             onToggleShouldShowSettings={onToggleShouldShowSettings}
+            onClickQuestion={onClickQuestion}
          />
       )
    }
@@ -31,44 +39,60 @@ class AddQuestionsPanel extends React.Component {
       const {
          createRoute: { questionTypeOptions }
       } = strings
-      const { toggleStatus, onToggle, addNewQuestion } = this.props
-      return toggleStatus ? (
-         <TypeOptions>
-            <Option value={questionTypeOptions[0]} onClick={addNewQuestion}>
-               {questionTypeOptions[0]}
-            </Option>
+      const {  addNewQuestion } = this.props
+
+      return <MenuList>
+            <MenuItem >
+               <Option value={questionTypeOptions[0]} onClick={addNewQuestion}>
+                {questionTypeOptions[0]}
+             </Option>
+               
+            </MenuItem>  
+            <MenuItem>
             <Option value={questionTypeOptions[1]} onClick={addNewQuestion}>
-               {questionTypeOptions[1]}
-            </Option>
+                {questionTypeOptions[1]}
+             </Option>
+            </MenuItem>
+            <MenuItem >
             <Option value={questionTypeOptions[2]} onClick={addNewQuestion}>
-               {questionTypeOptions[2]}
-            </Option>
+                {questionTypeOptions[2]}
+             </Option>
+            </MenuItem>
+            <MenuItem>
             <Option value={questionTypeOptions[3]} onClick={addNewQuestion}>
-               {questionTypeOptions[3]}
-            </Option>
+                {questionTypeOptions[3]}
+             </Option>
+            </MenuItem>
+            <MenuItem>
             <Option value={questionTypeOptions[4]} onClick={addNewQuestion}>
-               {questionTypeOptions[4]}
-            </Option>
-         </TypeOptions>
-      ) : null
+                {questionTypeOptions[4]}
+             </Option>
+            </MenuItem>      
+            
+      </MenuList>
+
    }
 
    renderAddQuestionSection = () => {
       const {
          createRoute: {
-            createPageBody: { createQuestionButtonText, addNewQuestionText },
-            questionTypeOptions
+            createPageBody: { createQuestionButtonText }
          }
       } = strings
-      const { onToggle } = this.props
+   
 
       return (
          <AddButtonWithText>
             <AddWithTypes>
-               <AddButton onClick={onToggle}>
-                  {createQuestionButtonText}
-               </AddButton>
-               {this.renderTypeOptions()}
+
+            <Menu>      
+               <MenuButton>        
+                     <AddButton>
+                        {createQuestionButtonText}
+                     </AddButton>     
+               </MenuButton>      
+               {this.renderTypeOptions()}     
+            </Menu>
             </AddWithTypes>
             <AddText></AddText>
          </AddButtonWithText>
@@ -85,4 +109,7 @@ class AddQuestionsPanel extends React.Component {
    }
 }
 
-export default withToggle(AddQuestionsPanel)
+export default AddQuestionsPanel
+
+
+

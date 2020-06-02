@@ -62,5 +62,7 @@
         "signInText":"sign in",
         "ibhubsLogo":"ibhubs-logo"
     },
-    "emptyString":""
+    "emptyString":"",
+    "user":"user",
+    "admin":"admin"
 }

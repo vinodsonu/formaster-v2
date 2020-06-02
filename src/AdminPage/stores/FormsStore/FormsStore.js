@@ -17,6 +17,8 @@ class FormsStore {
    @observable getCreateFormApiError
    @observable getUpdateFormNameApiStatus
    @observable getUpdateFormNameApiError
+   @observable getDeleteFormApiStatus
+   @observable getDeleteFormApiError
    @observable forms
 
    constructor(formService, questionsStore) {
@@ -34,6 +36,8 @@ class FormsStore {
       this.getCreateFormApiError = null
       this.getUpdateFormNameApiStatus =API_INITIAL
       this.getUpdateFormNameApiError = null;
+      this.getDeleteFormApiStatus = API_INITIAL;
+      this.getDeleteFormApiError = null;
    }
 
    @action.bound
@@ -93,14 +97,47 @@ class FormsStore {
    }
 
    @action
-   updateFormName = updatedName =>{
-      return alert(updatedName)
+   setGetUpdateFormNameApiStatus = status =>{
+         this.getUpdateFormNameApiStatus = status;
+   }
+
+   @action
+   setGetCreateFormApiError = error =>{
+      this.getUpdateFormNameApiError = error;
+   }
+
+   
+
+   @action
+   updateFormName = form =>{
+      const updateFormNamePromise = this.formService.updateFormName(form)
+      return bindPromiseWithOnSuccess(updateFormNamePromise)
+         .to(this.setGetUpdateFormNameApiStatus, ()=>{
+            this.forms.set(form.form_id,new FormModel(form))
+         })
+         .catch(this.getUpdateFormNameApiError)
+   }
+
+
+   @action
+   setGetDeleteFormApiError = error =>{
+      this.getDeleteFormApiError =error;
+   }
+
+   @action
+   setGetDeleteFormApiStatus = status=>{
+      this.getDeleteFormApiStatus = status;
    }
 
    @action
    onDeleteForm = formId =>{
+      const deleteFormPromise = this.formService.deleteForm(formId)
+      return bindPromiseWithOnSuccess(deleteFormPromise)
+         .to(this.setGetDeleteFormApiStatus, ()=>{
+            this.forms.delete(formId);
+         })
+         .catch(this.setGetDeleteFormApiError)
       
-      this.forms.delete(formId);
    }
    
 

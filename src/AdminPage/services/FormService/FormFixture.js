@@ -19,4 +19,20 @@ export default class FormFixtureService {
          }, 2000)
       })
    }
+
+   updateFormName(form){
+      return new Promise((resolve, reject) => {
+         setTimeout(() => {
+            resolve()
+         }, 2000)
+      })
+   }
+
+   deleteForm(formId){
+      return new Promise((resolve, reject) => {
+         setTimeout(() => {
+            resolve()
+         }, 2000)
+      })
+   }
 }

@@ -1,10 +1,12 @@
 import authStore from '../../Authentication/stores'
 import { formStore, questionsStore } from '../../AdminPage/stores'
 import { previewStore } from '../../PreviewManagement/stores'
+import userFormStore from '../../User/stores';
 
 export default {
    authStore,
    formStore,
    questionsStore,
-   previewStore
+   previewStore,
+   userFormStore
 }

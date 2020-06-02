@@ -132,9 +132,17 @@ class SignInRoute extends React.Component {
          } catch (e) {}
       },
       status => {
+         const { userProfileDetails:{role} } = this.getAuthStore();
+         const {
+            user,
+            admin
+         } = strings
          const { history } = this.props
          if (status) {
-            history.replace({ pathname: ADMIN_PAGE_PATH })
+            if(role===admin)
+               history.replace({ pathname: ADMIN_PAGE_PATH })
+            else if(user)
+            history.replace({ pathname: USER_PAGE_PATH })
          }
       }
    )

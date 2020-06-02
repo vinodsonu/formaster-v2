@@ -1,4 +1,6 @@
 export const apiMethods = {
    post: 'POST',
-   get: 'GET'
+   get: 'GET',
+   put:"PUT",
+   delete:"DELETE"
 }

@@ -30,7 +30,7 @@ class McqTypeQuestion extends React.Component {
                key={eachChoice.choice_id}
                id={eachChoice.choice_id}
             >
-               <ChoiceCheckBox type={mcqTextQuestionType} />
+               <ChoiceCheckBox type={mcqTextQuestionType} checked={checked}/>
                <ChoiceText>{choice_text}</ChoiceText>
             </ChoiceWithChoiceText>
          )

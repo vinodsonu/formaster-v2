@@ -20,8 +20,8 @@ class AdminRoute extends React.Component {
       return this.props.authStore
    }
 
-   componentDidMount() {
-      this.getUserDetails()
+   async componentDidMount() {
+      await this.getUserDetails()
    }
 
    componentWillUnmount() {

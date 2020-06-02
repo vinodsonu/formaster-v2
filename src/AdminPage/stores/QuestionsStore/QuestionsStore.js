@@ -1,13 +1,9 @@
-import { observable, action, computed } from 'mobx'
-import { API_INITIAL, API_FAILURE, API_SUCCESS } from '@ib/api-constants'
+import { observable, action } from 'mobx'
+import { API_INITIAL} from '@ib/api-constants'
 
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 
 import {
-   WELCOME_SCREEN,
-   THANK_YOU_SCREEN,
-   SHORT_TEXT,
-   LONG_TEXT,
    MULTIPLE_CHOICE
 } from '../../constants/QuestionTypeContants.js'
 
@@ -95,7 +91,7 @@ class QuestionsStore {
       this.publishedLink = response
    }
 
-   @action.bound
+   @action
    onPublish = () => {
       const details = Array.from(this.questions.values()).map(each =>
          each.getRequestObject()
@@ -106,6 +102,32 @@ class QuestionsStore {
       return bindPromiseWithOnSuccess(formQuestionsPublishPromise)
          .to(this.setGetPublishStatus, this.setPublishResponse)
          .catch(this.setGetPublishError)
+   }
+
+   
+   onClickQuestion = (questionId) =>{
+      
+      this.currentQuestionPreview = this.questions.get(questionId);
+   }
+
+   getNextQuestion = () =>{
+      const presentQuestionIndex= Array.from(this.questions.keys()).findIndex(
+         questionKey=>
+         questionKey === this.currentQuestionPreview.questionId
+
+      )
+      if(presentQuestionIndex+1<this.questions.size)
+         this.currentQuestionPreview = Array.from(this.questions.values())[presentQuestionIndex+1]
+   }
+
+   getPreviousQuestion = () =>{
+      const presentQuestionIndex = Array.from(this.questions.keys()).findIndex(
+         question=>
+         question.questionId === this.currentQuestionPreview.questionId
+
+      )
+      if(presentQuestionIndex>0)
+       this.currentQuestionPreview = Array.from(this.questions.values())[presentQuestionIndex-1]
    }
 
    @action.bound
@@ -141,6 +163,8 @@ class QuestionsStore {
                })
             )
       }
+      this.currentQuestionPreview = this.questions.get(this.newQuestionCount+1);
+      
    }
 }
 

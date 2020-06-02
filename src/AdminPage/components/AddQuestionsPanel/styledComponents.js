@@ -4,7 +4,7 @@ import tw from 'tailwind.macro'
 export const AddQuestion = styled.div`
    ${tw`flex flex-col`}
    max-height:100vh;
-   overflow: scrollY;
+   overflow: scroll;
    flex: 1 1 0;
    margin-top: 64px;
 `
@@ -27,5 +27,6 @@ export const TypeOptions = styled.div`
    ${tw`flex flex-col bg-white shadow-md p-3`}
 `
 export const Option = styled.button`
-   ${tw`shadow-md border-2`}
+   ${tw``}
+   width:100%;
 `

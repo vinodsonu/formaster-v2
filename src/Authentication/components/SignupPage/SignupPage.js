@@ -1,11 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react'
+
 import strings from '../../i18n/strings.json'
 import InputFeild from '../../../Common/components/InputFeild'
 import PrimaryButton from '../../../Common/components/PrimaryButton'
 import logo from '../../../assets/ibhubslogo.svg';
-
-import {ToastMessage} from '../../../Common/components/ToastMessage/ToastMessage.js'
 
 import {
     SignUpPage,
@@ -72,7 +71,7 @@ class SignupPage extends React.Component{
         const usernameError = isUsernameError?usernameField.fieldErrorMsg:emptyString;
         const passwordError = isPasswordError?passwordField.fieldErrorMsg:emptyString;
         const confirmPasswordError = isConfirmPasswordError?confirmPasswordField.fieldErrorMsg:emptyString;
-        console.log(SignUpPageContainer )
+
         return <SignUpPageContainer>
                 
                 <SignUpPage>
@@ -80,7 +79,7 @@ class SignupPage extends React.Component{
                     <WebTitle src={logo} alt={ibhubsLogo}></WebTitle>
                    <GreetingMessage>{greetingText}</GreetingMessage>
                    <ErrorMessage>{errorMessage}</ErrorMessage>
-                    <ToastMessage content={"hello"}/>
+                      
                     <InputFeild
                     
                           handleOnChange={onChangeName}

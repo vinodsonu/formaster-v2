@@ -10,6 +10,7 @@ import FormOptionsMenu from './formOptionMenu';
 @observer
 class EachFormCard extends React.Component {
    @observable isFormNameEmpty = false;
+   @observable tempFormName = ''
    
    onClickFormCard = () => {
       const {
@@ -23,7 +24,7 @@ class EachFormCard extends React.Component {
       const {
          form
       } = this.props;
-      form.onChangeFormName(event.target.value)
+      this.tempFormName = event.target.value;
       
    }
    
@@ -35,8 +36,8 @@ class EachFormCard extends React.Component {
          this.isFormNameEmpty = true;
    }
    
-   onSubmitFormName = event =>{
-      if(event.keyCode===13)
+   onSubmitFormName = () => {
+      
          this.onClickUpdate();
    }
    
@@ -44,7 +45,7 @@ class EachFormCard extends React.Component {
       this.checkForFormNameEmpty();
       const {form} = this.props;
       if(!this.isFormNameEmpty)
-         form.onUpdateFormName();
+         form.onUpdateFormName(this.tempFormName);
    }
 
    onDeleteForm = () =>{
@@ -56,17 +57,17 @@ class EachFormCard extends React.Component {
    }
 
    render() {
-      const { form:{formName} } = this.props
+      const {form:{formName}} = this.props;                                                                                                
       return (
          <FormCard>
             <FormTitle onClick={this.onClickFormCard} >{formName}</FormTitle>
-            <FormEditOptions><FormOptionsMenu
+            <FormEditOptions><FormOptionsMenu                                                                                                                                                                                                                                                                                                                     
                      
                      onDeleteForm = {this.onDeleteForm}
                      onUpdateFormName = {this.onUpdateFormName}
                      onSubmitFormName = {this.onSubmitFormName}
                      onClickUpdate = {this.onClickUpdate}
-                     updatedFormName = {formName}
+                     updatedFormName = {this.tempFormName}
                      isFormNameEmpty = {this.isFormNameEmpty}
             
             /></FormEditOptions>

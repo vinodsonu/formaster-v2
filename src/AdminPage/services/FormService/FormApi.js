@@ -15,19 +15,56 @@ export default class FormApiService {
       return networkCallWithApisauce(
          this.api,
          endpoints.forms,
-         {
-            access_token: access_token
-         },
+         {},
          apiMethods.get
       )
    }
 
    createNewForm(formName) {
-      this.api,
+      return networkCallWithApisauce(
+         this.api,
          endpoints.createForm,
          {
-            formName: formName
+            form_name:formName
          },
          apiMethods.post
+      )
    }
+
+   updateFormName(form){
+      const {
+         form_id,
+         form_name
+      } = form;
+      const {
+         updateFormName
+      } = endpoints
+      const endpoint = `${updateFormName[0]}${form_id}${updateFormName[1]}`;
+
+      return networkCallWithApisauce(
+         this.api,
+         endpoint,
+         {
+            form_name:formName
+         },
+         apiMethods.put
+      )
+
+   }
+
+   deleteForm(formId){
+      const {
+         deleteForm
+      } = endpoints
+      const endpoint = `${deleteForm[0]}${formId}`
+      return networkCallWithApisauce(
+         this.api,
+         endpoint,
+         {},
+         apiMethods.delete
+      )
+   }
+
+   
+
 }

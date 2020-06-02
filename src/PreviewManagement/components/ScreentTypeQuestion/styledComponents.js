@@ -21,3 +21,5 @@ export const StartButton = styled.button`
    background-color: #008cba;
    display: inline;
 `
+
+export const ImageContainer = styled.div``

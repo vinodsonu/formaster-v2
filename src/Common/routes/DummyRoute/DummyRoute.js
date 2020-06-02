@@ -3,8 +3,8 @@ import { inject, observer } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
 import { reaction } from 'mobx'
 
-import { getAccessToken, clearUserSession } from '../../../utils/StorageUtils'
 import { API_INITIAL, API_FAILURE, API_SUCCESS } from '@ib/api-constants'
+import LoadingWrapperWithFailure from '../../components/LoadingWrapperWithFailure'
 import { isLoggedin } from '../../../utils/AccessTokenUtills'
 import {
    SIGN_IN_PATH,
@@ -14,7 +14,7 @@ import {
 
 @inject('authStore')
 @observer
-class DummyComponent extends React.Component {
+class DummyRoute extends React.Component {
    getStore = () => {
       return this.props.authStore
    }
@@ -40,7 +40,7 @@ class DummyComponent extends React.Component {
          const { history } = this.props
          const { userProfileDetails } = this.getStore()
          if (status)
-            if (userProfileDetails[0].is_admin)
+            if (userProfileDetails[0].role === '')
                history.replace({ pathname: ADMIN_PAGE_PATH })
             else history.replace({ pathname: USER_PAGE_PATH })
       }
@@ -53,10 +53,19 @@ class DummyComponent extends React.Component {
          this.redirectToLoginPage()
       }
    }
+
+   renderSuccessUi = () =>{
+      return null;
+   }
    render() {
-      //clearUserSession();
-      return null
+      const { userProfile,getUserProfileAPIStatus, getUserProfileAPIError} = this.getStore()
+      return <LoadingWrapperWithFailure
+                  apiStatus={getUserProfileAPIStatus}
+                  renderSuccessUI={this.renderSuccessUi}
+                  onRetryClick={userProfile}
+                  apiError={getUserProfileAPIError}
+               />
    }
 }
 
-export default withRouter(DummyComponent)
+export default withRouter(DummyRoute)

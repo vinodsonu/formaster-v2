@@ -33,6 +33,14 @@ class Mcq extends React.Component {
       this.choiceText = event.target.value
    }
 
+   onClickQuestion = () =>{
+      const {
+         onClickQuestion,
+         question:{questionId}
+      } = this.props;
+      onClickQuestion(questionId)
+   }
+
    renderChoices = () => {
       const { choices } = this.props.question
       const {
@@ -74,7 +82,7 @@ class Mcq extends React.Component {
       } = strings
       const { questionText, questionId } = this.props.question
       return (
-         <McqScreen>
+         <McqScreen onClick={this.onClickQuestion}>
             <ScreenText>
                <McqButton>
                   <FaCheck />

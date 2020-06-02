@@ -38,6 +38,9 @@ class TextTypeQuestion extends React.Component {
          <TextQuestion>
             <QuestionNumber>{questionNumber}</QuestionNumber>
             <QuestionDetails>
+               <ImageConatiner>
+                  
+               </ImageConatiner>
                <QuestionText>{questionText}</QuestionText>
                <QuestionResponseFeild>
                   <InputFeild

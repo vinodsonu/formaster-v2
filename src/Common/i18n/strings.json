@@ -1,0 +1,64 @@
+{
+    "logoutText" : "Log Out",
+    "createFormCardText" : "New Form",
+    "createFormButtonSymbol" : "+",
+    "createNewFormData":{
+        "type":"text",
+         "label":"Form Name",
+         "placeholder":"Snack Form"
+    },
+    "createNewFormModelCloseButtonData":"create",
+    "defaultFormName":"New Form",
+    "updateFormText":"update",
+    "deleteFormText":"delete",
+    "formNameEmptyError":"form name should not be empty",
+    
+    "createRoute":{
+        "navBar":{
+            "links":["create","connect","share","result"],
+            "publishButtonText":"publish",
+            "backButtonText":"Back"
+        },
+        
+        "createPageBody":{
+            "createQuestionButtonText":"+",
+            "addNewQuestionText":"Add New Question"
+        },
+        
+        "welcomeScreen":{
+            "placeholder":"Type welcome message here...",
+            "type":"text",
+            "questionType":"WELCOME_SCREEN"
+        },
+        "mcqscreen":{
+            "placeholder":"Type question here...",
+            "choicePlaceholder":"choice",
+             "type":"text",
+             "choiceType":"text",
+             "questionType":"MULTIPLE_CHOICE"
+        },
+        "shortTextScreen":{
+            "placeholder":"Type question here",
+             "type":"text",
+             "questionType":"SHORT_TEXT"
+        },
+        "longTextScreen":{
+            "placeholder":"Type question here",
+             "type":"text",
+             "questionType":"LONG_TEXT"
+        },
+        "thankYouScreen":{
+            "placeholder":"Type Thank You message here...",
+            "type":"text",
+            "questionType":"THANK_YOU_SCREEN"
+        },
+        "questionTypeOptions":[
+            "WELCOME_SCREEN",
+            "THANK_YOU_SCREEN",
+            "SHORT_TEXT",
+            "MULTIPLE_CHOICE",
+            "LONG_TEXT"
+        ]
+        
+    }
+}
