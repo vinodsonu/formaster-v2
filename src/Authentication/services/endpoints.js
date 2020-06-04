@@ -1,5 +1,5 @@
 const endpoints = {
-   signIn: '/login/v1',
+   signIn: '/login/v1/',
    signUp:'/signup/v1'
 }
 

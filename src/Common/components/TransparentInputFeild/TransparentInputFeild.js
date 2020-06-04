@@ -5,6 +5,7 @@ import { InputElement, InputWithLabel, InputLabel } from './styledComponents'
 
 @observer
 class TransparentInputFeild extends React.Component {
+   inputRef = React.createRef();
    render() {
       const {
          value,
@@ -12,7 +13,9 @@ class TransparentInputFeild extends React.Component {
          type,
          label,
          placeholder,
-         isFeildError
+         isFeildError,
+         handleOnKeyDown,
+         handleOnFocus
       } = this.props
 
       return (
@@ -24,6 +27,9 @@ class TransparentInputFeild extends React.Component {
                value={value}
                onChange={handleOnChange}
                isRedBorder={isFeildError}
+               onKeyDown={handleOnKeyDown}
+               ref= {this.inputRef}
+               onFocus = {handleOnFocus}
             />
          </InputWithLabel>
       )

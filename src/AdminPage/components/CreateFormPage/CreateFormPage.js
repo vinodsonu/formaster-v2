@@ -31,7 +31,11 @@ class CreateFormPage extends React.Component {
          onClickQuestion,
          currentQuestionPreview,
          getPreviousQuestion,
-         getNextQuestion
+         getNextQuestion,
+         questionNumber,
+         totalQuestions,
+         questionListSize,
+         getQuestionNumber
       } = this.props
       
       return (
@@ -49,11 +53,17 @@ class CreateFormPage extends React.Component {
                onToggleShouldShowSettings={this.onToggleShouldShowSettings}
                form={form}
                onClickQuestion = {onClickQuestion}
+               getQuestionNumber={getQuestionNumber}
+
             />
             <PreviewResult 
                   currentQuestionPreview={currentQuestionPreview}
                   getPreviousQuestion = {getPreviousQuestion}
                   getNextQuestion = {getNextQuestion}
+                  questionNumber = {questionNumber}
+                  totalQuestions = {totalQuestions}
+                  questionListSize = {questionListSize}
+
             />
          </CreatePageBody>
       )

@@ -1,11 +1,13 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { GiSpotedFlower } from 'react-icons/gi'
 import { AiTwotoneSetting } from 'react-icons/ai'
 import { AiFillDelete } from 'react-icons/ai'
 
 import TransparentInputFeild from '../../../Common/components/TransparentInputFeild'
 import strings from '../../i18n/strings.json'
+import QuestionIcon from '../common/QuestionIcon';
+
+import QuestionEditOptions from '../common/QuestionEditOptions'
 
 import {
    GreetingsFeild,
@@ -30,7 +32,7 @@ class GreetingScreen extends React.Component {
       onToggleShouldShowSettings(question)
    }
 
-   onClickQuestion = () =>{
+   handleOnFocus = () =>{
       const {
          onClickQuestion,
          question:{questionId}
@@ -38,72 +40,70 @@ class GreetingScreen extends React.Component {
       onClickQuestion(questionId)
    }
 
-   renderTheThankYouScrren = () => {
+   getQuestionPlaceholder = () =>{
       const {
          createRoute: {
-            thankYouScreen: { placeholder, type }
-         }
-      } = strings
-      const { question:{questionId, questionText} } = this.props
+            welcomeScreen,
+            questionTypeOptions,
+            thankYouScreen
+                  }         
 
-      return (
-         <GreetingsFeild onClick = {this.onClickQuestion}>
-            <ScreenText>
-               <ThankYouButton>
-                  <GiSpotedFlower />
-               </ThankYouButton>
-               <TransparentInputFeild
-                  placeholder={placeholder}
-                  handleOnChange={this.handleOnChange}
-                  value={questionText}
-                  type={type}
-               />
-            </ScreenText>
-            <EditOptions>
-               <AiTwotoneSetting />
-               <DeleteButton onClick={() => {}} id={questionId}>
-                  <AiFillDelete />
-               </DeleteButton>
-            </EditOptions>
-         </GreetingsFeild>
-      )
+      } = strings
+      const { questionType } = this.props.question
+      if(questionType === questionTypeOptions[0])
+         return welcomeScreen.placeholder;
+      else
+         return thankYouScreen.placeholder
+
    }
 
-   renderTheWelcomeScrren = () => {
+   getQuestionType = () =>{
       const {
          createRoute: {
-            welcomeScreen: { placeholder, type }
-         }
+            welcomeScreen,
+            questionTypeOptions,
+            thankYouScreen
+                  }         
+
       } = strings
-      const { questionText, questionId } = this.props.question
-      return (
-         <GreetingsFeild>
-            <ScreenText>
-               <WelcomeButton>
-                  <GiSpotedFlower />
-               </WelcomeButton>
-               <TransparentInputFeild
-                  placeholder={placeholder}
-                  handleOnChange={this.handleOnChange}
-                  value={questionText}
-                  type={type}
-               />
-            </ScreenText>
-            <EditOptions>
-               <AiTwotoneSetting />
-               <DeleteButton id={questionId}>
-                  <AiFillDelete />
-               </DeleteButton>
-            </EditOptions>
-         </GreetingsFeild>
-      )
+      const { questionType } = this.props.question
+      if(questionType === questionTypeOptions[0])
+         return welcomeScreen.type;
+      else
+         return thankYouScreen.type;
    }
 
    render() {
-      const { questionType } = this.props.question
-      return questionType === 'WELCOME_SCREEN'
-         ? this.renderTheWelcomeScrren()
-         : this.renderTheThankYouScrren()
+     
+      
+      
+      const { question:{questionId, questionText,questionType} } = this.props
+
+      const placeholder = this.getQuestionPlaceholder();
+
+      const type = this.getQuestionType()
+
+      
+
+      return (
+
+         <GreetingsFeild>
+            <ScreenText>
+               <QuestionIcon
+                  type = {questionType}
+               />
+               <TransparentInputFeild
+                  placeholder={placeholder}
+                  handleOnChange={this.handleOnChange}
+                  value={questionText}
+                  type={type}
+                  handleOnFocus = {this.handleOnFocus}
+               />
+            </ScreenText>
+         <QuestionEditOptions/>
+      </GreetingsFeild>
+
+      );
    }
 }
 

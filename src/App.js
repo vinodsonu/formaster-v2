@@ -6,7 +6,6 @@ import stores from './Common/stores'
 import AuthenticationRoutes from './Authentication/routes'
 import AdminPageRoutes from './AdminPage/routes'
 import DefaultRoute from './Common/routes'
-import PreviewRoutes from './PreviewManagement/routes'
 import UserRoutes from './User/routes';
 
 import './App.css'
@@ -19,7 +18,6 @@ const App = () => {
                {AuthenticationRoutes}
                {AdminPageRoutes}
                {UserRoutes}
-               {PreviewRoutes}
                {DefaultRoute}
             </Switch>
          </Router>

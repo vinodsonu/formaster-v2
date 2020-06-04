@@ -1,3 +1,14 @@
 {
+    "QuestionPlaceholder":"Type Your answer here...",
+    "shortTextQuestionInputType":"text",
+    "longTextQuestionInputType":"text",
+    "mcqTextQuestionType":"checkbox",
+    "startButtonText":"start",
+    "nextButtonText":"next",
+    "thankyouButtonText":"thank you",
+    "welcomeScreen":"WELCOME_SCREEN",
+    "thankyouScreen":"THANK_YOU_SCREEN",
+    "okButtonText":"ok",
+    "submitButtonText":"submit"
     
 }

@@ -1,10 +1,8 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { AiTwotoneSetting } from 'react-icons/ai'
-import { AiFillDelete } from 'react-icons/ai'
-import { MdShortText } from 'react-icons/md'
-import { BsTextCenter } from 'react-icons/bs'
 
+import QuestionEditOptions from '../common/QuestionEditOptions'
+import QuestionIcon from '../common/QuestionIcon'
 import TransparentInputFeild from '../../../Common/components/TransparentInputFeild'
 import strings from '../../i18n/strings.json'
 
@@ -20,27 +18,14 @@ import {
 
 @observer
 class TextScreen extends React.Component {
-   renderIconButton = () => {
-      const { questionType, questionId } = this.props.question
-      return questionType === 'SHORT_TEXT' ? (
-         <ShortButton>
-            <MdShortText />
-            <Qno></Qno>
-         </ShortButton>
-      ) : (
-         <LongButton>
-            <BsTextCenter />
-            <Qno></Qno>
-         </LongButton>
-      )
-   }
+   
 
    handleOnChange = event => {
       const { onChangeQuestionText } = this.props.question
       onChangeQuestionText(event.target.value)
    }
 
-   onClickQuestion = () =>{
+   onFocusQuestion = () =>{
       const {
          onClickQuestion,
          question:{questionId}
@@ -54,24 +39,24 @@ class TextScreen extends React.Component {
             shortTextScreen: { placeholder, type }
          }
       } = strings
-      const { questionText, questionId } = this.props.question
+      const { question:{questionText, questionId,questionType},getQuestionNumber} = this.props
+      const questionNumber = getQuestionNumber(questionId)
       return (
-         <TextScreenContainer onClick={this.onClickQuestion}>
+         <TextScreenContainer>
             <ScreenText>
-               {this.renderIconButton()}
+               <QuestionIcon
+                  type={questionType}
+                  questionNumber={questionNumber}
+               />
                <TransparentInputFeild
                   placeholder={placeholder}
                   handleOnChange={this.handleOnChange}
                   value={questionText}
                   type={type}
+                  handleOnFocus = {this.onFocusQuestion}
                />
             </ScreenText>
-            <EditOptions>
-               <AiTwotoneSetting />
-               <DeleteButton id={questionId}>
-                  <AiFillDelete />
-               </DeleteButton>
-            </EditOptions>
+            <QuestionEditOptions/>
          </TextScreenContainer>
       )
    }

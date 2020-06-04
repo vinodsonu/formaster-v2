@@ -7,14 +7,17 @@ export const AddQuestion = styled.div`
    overflow: scroll;
    flex: 1 1 0;
    margin-top: 64px;
+   min-width:500px;
 `
+export const BottomDiv = styled.div``
+
 export const AddButtonWithText = styled.div`
    ${tw`flex items-start justify-center`}
 `
 export const AddButton = styled.button`
    padding: 10px;
    margin: 10px;
-   border-radius: 50%;
+   border-radius: 100%;
    color: white;
    background-color: black;
 `

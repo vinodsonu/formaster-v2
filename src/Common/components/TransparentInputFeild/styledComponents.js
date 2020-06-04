@@ -7,7 +7,8 @@ const InputElement = styled.input`
 `
 
 const InputWithLabel = styled.div`
-   ${tw`flex flex-col mt-2 mb-2`}
+   ${tw`flex flex-col flex-wrap mt-2 mb-2`}
+   flex-grow:1;
 `
 
 const InputLabel = styled.span`

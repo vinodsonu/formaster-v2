@@ -1,9 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
-import { AiTwotoneSetting } from 'react-icons/ai'
-import { AiFillDelete } from 'react-icons/ai'
-import { FaCheck } from 'react-icons/fa'
 
 import TransparentInputFeild from '../../../Common/components/TransparentInputFeild'
 import strings from '../../i18n/strings.json'
@@ -11,19 +8,20 @@ import strings from '../../i18n/strings.json'
 import {
    McqScreen,
    ScreenText,
-   EditOptions,
-   DeleteButton,
-   McqButton,
-   Qno,
    Choices,
-   AddMcqSection,
-   AddMcqButton
+   AddMcqSection
 } from './styledComponents.js'
+import QuestionIcon from "../common/QuestionIcon"
+import QuestionEditOptions from '../common/QuestionEditOptions';     
 
 @observer
 class Mcq extends React.Component {
    @observable choiceText = ''
+   @observable updatedMcqValue = ''
    choiceCount = -1
+   addMcqRef = React.createRef();
+
+   
    handleOnChange = event => {
       const { onChangeQuestionText } = this.props.question
       onChangeQuestionText(event.target.value)
@@ -33,12 +31,17 @@ class Mcq extends React.Component {
       this.choiceText = event.target.value
    }
 
-   onClickQuestion = () =>{
+   handleOnFocus = () =>{
       const {
          onClickQuestion,
          question:{questionId}
       } = this.props;
       onClickQuestion(questionId)
+   }
+
+   handleMcqUpdate = (event) =>{
+      this.updatedMcqValue = event.target.value;
+
    }
 
    renderChoices = () => {
@@ -52,7 +55,7 @@ class Mcq extends React.Component {
          return (
             <TransparentInputFeild
                placeholder={choicePlaceholder}
-               handleOnChange={this.handleMcqChange}
+               handleOnChange={()=>{}}
                value={each.choice_text}
                type={choiceType}
                key={each.choice_id}
@@ -61,59 +64,82 @@ class Mcq extends React.Component {
       })
    }
 
-   addMcqButton = () => {}
+   
 
-   addMcq = () => {
+   onAddMcq = () => {
       const { choices } = this.props.question
       let newChoices = choices
-      newChoices.push({
-         choice_id: this.choiceCount--,
-         choice_text: this.choiceText
-      })
-      this.props.question.onChangeChoices(newChoices)
-      this.choiceText = ''
+
+            newChoices.push({
+            choice_id: this.choiceCount--,
+            choice_text: this.choiceText
+         })
+         this.props.question.onChangeChoices(newChoices)
+         this.choiceText = ''
+
    }
+
+   onDeleteMcq = () =>{
+      const { choices } = this.props.question
+      let newChoices = choices
+      newChoices.pop();
+      console.log(newChoices)
+      this.props.question.onChangeChoices(newChoices)                                                                                                                                                                                    
+   }
+
+   onKeyDownChoice = (event)=>{
+      if(event.keyCode===13){
+            this.onAddMcq();
+            this.addMcqRef.current.inputRef.current.focus();
+      }
+
+
+      else if(event.keyCode===8 && this.choiceText===''){
+            this.onDeleteMcq()
+      }
+   }
+
+
 
    render() {
       const {
          createRoute: {
-            mcqscreen: { placeholder, type }
+            mcqscreen: { placeholder, type,choicePlaceholder }
          }
       } = strings
-      const { questionText, questionId } = this.props.question
+      const {question:{ questionText, questionId,questionType},getQuestionNumber } = this.props
+      const questionNumber = getQuestionNumber(questionId)
       return (
-         <McqScreen onClick={this.onClickQuestion}>
+         <McqScreen>
             <ScreenText>
-               <McqButton>
-                  <FaCheck />
-                  <Qno></Qno>
-               </McqButton>
+               <QuestionIcon
+                  type={questionType}
+                  questionNumber={questionNumber}
+               />
                <Choices>
                   <TransparentInputFeild
                      placeholder={placeholder}
                      handleOnChange={this.handleOnChange}
                      value={questionText}
                      type={type}
+                     handleOnFocus = {this.handleOnFocus}
                   />
 
                   {this.renderChoices()}
                   <AddMcqSection>
-                     <AddMcqButton onClick={this.addMcq}>+</AddMcqButton>
                      <TransparentInputFeild
-                        placeholder={placeholder}
+                        placeholder={choicePlaceholder}
                         handleOnChange={this.handleMcqChange}
                         value={this.choiceText}
                         type={type}
+                        handleOnKeyDown = {this.onKeyDownChoice}
+                        ref = {this.addMcqRef}
+                        handleOnFocus = {this.handleOnFocus}
                      />
                   </AddMcqSection>
                </Choices>
             </ScreenText>
-            <EditOptions>
-               <AiTwotoneSetting />
-               <DeleteButton id={questionId}>
-                  <AiFillDelete />
-               </DeleteButton>
-            </EditOptions>
+            <QuestionEditOptions/>
          </McqScreen>
       )
    }

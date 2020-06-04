@@ -50,6 +50,7 @@ export default class AuthStore {
 
    @action.bound
    setGetUserSignInAPIStatus(status) {
+      alert(status)
       this.getUserSignInAPIStatus = status
    }
 
@@ -70,6 +71,7 @@ export default class AuthStore {
 
    @action.bound
    userSignIn(userAuthenticationDetails) {
+      
       const userSigninPromise = this.authAPIService.getAuth(userAuthenticationDetails)
       return bindPromiseWithOnSuccess(userSigninPromise)
          .to(this.setGetUserSignInAPIStatus, this.setUserSignInAPIResponse)
@@ -108,7 +110,7 @@ export default class AuthStore {
    
    @action
    setGetSignupApiStatus = status =>{
-      console.log(status)
+      alert(status)
       this.getSignupApiStatus = status;
    }
    

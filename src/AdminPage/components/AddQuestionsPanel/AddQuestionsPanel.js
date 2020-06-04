@@ -18,19 +18,38 @@ import {
    AddButton,
    AddText,
    AddWithTypes,
-   TypeOptions,
+   BottomDiv,
    Option
 } from './styledComponents.js'
 
 @observer
 class AddQuestionsPanel extends React.Component {
+
+   questionsEndRef = React.createRef()
+
+  componentDidMount () {
+    this.scrollToBottom()
+  }
+  componentDidUpdate () {
+    this.scrollToBottom()
+  }
+  scrollToBottom = () => {
+    this.questionsEndRef.current.scrollIntoView({ behavior: 'smooth' })
+  }
+
    renderListOfQuestions = () => {
-      const { questions, onToggleShouldShowSettings,onClickQuestion } = this.props
+      const { 
+         questions, 
+         onToggleShouldShowSettings,
+         onClickQuestion,
+         getQuestionNumber
+      } = this.props
       return (
          <Questions
             questions={questions}
             onToggleShouldShowSettings={onToggleShouldShowSettings}
             onClickQuestion={onClickQuestion}
+            getQuestionNumber = {getQuestionNumber}
          />
       )
    }
@@ -104,6 +123,7 @@ class AddQuestionsPanel extends React.Component {
          <AddQuestion data-testid='list-of-questions'>
             {this.renderListOfQuestions()}
             {this.renderAddQuestionSection()}
+            <BottomDiv ref={this.questionsEndRef}></BottomDiv>
          </AddQuestion>
       )
    }

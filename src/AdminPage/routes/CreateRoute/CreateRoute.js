@@ -51,7 +51,11 @@ class CreateRoute extends React.Component {
          currentQuestionPreview,
          onClickQuestion,
          getNextQuestion,
-         getPreviousQuestion
+         getPreviousQuestion,
+         currentQuestionNumber,
+         totalQuestions,
+         questionListSize,
+         getQuestionNumber
       } = this.getQuestionStore()
 
       const { userProfileDetails } = this.getAuthStore()
@@ -72,6 +76,10 @@ class CreateRoute extends React.Component {
             key={Math.random()}
             getNextQuestion={getNextQuestion}
             getPreviousQuestion={getPreviousQuestion}
+            questionNumber = {currentQuestionNumber}
+            totalQuestions = {totalQuestions}
+            questionListSize = {questionListSize}
+            getQuestionNumber = {getQuestionNumber}
          />
       )
    })

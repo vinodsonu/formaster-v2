@@ -1,14 +1,16 @@
-import { observable, action } from 'mobx'
+import { observable, action,computed } from 'mobx'
 import { API_INITIAL} from '@ib/api-constants'
 
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 
 import {
-   MULTIPLE_CHOICE
+   MULTIPLE_CHOICE, WELCOME_SCREEN, THANK_YOU_SCREEN,SHORT_TEXT,LONG_TEXT
 } from '../../constants/QuestionTypeContants.js'
 
 import QuestionModel from '../Models/QuestionModel'
 import McqTypeModel from '../Models/McqTypeModel'
+import McqPreviewModel from '../../../User/stores/Models/McqPreviewModel'
+import TextqPreviewModel from '../../../User/stores/Models/TextqPreviewModel'
 
 class QuestionsStore {
    @observable getFormDetailsApiStatus
@@ -117,20 +119,88 @@ class QuestionsStore {
 
       )
       if(presentQuestionIndex+1<this.questions.size)
-         this.currentQuestionPreview = Array.from(this.questions.values())[presentQuestionIndex+1]
+         this.setCurrentPreviewQuestion(Array.from(this.questions.values())[presentQuestionIndex+1].getRequestObject())
    }
 
    getPreviousQuestion = () =>{
+     
       const presentQuestionIndex = Array.from(this.questions.keys()).findIndex(
-         question=>
-         question.questionId === this.currentQuestionPreview.questionId
+         questionKey=>
+         questionKey === this.currentQuestionPreview.questionId
 
       )
       if(presentQuestionIndex>0)
-       this.currentQuestionPreview = Array.from(this.questions.values())[presentQuestionIndex-1]
+       this.setCurrentPreviewQuestion(Array.from(this.questions.values())[presentQuestionIndex-1].getRequestObject())
    }
 
-   @action.bound
+   @computed
+   get totalQuestions(){
+      return Array.from(this.questions.values()).filter(each=>
+         each.questionType!==WELCOME_SCREEN&&each.questionType!==THANK_YOU_SCREEN
+      ).length;
+   }
+
+   @computed 
+   get currentQuestionNumber(){
+      const onlyQuestions = Array.from(this.questions.values()).filter(each=>
+         each.questionType!==WELCOME_SCREEN&&each.questionType!==THANK_YOU_SCREEN
+      );
+      if(this.currentQuestionPreview!==null)
+      {const indexOfTheQuestion = onlyQuestions.findIndex(each=>
+         each.questionId === this.currentQuestionPreview.questionId
+      )
+      return indexOfTheQuestion+1;
+   }
+   else
+      return 0;
+
+   }
+
+   @computed
+   get questionListSize(){
+      return this.questions.size;
+   }
+
+   @action
+   getQuestionNumber = questionId =>{
+      const onlyQuestions = Array.from(this.questions.values()).filter(each=>
+         each.questionType!==WELCOME_SCREEN&&each.questionType!==THANK_YOU_SCREEN
+      );
+   
+      const indexOfTheQuestion = onlyQuestions.findIndex(each=>
+         each.questionId === questionId
+      )
+      return indexOfTheQuestion+1;
+   }
+
+   @action
+   setCurrentPreviewQuestion = (question) =>{
+      const {
+         question_type
+      } = question;
+      switch (question_type) {
+         case MULTIPLE_CHOICE:
+            question.choice_response_details = {}
+            this.currentQuestionPreview = new McqPreviewModel(question)
+            break
+         case WELCOME_SCREEN:
+            this.currentQuestionPreview = new QuestionModel(question)
+            break
+         case THANK_YOU_SCREEN:
+            this.currentQuestionPreview = new QuestionModel(question)
+            break
+         case SHORT_TEXT:
+            question.text_response_details = ''
+            this.currentQuestionPreview = new TextqPreviewModel(question)
+            break
+         case LONG_TEXT:
+            question.text_response_details = ''
+            this.currentQuestionPreview = new TextqPreviewModel(question)
+            break
+      }
+   }
+
+   @action
    addNewQuestion = event => {
       switch (event.target.value) {
          case MULTIPLE_CHOICE:
@@ -163,7 +233,8 @@ class QuestionsStore {
                })
             )
       }
-      this.currentQuestionPreview = this.questions.get(this.newQuestionCount+1);
+      const current = this.questions.get(this.newQuestionCount+1);
+      this.setCurrentPreviewQuestion(current.getRequestObject());
       
    }
 }
