@@ -46,7 +46,7 @@ class UserRoute extends Component{
         const {
             history
         } = this.props;
-        history.push({pathname:PREVIEW_FORM})
+        history.push({pathname:`/forms/${formId}/preview`})
     }
 
     userSignOut = () =>{

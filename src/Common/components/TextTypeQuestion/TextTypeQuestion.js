@@ -1,8 +1,10 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
+import {AiOutlineArrowRight} from 'react-icons/ai';
 
 import strings from '../../i18n/strings.json'
+
 
 import {
    TextQuestion,
@@ -20,7 +22,6 @@ import PreviewNavButton from '../common/PreviewNavButton'
 class TextTypeQuestion extends React.Component {
    handleQuestionResponse = event => {
       const { question:{onChangeResponseText} } = this.props;
-      if(onChangeResponseText)
       onChangeResponseText(event.target.value)
    }
 
@@ -35,23 +36,21 @@ class TextTypeQuestion extends React.Component {
          questionNumber,
          question: { 
             questionText, 
-            textResponseDetails,
             questionType ,
-            questionResponseText,
-            questionChoiceResponse
+            responseChoice,
+            textResponseDetails
          },
          totalQuestions
       } = this.props
       const { QuestionPlaceholder } = strings
-
+    
       return (
          <TextQuestion>
             
             <QuestionDetails>
-               <QuestionNumber>{questionNumber}</QuestionNumber>
-                  <QuestionText>{questionText}</QuestionText>
-                  
-               </QuestionDetails>
+               <QuestionNumber>{questionNumber}<AiOutlineArrowRight/></QuestionNumber>
+               <QuestionText>{questionText}</QuestionText>   
+            </QuestionDetails>
                <QuestionResponse>
                   <BottomBorderedInput
                            value={textResponseDetails}
@@ -65,8 +64,8 @@ class TextTypeQuestion extends React.Component {
                      questionNumber = {questionNumber}
                      totalQuestions = {totalQuestions}
                      handleOnClick = {this.getNextQuestion}
-                     questionResponseText = {questionResponseText}
-                     questionChoiceResponse = {questionChoiceResponse}
+                     questionResponseText = {textResponseDetails}
+                     questionChoiceResponse = {responseChoice}
              
              />
          </TextQuestion>

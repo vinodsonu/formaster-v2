@@ -1,4 +1,5 @@
 import { observable, action, computed } from 'mobx'
+import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import { API_INITIAL, API_FAILURE, API_SUCCESS } from '@ib/api-constants'
 
 import {
@@ -9,7 +10,7 @@ import {
    MULTIPLE_CHOICE
 } from '../../constants/QuestionTypeContants.js'
 
-import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
+
 import McqPreviewModel from '../Models/McqPreviewModel'
 import TextqPreviewModel from '../Models/TextqPreviewModel'
 import BasicPreviewModel from '../Models/BasicPreviewModel'
@@ -21,6 +22,7 @@ class PreviewStore {
    @observable getSubmitQuestionApiError
    @observable question
    @observable totalQuestions
+  
 
    constructor(previewService) {
       this.previewService = previewService
@@ -40,6 +42,7 @@ class PreviewStore {
    clearStore() {
       this.init()
    }
+
 
    @action.bound
    setPreviewQuestionResponse(response) {

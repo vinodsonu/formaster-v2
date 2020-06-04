@@ -11,7 +11,7 @@ export const ProgressBarAndQuestionNavigator = styled.div`
 
    ${tw`flex justify-between  items-center `}
    height:100px;
-   position:fixed;
+   position:relative;
    bottom:0;
    width:auto;
 

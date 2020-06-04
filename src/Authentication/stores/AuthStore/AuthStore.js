@@ -9,6 +9,7 @@ import {
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 
 import { setAccessToken, clearUserSession } from '../../../utils/StorageUtils'
+import { success } from "../../../Common/utils/ToastUtils"
 
 export default class AuthStore {
    @observable getUserSignInAPIStatus
@@ -50,13 +51,14 @@ export default class AuthStore {
 
    @action.bound
    setGetUserSignInAPIStatus(status) {
-      alert(status)
+     
       this.getUserSignInAPIStatus = status
    }
 
    @action.bound
    setGetUserSignInAPIError(error) {
       this.getUserSignInAPIError = error
+      console.log(error)
    }
 
    @action.bound
@@ -74,12 +76,15 @@ export default class AuthStore {
       
       const userSigninPromise = this.authAPIService.getAuth(userAuthenticationDetails)
       return bindPromiseWithOnSuccess(userSigninPromise)
-         .to(this.setGetUserSignInAPIStatus, this.setUserSignInAPIResponse)
-         .catch(this.setGetUserSignInAPIError)
+         .to(this.setGetUserSignInAPIStatus,this.setUserSignInAPIResponse)
+         .catch(
+            this.setGetUserSignInAPIError
+            )
    }
 
    @action.bound
    setGetUserProfileAPIStatus = status => {
+     
       this.getUserProfileAPIStatus = status
    }
 

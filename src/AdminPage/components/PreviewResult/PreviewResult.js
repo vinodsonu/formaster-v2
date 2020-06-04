@@ -3,7 +3,7 @@ import {observer} from 'mobx-react';
 import {observable} from 'mobx';
 
 import { Preview } from './styledComponents.js';
-import PreviewPage from '../../../User/components/PreviewPage';
+import PreviewPage from '../../../Common/components/PreviewPage';
 
 @observer
 class PreviewResult extends React.Component {
@@ -24,12 +24,14 @@ class PreviewResult extends React.Component {
    render() {
       const {
          currentQuestionPreview,
+         currentQuestionPreview:{questionId},
          getPreviousQuestion,
          totalQuestions,
          questionNumber,
          questionListSize
       } = this.props;
-      return currentQuestionPreview!==null?
+
+      return questionId!==undefined?
          <Preview><PreviewPage  
                question={currentQuestionPreview}
                getNextQuestion = {this.getNextQuestion}

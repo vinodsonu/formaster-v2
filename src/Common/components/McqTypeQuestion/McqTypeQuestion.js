@@ -1,6 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
+import {AiOutlineArrowRight} from 'react-icons/ai';
 
 import strings from '../../i18n/strings.json'
 import PreviewNavButton from '../common/PreviewNavButton';
@@ -53,31 +54,31 @@ class McqTypeQuestion extends React.Component {
    }
 
    render() {
-      const { question:{questionText,questionType}, 
+      const { question:{questionText,questionType, responseChoice,
+         textResponseDetails}, 
       questionNumber,
       totalQuestions,
-      questionPosition,
-      questionResponseText,
-      questionChoiceResponse
+      questionPosition
    } = this.props
 
-   
+      
 
       return (
          <McqQuestionBody>
-            <QuestionNumber>{questionNumber}</QuestionNumber>
+            
             <McqQuestion>
+               <QuestionNumber>{questionNumber}<AiOutlineArrowRight/></QuestionNumber>
                <QuestionText>{questionText}</QuestionText>
-               {this.renderMcqChoices()}
             </McqQuestion>
+            {this.renderMcqChoices()}
             <PreviewNavButton
               
                questionType = {questionType}
                questionNumber = {questionNumber}
                totalQuestions = {totalQuestions}
                handleOnClick = {this.getNextQuestion}
-               questionResponseText = {questionResponseText}
-               questionChoiceResponse = {questionChoiceResponse}
+               questionResponseText = {textResponseDetails}
+               questionChoiceResponse = {responseChoice}
                questionPosition = {questionPosition}
               
               />

@@ -110,7 +110,7 @@ class Mcq extends React.Component {
       const {question:{ questionText, questionId,questionType},getQuestionNumber } = this.props
       const questionNumber = getQuestionNumber(questionId)
       return (
-         <McqScreen>
+         <McqScreen onClick={this.handleOnFocus}>
             <ScreenText>
                <QuestionIcon
                   type={questionType}
@@ -122,7 +122,7 @@ class Mcq extends React.Component {
                      handleOnChange={this.handleOnChange}
                      value={questionText}
                      type={type}
-                     handleOnFocus = {this.handleOnFocus}
+                     handleOnFocus = {()=>{}}
                   />
 
                   {this.renderChoices()}

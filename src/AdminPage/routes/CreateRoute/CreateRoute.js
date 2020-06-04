@@ -73,13 +73,15 @@ class CreateRoute extends React.Component {
             onPublish={onPublish}
             currentQuestionPreview = {currentQuestionPreview}
             onClickQuestion = {onClickQuestion}
-            key={Math.random()}
             getNextQuestion={getNextQuestion}
             getPreviousQuestion={getPreviousQuestion}
             questionNumber = {currentQuestionNumber}
             totalQuestions = {totalQuestions}
             questionListSize = {questionListSize}
             getQuestionNumber = {getQuestionNumber}
+            key = {currentQuestionPreview.questionId}
+
+
          />
       )
    })

@@ -7,16 +7,25 @@ export default class AuthService {
    api
    constructor() {
       this.api = create({
-         baseURL: 'formaster.swagger.io/formaster/'
+         baseURL: 'https://41f435608927.ngrok.io/api/formaster'
       })
    }
    getAuth(authDetails) {
+      
+      const authValues =JSON.stringify(authDetails)
+      console.log(authValues);
+      // fetch('https://41f435608927.ngrok.io/api/formaster/login/v1/', {
+      //       method: 'post',
+      //       body: JSON.stringify(authDetails)
+      //    }).then(function(response) {
+      //       alert(response);
+      //    }).catch((e)=>{
+      //       alert("error")
+      //    })
       return networkCallWithApisauce(
          this.api,
          endpoints.signIn,
-         {
-           authDetails
-         },
+         authDetails,
          apiMethods.post
       )
    }

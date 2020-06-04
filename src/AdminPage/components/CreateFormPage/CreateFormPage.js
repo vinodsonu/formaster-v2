@@ -23,7 +23,7 @@ class CreateFormPage extends React.Component {
       this.shouldShowSettings = !this.shouldShowSettings
    }
 
-   renderSuccessUI = () => {
+   renderBody = () => {
       const { 
          questions, 
          addNewQuestion, 
@@ -37,6 +37,8 @@ class CreateFormPage extends React.Component {
          questionListSize,
          getQuestionNumber
       } = this.props
+
+     alert(currentQuestionPreview.questionText);
       
       return (
          
@@ -72,9 +74,6 @@ class CreateFormPage extends React.Component {
    render() {
       const {
          userSignOut,
-         getFormDetailsApiError,
-         getFormDetailsApiStatus,
-         getTheCurrentFormDetails,
          form: { formName },
          userProfileDetails,
          onPublish
@@ -87,12 +86,8 @@ class CreateFormPage extends React.Component {
                userProfileDetails={userProfileDetails}
                onPublish={onPublish}
             />
-            <LoadingWrapperWithFailure
-               apiStatus={getFormDetailsApiStatus}
-               renderSuccessUI={this.renderSuccessUI}
-               onRetryClick={getTheCurrentFormDetails}
-               apiError={getFormDetailsApiError}
-            />
+            {this.renderBody()}
+            
          </CreateFormContainer>
       )
    }

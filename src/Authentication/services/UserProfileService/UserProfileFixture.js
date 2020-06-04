@@ -5,6 +5,7 @@ export default class userProfileService {
       return new Promise((resolve, reject) => {
          setTimeout(() => {
             resolve(getUserProfileResponse)
+            // reject();
          }, 2000)
       })
    }

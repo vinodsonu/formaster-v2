@@ -3,11 +3,13 @@ import { action, reaction } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
 
-import { API_SUCCESS, API_FAILURE, API_FETCHING } from '@ib/api-constants'
+import { API_SUCCESS, API_FAILED, API_FETCHING } from '@ib/api-constants'
 
 import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
 import AdminDashBoardPage from '../../components/AdminDashBoardPage'
 import { CREATE_FORM_PATH } from '../../constants/RouteConstants'
+import {success,error} from '../../../Common/utils/ToastUtils.js';
+import {getUserDisplayableErrorMessage} from '../../../Common/utils/APIUtils.js';
 
 @inject('formStore', 'authStore', 'questionsStore')
 @observer
@@ -59,10 +61,22 @@ class AdminRoute extends React.Component {
          const { forms } = this.getFormStore()
          const formIdIndex = Array.from(forms.values()).length - 1
          const formId = Array.from(forms.keys())[formIdIndex]
-         if (status) history.push({ pathname: `/create/${formId}` })
-         else if (this.getFormStore().getCreateFormApiStatus === API_FAILURE)
-            alert('Something went wrong....')
+         if (status) 
+            history.push({ pathname: `/create/${formId}` })
       }
+   )
+
+   onFailureNewFormCreate = reaction(
+      ()=>{
+         const {getCreateFormApiStatus} = this.getFormStore();
+         return getCreateFormApiStatus===API_FAILED
+      },
+      (status)=>{
+         const {getCreateFormApiError} = this.getFormStore()
+         if(status)
+            error(getUserDisplayableErrorMessage(getCreateFormApiError));
+      }
+
    )
    
    onUpdateFormName = () =>{

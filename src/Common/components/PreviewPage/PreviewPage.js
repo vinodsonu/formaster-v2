@@ -8,10 +8,10 @@ import {
    SHORT_TEXT,
    LONG_TEXT,
    MULTIPLE_CHOICE
-} from '../../constants/QuestionTypeContants.js'
-import McqTypeQuestion from '../../../Common/components/McqTypeQuestion'
-import ScreentTypeQuestion from '../../../Common/ScreentTypeQuestion'
-import TextTypeQuestion from '../../../Common/components/TextTypeQuestion'
+} from '../../../User/constants/QuestionTypeContants.js'
+import McqTypeQuestion from '../McqTypeQuestion'
+import ScreentTypeQuestion from '../../ScreentTypeQuestion'
+import TextTypeQuestion from '../TextTypeQuestion'
 import ProgressBar from './ProgressBar';
 import QuestionNavigator from './QuestionNavigator';
 
@@ -110,6 +110,7 @@ class PreviewPage extends React.Component {
 
    render() {
       const {totalQuestions , getNextQuestion,getPreviousQuestion,questionNumber} = this.props;
+      
       return (
          <PreviewPageContainer>
                {this.renderQuestion()}

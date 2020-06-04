@@ -35,7 +35,7 @@ class QuestionsStore {
       this.getFormDetailsApiStatus = API_INITIAL
       this.getFormDetailsApiError = null
       this.currentFormId = null
-      this.currentQuestionPreview = null
+      this.currentQuestionPreview = {}
       this.newQuestionCount = -1
       this.form = {
          formId: '',
@@ -109,7 +109,7 @@ class QuestionsStore {
    
    onClickQuestion = (questionId) =>{
       
-      this.currentQuestionPreview = this.questions.get(questionId);
+      this.setCurrentPreviewQuestion(this.questions.get(questionId).getRequestObject());
    }
 
    getNextQuestion = () =>{
@@ -180,8 +180,13 @@ class QuestionsStore {
       } = question;
       switch (question_type) {
          case MULTIPLE_CHOICE:
-            question.choice_response_details = {}
+            question.choice_response_details= {
+               
+               response_choice:"null"
+               
+            }
             this.currentQuestionPreview = new McqPreviewModel(question)
+            console.log(this.currentQuestionPreview)
             break
          case WELCOME_SCREEN:
             this.currentQuestionPreview = new QuestionModel(question)
@@ -190,12 +195,18 @@ class QuestionsStore {
             this.currentQuestionPreview = new QuestionModel(question)
             break
          case SHORT_TEXT:
-            question.text_response_details = ''
+            question.text_response_details = {
+               response_text : ''
+            }
             this.currentQuestionPreview = new TextqPreviewModel(question)
+            console.log(this.currentQuestionPreview)
             break
          case LONG_TEXT:
-            question.text_response_details = ''
+            question.text_response_details = {
+               response_text : ''
+            }
             this.currentQuestionPreview = new TextqPreviewModel(question)
+            console.log(this.currentQuestionPreview)
             break
       }
    }

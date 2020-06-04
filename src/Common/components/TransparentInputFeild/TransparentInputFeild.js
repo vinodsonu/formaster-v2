@@ -29,7 +29,7 @@ class TransparentInputFeild extends React.Component {
                isRedBorder={isFeildError}
                onKeyDown={handleOnKeyDown}
                ref= {this.inputRef}
-               onFocus = {handleOnFocus}
+               
             />
          </InputWithLabel>
       )

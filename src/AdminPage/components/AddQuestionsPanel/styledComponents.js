@@ -32,4 +32,9 @@ export const TypeOptions = styled.div`
 export const Option = styled.button`
    ${tw``}
    width:100%;
+   height:100%;
+   
+   &:hover{
+      
+   }
 `

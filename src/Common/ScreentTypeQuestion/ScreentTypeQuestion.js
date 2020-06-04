@@ -18,8 +18,8 @@ class ScreentTypeQuestion extends React.Component {
          question: { 
             questionText,
             questionType,
-            questionResponseText,
-            questionChoiceResponse
+            responseChoice,
+            textResponseDetails
           },totalQuestions,questionNumber
          ,questionListSize,
          questionPosition
@@ -36,8 +36,8 @@ class ScreentTypeQuestion extends React.Component {
                questionNumber = {questionNumber}
                totalQuestions = {totalQuestions}
                handleOnClick = {this.getNextQuestion}
-               questionResponseText = {questionResponseText}
-               questionChoiceResponse = {questionChoiceResponse}
+               questionResponseText = {textResponseDetails}
+               questionChoiceResponse = {responseChoice}
                questionListSize = {questionListSize}
                questionPosition = {questionPosition}
               

@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'mobx-react'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import stores from './Common/stores'
 import AuthenticationRoutes from './Authentication/routes'
@@ -21,6 +23,7 @@ const App = () => {
                {DefaultRoute}
             </Switch>
          </Router>
+         <ToastContainer/>
       </Provider>
    )
 }

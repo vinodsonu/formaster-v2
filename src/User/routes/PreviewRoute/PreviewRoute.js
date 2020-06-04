@@ -4,16 +4,20 @@ import { observable } from 'mobx'
 import { withRouter } from 'react-router-dom'
 
 import LoadingWrapperWithFailure from '../../../Common/components/LoadingWrapperWithFailure'
-import PreviewPage from '../../components/PreviewPage'
+import PreviewPage from '../../../Common/components/PreviewPage'
+import { WELCOME_SCREEN, THANK_YOU_SCREEN } from "../../../AdminPage/constants/QuestionTypeContants"
 
 @inject('previewStore')
 @observer
 class PreviewRoute extends React.Component {
    @observable questionOffset
+   @observable questionNumber
 
    constructor() {
       super()
       this.questionOffset = 0
+      this.questionNumber = 1
+      ;
    }
 
    componentDidMount() {
@@ -36,7 +40,7 @@ class PreviewRoute extends React.Component {
       return (
          <PreviewPage
             question={question}
-            questionNumber={this.questionOffset + 1}
+            questionNumber={this.questionNumber}
             getNextQuestion={this.getNextQuestion}
             totalQuestions = {totalQuestions}
             getPreviousQuestion = {this.getPreviousQuestion}
@@ -46,19 +50,32 @@ class PreviewRoute extends React.Component {
 
    getNextQuestion = () => {
       const {
-         totalQuestions
+         totalQuestions,
+         question:{questionType}
       } = this.getPreviewStore()
-      if(this.questionOffset<totalQuestions)
+      if(this.questionOffset<totalQuestions-1)
       {   this.questionOffset++
          this.getPreviewQuestion()
+         if(questionType!==WELCOME_SCREEN && questionType!==THANK_YOU_SCREEN)
+         this.questionNumber++;
       }
+
+      
    }
 
    getPreviousQuestion = () => {
+
+      const {
+         question:{questionType}
+      } = this.getPreviewStore();
+
       if(this.questionOffset>0)
       {   this.questionOffset--
           this.getPreviewQuestion()
+          if(questionType!==WELCOME_SCREEN && questionType!==THANK_YOU_SCREEN)
+         this.questionNumber--;
       }
+      
    }
 
    render() {

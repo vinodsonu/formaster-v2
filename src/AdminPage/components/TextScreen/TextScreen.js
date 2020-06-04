@@ -42,7 +42,7 @@ class TextScreen extends React.Component {
       const { question:{questionText, questionId,questionType},getQuestionNumber} = this.props
       const questionNumber = getQuestionNumber(questionId)
       return (
-         <TextScreenContainer>
+         <TextScreenContainer onClick = {this.onFocusQuestion}>
             <ScreenText>
                <QuestionIcon
                   type={questionType}
@@ -53,7 +53,7 @@ class TextScreen extends React.Component {
                   handleOnChange={this.handleOnChange}
                   value={questionText}
                   type={type}
-                  handleOnFocus = {this.onFocusQuestion}
+                  handleOnFocus = {()=>{}}
                />
             </ScreenText>
             <QuestionEditOptions/>

@@ -43,9 +43,10 @@ class CreateForm extends React.Component {
    }
 
    closeModal = () => {
-      this.loadingStatus = true
-      const { createNewQuestionLoadingStatus } = this.props
-      if (createNewQuestionLoadingStatus) this.modalIsOpen = false
+      // this.loadingStatus = true
+      // const { createNewQuestionLoadingStatus } = this.props
+      // if (createNewQuestionLoadingStatus) 
+      this.modalIsOpen = false
    }
 
    onCreateNewForm = () => {
@@ -58,11 +59,12 @@ class CreateForm extends React.Component {
       this.formName = event.target.value
    }
 
-   handleCreateNewForm = () => {
+   handleCreateNewForm = async () => {
       const { defaultFormName } = strings
-      this.closeModal()
+      
       this.formName = this.formName.length ? this.formName : defaultFormName
-      this.onCreateNewForm(this.formName)
+      await this.onCreateNewForm(this.formName)
+      this.closeModal()
       this.formName = ''
    }
 

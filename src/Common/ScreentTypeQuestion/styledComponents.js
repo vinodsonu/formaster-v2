@@ -1,12 +1,18 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
+import {
+   thankyouIconButton
+} from '../themes/colors.js';
+
 export const ScreenQuestion = styled.div`
    ${tw`flex flex-col items-center`}
+   height:300px;
    
 `
 export const ScreenText = styled.span`
-   font-size: 24px;
+   font-size: 30px;
+   color:${thankyouIconButton};
 `
 export const StartButton = styled.button`
    border: none;

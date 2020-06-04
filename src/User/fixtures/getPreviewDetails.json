@@ -1,6 +1,6 @@
 [
   {
-  "total_questions": 3,
+  "total_questions": 5,
   "question": {
     "question_id": 0,
     "question_type": "WELCOME_SCREEN",
@@ -14,7 +14,7 @@
     }
   },
   {
-  "total_questions": 3,
+  "total_questions": 5,
   "question": {
     "question_id": 1,
     "question_type": "SHORT_TEXT",
@@ -28,7 +28,7 @@
     }
   },
   {
-  "total_questions": 3,
+  "total_questions": 5,
   "question": {
     "question_id": 2,
     "question_type": "MULTIPLE_CHOICE",
@@ -59,7 +59,7 @@
     }
   },
   {
-  "total_questions": 3,
+  "total_questions": 5,
   "question": {
     "question_id": 3,
     "question_type": "LONG_TEXT",
@@ -73,7 +73,7 @@
     }
   },
   {
-  "total_questions": 3,
+  "total_questions": 5,
   "question": {
     "question_id": 4,
     "question_type": "THANK_YOU_SCREEN",

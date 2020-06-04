@@ -87,7 +87,7 @@ class GreetingScreen extends React.Component {
 
       return (
 
-         <GreetingsFeild>
+         <GreetingsFeild onClick={this.handleOnFocus}>
             <ScreenText>
                <QuestionIcon
                   type = {questionType}
@@ -97,7 +97,7 @@ class GreetingScreen extends React.Component {
                   handleOnChange={this.handleOnChange}
                   value={questionText}
                   type={type}
-                  handleOnFocus = {this.handleOnFocus}
+                  handleOnFocus = {()=>{}}
                />
             </ScreenText>
          <QuestionEditOptions/>
