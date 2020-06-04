@@ -46,6 +46,7 @@ export default class AuthStore {
 
    @action.bound
    setUserSignInAPIResponse(response) {
+      alert(response)
       setAccessToken(response.access_token)
    }
 

@@ -7,7 +7,7 @@ export default class AuthService {
    api
    constructor() {
       this.api = create({
-         baseURL: 'https://41f435608927.ngrok.io/api/formaster'
+         baseURL: 'https://5ea1a14db9f5ca00166c1f27.mockapi.io/api/'
       })
    }
    getAuth(authDetails) {
@@ -24,9 +24,9 @@ export default class AuthService {
       //    })
       return networkCallWithApisauce(
          this.api,
-         endpoints.signIn,
-         authDetails,
-         apiMethods.post
+         'v1/signin/',
+         {},
+         apiMethods.get
       )
    }
    
