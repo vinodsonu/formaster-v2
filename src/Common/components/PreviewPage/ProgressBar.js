@@ -14,7 +14,7 @@ const ProgressBar =  observer((props) => {
   if(questionNumber!==0)
        percent = Math.abs(questionNumber/totalQuestions);
   return <ProgBar>
-      <Lable>{`${questionNumber} / ${totalQuestions} answered`}</Lable>
+      <Lable>{`${questionNumber} / ${totalQuestions}`}</Lable>
      <Line percent={`${percent*100}`} strokeWidth="4" strokeColor="#D3D3D3" />
   </ProgBar>
 });

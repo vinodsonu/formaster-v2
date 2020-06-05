@@ -15,6 +15,10 @@ import strings from '../../i18n/strings.json';
 import {success,error} from '../../../Common/utils/ToastUtils.js';
 import {getUserDisplayableErrorMessage} from '../../../Common/utils/APIUtils.js';
 
+
+//Todo:Shifting sign in Validations to sign in page
+//Todos:Navigation utils for all Navigations
+
 @inject('authStore')
 @observer
 class SignInRoute extends React.Component {
@@ -112,7 +116,7 @@ class SignInRoute extends React.Component {
    componentWillUnmount() {
       this.onSuccessUserLogin()
       this.onSuccessUserProfile()
-      this.onFailureSuccessLogin()
+      // this.onFailureSuccessLogin()
       this.onFailureUserProfile()
    }
 
@@ -124,6 +128,20 @@ class SignInRoute extends React.Component {
    //    error(getUserDisplayableErrorMessage(e))
    // }
 
+   onSignOutStatuses = reaction(
+
+      ()=>{
+         const {getSignOutApiStatus} = this.getAuthStore();
+         return getSignOutApiStatus===API_FAILED; 
+      },
+      (status)=>{
+         const {getSignOutApiError} = this.getAuthStore();
+         if(status){
+            error(getUserDisplayableErrorMessage(getSignOutApiError))
+         }
+      }
+
+   )
 
    onSuccessUserLogin = reaction(
       () => {
@@ -140,20 +158,20 @@ class SignInRoute extends React.Component {
       }
    )
 
-   onFailureSuccessLogin = reaction(
-      () => {
-         try {
-            const { getUserSignInAPIStatus } = this.getAuthStore()
-            return getUserSignInAPIStatus === API_FAILED
-         } catch (e) {}
-      },
-      status => {
-         const { getUserSignInAPIError } = this.getAuthStore()
-         if (status) {
-            error(getUserDisplayableErrorMessage(getUserSignInAPIError))
-         }
-      }
-   )
+   // onFailureSuccessLogin = reaction(
+   //    () => {
+   //       try {
+   //          const { getUserSignInAPIStatus } = this.getAuthStore()
+   //          return  getUserSignInAPIStatus === API_FAILED
+   //       } catch (e) {}
+   //    },
+   //    status => {
+   //       const { getUserSignInAPIError } = this.getAuthStore()
+   //       if (status) {
+   //          error(getUserDisplayableErrorMessage(getUserSignInAPIError))
+   //       }
+   //    }
+   // )
 
    onSuccessUserProfile = reaction(
       () => {
@@ -181,8 +199,11 @@ class SignInRoute extends React.Component {
 
    onFailureUserProfile = reaction(
       ()=>{
+         try{
          const {getUserProfileAPIStatus} = this.getAuthStore();
          return getUserProfileAPIStatus===API_FAILED;
+         }
+         catch(e){}
       },
       (status)=>{
          const {getUserProfileAPIError} = this.getAuthStore();
@@ -204,7 +225,6 @@ class SignInRoute extends React.Component {
             onChangeUsername={this.onChangeUsername}
             password={this.password}
             onClickSignIn={this.onClickSignIn}
-            errorMessage={this.errorMessage}
             isSigningIn={isSigningIn}
             errorMessage={this.errorMessage}
             ref = {this.signInPageRef}

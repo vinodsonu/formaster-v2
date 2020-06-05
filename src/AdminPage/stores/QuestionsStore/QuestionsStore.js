@@ -7,6 +7,10 @@ import {
    MULTIPLE_CHOICE, WELCOME_SCREEN, THANK_YOU_SCREEN,SHORT_TEXT,LONG_TEXT
 } from '../../constants/QuestionTypeContants.js'
 
+import {success,error} from '../../../Common/utils/ToastUtils.js';
+import {getUserDisplayableErrorMessage} from '../../../Common/utils/APIUtils.js';
+
+
 import QuestionModel from '../Models/QuestionModel'
 import McqTypeModel from '../Models/McqTypeModel'
 import McqPreviewModel from '../../../User/stores/Models/McqPreviewModel'
@@ -55,6 +59,7 @@ class QuestionsStore {
 
    @action.bound
    setFormDetailsResponse(response) {
+      this.questions.clear();
       this.form = {
          formId: response.form_id,
          formName: response.form_name
@@ -85,21 +90,34 @@ class QuestionsStore {
       this.getPublishStatus = status
    }
 
-   setGetPublishError = error => {
-      this.getPublishError = error
+   setGetPublishError = e => {
+      this.getPublishError = e;
+      error(getUserDisplayableErrorMessage(e));
    }
-
-   setPublishResponse = response => {
+   @action
+   setPublishResponse = async(response) => {
+      success("successfully published")
       this.publishedLink = response
+      const {formId} = this.form;
+      await this.getTheCurrentFormDetails(formId);
    }
 
    @action
    onPublish = () => {
+      let posi =1;
+     
       const details = Array.from(this.questions.values()).map(each =>
          each.getRequestObject()
       )
+
+      details.forEach(each=>{
+         each.position = posi++;
+      })
+
+      const {formId} = this.form;
       const formQuestionsPublishPromise = this.questionService.publishCurrentFormDetails(
-         details
+         details,
+         formId
       )
       return bindPromiseWithOnSuccess(formQuestionsPublishPromise)
          .to(this.setGetPublishStatus, this.setPublishResponse)
@@ -182,7 +200,7 @@ class QuestionsStore {
          case MULTIPLE_CHOICE:
             question.choice_response_details= {
                
-               response_choice:"null"
+               response_choice:null
                
             }
             this.currentQuestionPreview = new McqPreviewModel(question)
@@ -223,7 +241,7 @@ class QuestionsStore {
                   description: '',
                   question_text: '',
                   image_url: '',
-                  required: true,
+                  required: false,
                   multiple_choice_question_details: {
                      choices: []
                   }
@@ -239,7 +257,7 @@ class QuestionsStore {
                   description: '',
                   question_text: '',
                   image_url: '',
-                  required: true,
+                  required: false,
                   multiple_choice_question_details: null
                })
             )

@@ -17,6 +17,8 @@ import {
     SignUpPageContainer
 } from './styledComponents.js';
 
+//Todo:writing the validation logic in this page itself
+
 @observer
 class SignupPage extends React.Component{
     

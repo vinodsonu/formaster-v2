@@ -1,9 +1,6 @@
-import { observable, action, computed } from 'mobx'
+import { observable, action } from 'mobx'
 import {
-   API_INITIAL,
-   API_FAILURE,
-   API_SUCCESS,
-   API_FETCHING
+   API_INITIAL
 } from '@ib/api-constants'
 
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
@@ -34,6 +31,7 @@ class UserFormStore {
 
    @action.bound
    setGetFormApiStatus(status) {
+     
       this.getFormsApiStatus = status
    }
 
@@ -44,7 +42,7 @@ class UserFormStore {
 
    @action.bound
    setGetFromsApiResponse(response) {
-      response.forEach(form => {
+      response.forms.forEach(form => {
          this.forms.set(form.form_id, new FormModel(form))
       })
    }

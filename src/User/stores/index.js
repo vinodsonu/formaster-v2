@@ -5,7 +5,7 @@ import QuestionPreviewServiceApi from '../services/QuestionPreviewService/Quetio
 import QuestionPreviewServiceFixture from '../services/QuestionPreviewService/QuetionPreviewFixtures'
 import PreviewStore from './PreviewStore'
 
-const isServerCommunication = false
+const isServerCommunication = true;
 
 const questionService = isServerCommunication
    ? new QuestionPreviewServiceApi()
@@ -14,7 +14,7 @@ const questionService = isServerCommunication
 const previewStore = new PreviewStore(questionService)
 
 
-const isServerResponce = false
+const isServerResponce = true
 
 const formService = isServerResponce
    ? new FormService()

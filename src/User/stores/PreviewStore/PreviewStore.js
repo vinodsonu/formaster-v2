@@ -1,6 +1,6 @@
-import { observable, action, computed } from 'mobx'
+import { observable, action } from 'mobx'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { API_INITIAL, API_FAILURE, API_SUCCESS } from '@ib/api-constants'
+import { API_INITIAL } from '@ib/api-constants'
 
 import {
    WELCOME_SCREEN,
@@ -14,6 +14,9 @@ import {
 import McqPreviewModel from '../Models/McqPreviewModel'
 import TextqPreviewModel from '../Models/TextqPreviewModel'
 import BasicPreviewModel from '../Models/BasicPreviewModel'
+import {success,error} from '../../../Common/utils/ToastUtils.js';
+import {getUserDisplayableErrorMessage} from '../../../Common/utils/APIUtils.js';
+
 
 class PreviewStore {
    @observable getPreviewQuestionsApitatus
@@ -22,6 +25,7 @@ class PreviewStore {
    @observable getSubmitQuestionApiError
    @observable question
    @observable totalQuestions
+   @observable totalAnswerableQuestions
   
 
    constructor(previewService) {
@@ -46,30 +50,35 @@ class PreviewStore {
 
    @action.bound
    setPreviewQuestionResponse(response) {
-      console.log(response)
-      this.totalQuestions = response.total_questions
+      console.log("previewQuestion",response.total_questions)
+      console.log(response.question.question_type)
+      this.totalAnswerableQuestions = response.answerable_questions;
+      this.totalQuestions = response.total_questions;
       const {
-         question,
+         question:newQuestion,
          question: { question_type }
-      } = response
+      } = response;
+      
       switch (question_type) {
          case MULTIPLE_CHOICE:
-            this.question = new McqPreviewModel(question)
+            this.question = new McqPreviewModel(newQuestion)
             break
          case WELCOME_SCREEN:
-            this.question = new BasicPreviewModel(question)
+            this.question = new BasicPreviewModel(newQuestion)
             break
          case THANK_YOU_SCREEN:
-            this.question = new BasicPreviewModel(question)
+            this.question = new BasicPreviewModel(newQuestion)
             break
          case SHORT_TEXT:
-            this.question = new TextqPreviewModel(question)
+            
+            this.question = new TextqPreviewModel(newQuestion)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
             break
          case LONG_TEXT:
-            this.question = new TextqPreviewModel(question)
+            this.question = new TextqPreviewModel(newQuestion)
             break
       }
-   }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+   }                                       
 
    @action.bound
    setGetPreviewQuestionsApitatus(status) {
@@ -78,6 +87,7 @@ class PreviewStore {
 
    @action.bound
    setGetPreviewQuestionsApiError(error) {
+      console.log(error)
       this.getPreviewQuestionsApiError = error
    }
 
@@ -97,21 +107,27 @@ class PreviewStore {
 
    @action.bound
    setGetSubmitQuestionApiStatus = status => {
-      this.getUserProfileAPIStatus = status
+      this.getSubmitQuestionApiStatus = status
    }
 
    @action.bound
-   setGetSubmitQuestionApiError = error => {
-      this.getUserProfileAPIError = error
+   setGetSubmitQuestionApiError = e => {
+      this.getSubmitQuestionApiError = e
+
+      error(getUserDisplayableErrorMessage(e));
+      console.log("submit error",e);
+
    }
 
    @action.bound
-   setSubmitResponse = response => {}
+   setSubmitResponse = response => {
+      success("successfully submittes")
+   }
 
    @action.bound
-   submitQuestion() {
+   submitQuestion(formId) {
       const submitPromise = this.previewService.submitQuestion(
-         this.question.getRequestObject()
+         this.question.getRequestObject(),formId
       )
       return bindPromiseWithOnSuccess(submitPromise)
          .to(this.setGetSubmitQuestionApiStatus, this.setSubmitResponse)

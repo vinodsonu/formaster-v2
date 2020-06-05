@@ -13,5 +13,3 @@ class Loader extends Component {
 
 export default Loader
 
-
-//<SvgComponent renderComponent={SvgFile} {...this.props} />

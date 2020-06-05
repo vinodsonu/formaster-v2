@@ -16,7 +16,7 @@ class PreviewRoute extends React.Component {
    constructor() {
       super()
       this.questionOffset = 0
-      this.questionNumber = 1
+      this.questionNumber = 0
       ;
    }
 
@@ -28,53 +28,69 @@ class PreviewRoute extends React.Component {
       return this.props.previewStore
    }
 
-   getPreviewQuestion = async () => {
+   getPreviewQuestion = async (isIncrement) => {
       const { userPreview } = this.getPreviewStore()
       const { match } = this.props
       const { formId } = match.params
       await userPreview(formId, this.questionOffset)
+      const {
+         question:{questionType}
+      } = this.getPreviewStore();
+      if(questionType!==WELCOME_SCREEN && questionType!==THANK_YOU_SCREEN)
+       {  
+          if(isIncrement)
+            this.questionNumber = this.questionNumber+1;
+          else
+            this.questionNumber = this.questionNumber-1;
+       }
+      
    }
 
-   renderSuccessUi = () => {
+   renderSuccessUi = observer(() => {
       const { question ,totalQuestions} = this.getPreviewStore()
+      const {totalAnswerableQuestions} = this.getPreviewStore();
       return (
          <PreviewPage
             question={question}
             questionNumber={this.questionNumber}
             getNextQuestion={this.getNextQuestion}
-            totalQuestions = {totalQuestions}
+            totalQuestions = {totalAnswerableQuestions}
             getPreviousQuestion = {this.getPreviousQuestion}
+            totalScreens = {totalQuestions}
          />
       )
-   }
+   })
 
-   getNextQuestion = () => {
+   getNextQuestion = async() => {
+      
+      const { match } = this.props
+      const { formId } = match.params
       const {
          totalQuestions,
-         question:{questionType}
+         question:{questionType},
+         submitQuestion
       } = this.getPreviewStore()
-      if(this.questionOffset<totalQuestions-1)
-      {   this.questionOffset++
-         this.getPreviewQuestion()
+      if(this.questionOffset<totalQuestions)
+      {  
          if(questionType!==WELCOME_SCREEN && questionType!==THANK_YOU_SCREEN)
-         this.questionNumber++;
+         {   await submitQuestion(formId);
+         }
+         this.questionOffset++
+         if(this.questionOffset<totalQuestions)
+         {
+            this.getPreviewQuestion(true)
+         }
       }
 
       
    }
 
-   getPreviousQuestion = () => {
-
-      const {
-         question:{questionType}
-      } = this.getPreviewStore();
-
+   getPreviousQuestion = async() => {
       if(this.questionOffset>0)
       {   this.questionOffset--
-          this.getPreviewQuestion()
-          if(questionType!==WELCOME_SCREEN && questionType!==THANK_YOU_SCREEN)
-         this.questionNumber--;
+          this.getPreviewQuestion(false)
       }
+      
       
    }
 

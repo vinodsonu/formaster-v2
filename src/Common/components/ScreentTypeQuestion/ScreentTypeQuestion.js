@@ -3,7 +3,7 @@ import {observer} from 'mobx-react';
 import {FaRegImage} from 'react-icons/fa'
 
 
-import PreviewNavButton from '../components/common/PreviewNavButton';
+import PreviewNavButton from '../common/PreviewNavButton';
 import { ScreenQuestion, ScreenText, StartButton,ImageContainer } from './styledComponents.js'
 
 @observer

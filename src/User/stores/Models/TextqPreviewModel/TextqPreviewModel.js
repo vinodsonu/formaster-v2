@@ -6,7 +6,8 @@ class TextqPreviewModel extends QuestionModel {
    @observable textResponseDetails
    constructor(question) {
       super(question)
-      this.textResponseDetails = question.text_response_details.response_text
+      if(question.text_response_details)
+         this.textResponseDetails = question.text_response_details.response_text
    }
 
    onChangeResponseText = updatedText => {
@@ -16,13 +17,18 @@ class TextqPreviewModel extends QuestionModel {
    }
 
    getRequestObject = () => {
-      return {
+      let result = {
          question_id: this.questionId,
-         text_response_details: {
-            response_text: this.textResponseDetails
-         },
          choice_response_details: null
       }
+      if(this.textResponseDetails)
+         result.text_response_details = {
+            response_text: this.textResponseDetails
+         }
+      else
+         result.text_response_details = null
+      return result;
+      
    }
 }
 

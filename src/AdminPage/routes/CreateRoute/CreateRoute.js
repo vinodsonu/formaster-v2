@@ -23,6 +23,11 @@ class CreateRoute extends React.Component {
       await this.getFormDetails()
    }
 
+   componentWillUnmount(){
+      const {clearStore} = this.getQuestionStore();
+      clearStore();
+   }
+
    getFormDetails = async () => {
       const { match } = this.props
       const { formId } = match.params

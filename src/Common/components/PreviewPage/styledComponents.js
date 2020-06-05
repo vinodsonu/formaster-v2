@@ -31,6 +31,10 @@ export const TopNavigator = styled.button`
    &:hover{
       opacity:0.9
    }
+   &:disabled{
+      opacity:0.8;
+      cursor: not-allowed;
+   }
 
 `
 export const BottomNavigator = styled.button`
@@ -41,6 +45,10 @@ ${tw`flex justify-center items-center`}
 background-color: rgb(79, 176, 174);
 &:hover{
    opacity:0.9
+}
+&:disabled{
+   opacity:0.8;
+   cursor: not-allowed;
 }
 `
 

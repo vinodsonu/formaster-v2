@@ -1,17 +1,18 @@
 import { create } from 'apisauce'
-import { networkCallWithApisauce } from '../../../utils/APIUtils'
+import { networkCallWithApisauce } from '../../../Common/utils/APIUtils'
 import { apiMethods } from '../../../Common/constants/APIConstants'
 import endpoints from '../endpoints'
+import {BASE_URL} from '../../../Common/constants/UrlConstants';
 
 export default class FormApiService {
    api
    constructor() {
       this.api = create({
-         baseURL: 'https://5ea1a14db9f5ca00166c1f27.mockapi.io/api/'
+         baseURL: BASE_URL
       })
    }
 
-   getForms(access_token) {
+   getForms() {
       return networkCallWithApisauce(
          this.api,
          endpoints.forms,
@@ -21,6 +22,7 @@ export default class FormApiService {
    }
 
    createNewForm(formName) {
+      
       return networkCallWithApisauce(
          this.api,
          endpoints.createForm,
@@ -45,7 +47,7 @@ export default class FormApiService {
          this.api,
          endpoint,
          {
-            form_name:formName
+            form_name:form_name
          },
          apiMethods.put
       )
@@ -56,7 +58,7 @@ export default class FormApiService {
       const {
          deleteForm
       } = endpoints
-      const endpoint = `${deleteForm[0]}${formId}`
+      const endpoint = `${deleteForm[0]}${formId}/v1/`
       return networkCallWithApisauce(
          this.api,
          endpoint,

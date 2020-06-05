@@ -57,7 +57,8 @@ class FormsStore {
 
    @action.bound
    setGetFromsApiResponse(response) {
-      response.forEach(form => {
+      
+      response.forms.forEach(form => {
          this.forms.set(form.form_id, new FormModel(form))
       })
    }
@@ -82,34 +83,36 @@ class FormsStore {
 
    @action.bound
    setCreateFormApiResponse(response) {
+      console.log("response forms",response);
       this.forms.set(response.form_id, {
          formId: response.form_id,
          formName: response.form_name
       })
    }
 
-   @action
-   onCreateNewForm = formName => {
+   @action.bound
+   onCreateNewForm(formName) {
+      
       const createNewFormPromise = this.formService.createNewForm(formName)
       return bindPromiseWithOnSuccess(createNewFormPromise)
          .to(this.setGetCreateFormApiStatus, this.setCreateFormApiResponse)
          .catch(this.setGetCreateFormApiError)
    }
 
-   @action
-   setGetUpdateFormNameApiStatus = status =>{
+   @action.bound
+   setGetUpdateFormNameApiStatus(status){
          this.getUpdateFormNameApiStatus = status;
    }
 
-   @action
-   setGetCreateFormApiError = error =>{
+   @action.bound
+   getUpdateFormNameApiError(error){
       this.getUpdateFormNameApiError = error;
    }
 
    
 
-   @action
-   updateFormName = form =>{
+   @action.bound
+   updateFormName(form){
       const updateFormNamePromise = this.formService.updateFormName(form)
       return bindPromiseWithOnSuccess(updateFormNamePromise)
          .to(this.setGetUpdateFormNameApiStatus, ()=>{

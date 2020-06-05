@@ -1,10 +1,10 @@
-import { validateUsername, validatePassword } from './ValidationUtils'
+import { validateUsername, validatePassword,validateConfirmPassword,validateName } from './ValidationUtils'
 
 /*global expect*/
 
 describe('Authentication Utils Test', () => {
    it('Should check for validateUsername fn', () => {
-      expect(validateUsername('')).toBe(true)
+      expect(validateUsername('   ')).toBe(true)
       expect(validateUsername('username')).toBe(false)
    })
 
@@ -12,4 +12,15 @@ describe('Authentication Utils Test', () => {
       expect(validatePassword('')).toBe(true)
       expect(validatePassword('password')).toBe(false)
    })
+
+   it("Should test confirm password with password",()=>{
+      expect(validateConfirmPassword('password123','password123')).toBe(false);
+      expect(validateConfirmPassword('password123','password12')).toBe(false);
+   })
+
+   it("Should test the name",()=>{
+      expect(validateUsername('Muneera')).toBe(false);
+      expect(validateUsername('   ')).toBe(true);
+   })
+
 })

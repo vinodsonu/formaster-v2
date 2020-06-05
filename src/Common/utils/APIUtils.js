@@ -1,6 +1,6 @@
 import getData from '@ib/api'
 
-import { apiMethods, statusCodes, resStatuses,apiErrorProblems } from '../constants/APIConstants'
+import { apiMethods, statusCodes, resStatuses,apiErrorProblems } from '../../constants/APIConstants'
 
 import { getAccessToken } from './StorageUtils'
 
@@ -17,7 +17,6 @@ export const networkCallWithApisauce = async (
    }
    api.setHeader('Content-Type', 'application/json; charset=UTF-8')
    try {
-      api.setHeader('Authorization Bearer ', getAccessToken())
       response = await getData(api, url, requestObject, type)
    } catch (error) {
       throw error
@@ -30,7 +29,7 @@ export const getUserDisplayableErrorMessage = (error) => {
    return formattedError.description
 }
 
-export function isNetworkError(error) {
+export function isNetworkError(error){
    const apiError = JSON.parse(error)
    const { networkError, timeoutError } = apiErrorProblems
    return apiError.problem === networkError || apiError.problem === timeoutError

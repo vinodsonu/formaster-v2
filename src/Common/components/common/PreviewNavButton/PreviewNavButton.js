@@ -28,7 +28,7 @@ class PreviewNavButton extends Component{
         let buttonText = '';
         if(questionResponseText!==undefined && questionResponseText!=='')
                 buttonText = okButtonText;
-        if(questionChoiceResponse!=='null' && questionChoiceResponse!==undefined)
+        if(questionChoiceResponse!==null && questionChoiceResponse!==undefined)
                 buttonText = okButtonText;
         if(questionType===welcomeScreen)
                 buttonText = startButtonText;

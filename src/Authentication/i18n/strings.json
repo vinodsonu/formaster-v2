@@ -63,6 +63,6 @@
         "ibhubsLogo":"ibhubs-logo"
     },
     "emptyString":"",
-    "user":"user",
-    "admin":"admin"
+    "user":"USER",
+    "admin":"ADMIN"
 }

@@ -1,15 +1,16 @@
 import { observable, action, computed } from 'mobx'
 import {
    API_INITIAL,
-   API_FAILURE,
-   API_SUCCESS,
    API_FETCHING
 } from '@ib/api-constants'
 
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 
-import { setAccessToken, clearUserSession } from '../../../utils/StorageUtils'
-import { success } from "../../../Common/utils/ToastUtils"
+import { setAccessToken, clearUserSession } from '../../../Common/utils/StorageUtils'
+
+import {success,error} from '../../../Common/utils/ToastUtils.js';
+import {getUserDisplayableErrorMessage} from '../../../Common/utils/APIUtils.js';
+
 
 export default class AuthStore {
    @observable getUserSignInAPIStatus
@@ -19,6 +20,8 @@ export default class AuthStore {
    @observable userProfileDetails
    @observable getSignupApiStatus
    @observable getSignupApiError
+   @observable getSignOutApiStatus
+   @observable getSignOutApiError
 
 
    constructor(authService, userProfileService) {
@@ -36,6 +39,8 @@ export default class AuthStore {
       this.userProfileDetails = null;
       this.getSignupApiStatus = API_INITIAL;
       this.getSignupApiError = null;
+      this.getSignOutApiStatus = API_INITIAL;
+      this.getSignOutApiError = null;
    
    }
 
@@ -46,29 +51,31 @@ export default class AuthStore {
 
    @action.bound
    setUserSignInAPIResponse(response) {
-      alert(response)
+      
       setAccessToken(response.access_token)
    }
 
    @action.bound
    setGetUserSignInAPIStatus(status) {
-     
+      
       this.getUserSignInAPIStatus = status
    }
 
    @action.bound
-   setGetUserSignInAPIError(error) {
-      this.getUserSignInAPIError = error
-      console.log(error)
+   setGetUserSignInAPIError(e) {
+      
+      this.getUserSignInAPIError = e;
+      error(getUserDisplayableErrorMessage(this.getUserSignInAPIError))
+      
    }
 
    @action.bound
-   setUsername = username => {
+   setUsername(username){
       this.username = username
    }
 
    @action.bound
-   setPassword = password => {
+   setPassword(password){
       this.password = password
    }
 
@@ -78,25 +85,24 @@ export default class AuthStore {
       const userSigninPromise = this.authAPIService.getAuth(userAuthenticationDetails)
       return bindPromiseWithOnSuccess(userSigninPromise)
          .to(this.setGetUserSignInAPIStatus,this.setUserSignInAPIResponse)
-         .catch(
-            this.setGetUserSignInAPIError
-            )
+         .catch(this.setGetUserSignInAPIError)
    }
 
    @action.bound
-   setGetUserProfileAPIStatus = status => {
-     
+   setGetUserProfileAPIStatus(status){
+    
       this.getUserProfileAPIStatus = status
    }
 
    @action.bound
-   setGetUserProfileAPIError = error => {
+   setGetUserProfileAPIError(error){
       this.getUserProfileAPIError = error
    }
 
    @action.bound
-   setUserProfileAPIResponse = response => {
+   setUserProfileAPIResponse(response){
       this.userProfileDetails = response
+      
    }
 
    @action.bound
@@ -114,20 +120,21 @@ export default class AuthStore {
       )
    }
    
-   @action
-   setGetSignupApiStatus = status =>{
-      alert(status)
+   @action.bound
+   setGetSignupApiStatus(status){
+      
       this.getSignupApiStatus = status;
    }
    
-   @action
-   setSignUpResponse = response =>{
-      
+   @action.bound
+   setSignUpResponse(response){
+      success("successfully completed!")
    }
    
-   @action
-   setGetSignupApiError = error =>{
-      this.getSignupApiError = error;
+   @action.bound
+   setGetSignupApiError(e){
+      this.getSignupApiError = e;
+      error(getUserDisplayableErrorMessage(e))
    }
    
    @action.bound
@@ -145,8 +152,25 @@ export default class AuthStore {
    }
 
    @action.bound
+   setGetSignOutApiError(error){
+      this.getSignOutApiError = error;
+   }
+
+   @action.bound
+   setGetSignOutApiStatus(status){
+      this.getSignOutApiStatus = status;
+   }
+
+   @action.bound
    userSignOut() {
-      clearUserSession()
-      this.init()
+      const onUserSignOutPromise = this.authAPIService.onUserSignOut();
+      return bindPromiseWithOnSuccess(onUserSignOutPromise)
+         .to(this.setGetSignOutApiStatus,(response)=>{
+            clearUserSession();
+            this.init();
+         })
+         .catch(this.setGetSignOutApiError)
+   
+      
    }
 }

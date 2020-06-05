@@ -28,7 +28,10 @@ class AdminRoute extends React.Component {
 
    componentWillUnmount() {
       this.onSuccessNewFormCreate()
+      const {clearStore} = this.getFormStore();
+      clearStore();
    }
+
 
    getUserDetails = async () => {
       const { getUserForms } = this.getFormStore()
@@ -38,17 +41,18 @@ class AdminRoute extends React.Component {
    }
 
    @action
-   userSignOut = () => {
+   userSignOut = async() => {
       
       const { userSignOut } = this.props.authStore
       const { history } = this.props
-      userSignOut()
+      await userSignOut();
       history.replace({ pathname: '/' })
    }
 
-   onCreateNewForm = async () => {
+   onCreateNewForm = async (formName) => {
+      
       const { onCreateNewForm } = this.getFormStore()
-      await onCreateNewForm()
+      await onCreateNewForm(formName)
    }
 
    onSuccessNewFormCreate = reaction(

@@ -8,16 +8,22 @@ import {
     BottomNavigator
 } from './styledComponents';
 
+//Todo : disabling The nav Buttons if there are no questions left
+
 const QuestionNavigator = (props) =>{
     const {
         getNextQuestion,
-        getPreviousQuestion
+        getPreviousQuestion,
+        questionNumber,
+        totalScreens
     } = props;
+    const isTopDisable = questionNumber===0;
+    const isBottomDisable = questionNumber===totalScreens;
     return <Navigator>
-            <TopNavigator onClick={getPreviousQuestion}>
+            <TopNavigator onClick={getPreviousQuestion} disabled = {isTopDisable}>
                 <IoIosArrowUp/>
             </TopNavigator>
-            <BottomNavigator onClick={getNextQuestion}>
+            <BottomNavigator onClick={getNextQuestion} disabled={isBottomDisable}>
                 <IoIosArrowDown/>
             </BottomNavigator>
         </Navigator>

@@ -52,7 +52,7 @@ class CreateForm extends React.Component {
    onCreateNewForm = () => {
       this.isClicked = true
       const { onCreateNewForm } = this.props
-      onCreateNewForm()
+      onCreateNewForm(this.formName)
    }
 
    handleChangeFormName = event => {

@@ -10,7 +10,7 @@ const authService = isServerResponce
    ? new AuthService()
    : new AuthServiceFixture()
 const userProfileService = isServerResponce
-   ? new UserProfileFixture()
+   ? new UserProfileService()
    : new UserProfileFixture()
 
 const authStore = new AuthStore(authService, userProfileService)

@@ -5,11 +5,12 @@ import {
 } from '../../../themes/colors.js';
 
 export const Button = styled.button`
-    ${tw`font-bold ml-5`}
+    ${tw`font-bold m-5`}
     padding:10px;
     border-radius:5px;
     color:white;
     background-color:${thankyouIconButton};
+    height:50px;
    
     
 `

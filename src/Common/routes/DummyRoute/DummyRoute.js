@@ -5,7 +5,7 @@ import { reaction } from 'mobx'
 
 import { API_INITIAL, API_FAILURE, API_SUCCESS } from '@ib/api-constants'
 import LoadingWrapperWithFailure from '../../components/LoadingWrapperWithFailure'
-import { isLoggedin } from '../../../utils/AccessTokenUtills'
+import { isLoggedin } from '../../../Common/utils/AccessTokenUtills'
 import {
    SIGN_IN_PATH,
    ADMIN_PAGE_PATH,
@@ -40,7 +40,7 @@ class DummyRoute extends React.Component {
          const { history } = this.props
          const { userProfileDetails } = this.getStore()
          if (status)
-            if (userProfileDetails[0].role === '')
+            if (userProfileDetails.role === 'ADMIN')
                history.replace({ pathname: ADMIN_PAGE_PATH })
             else history.replace({ pathname: USER_PAGE_PATH })
       }

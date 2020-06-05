@@ -62,7 +62,7 @@ class McqTypeQuestion extends React.Component {
    } = this.props
 
       
-
+      
       return (
          <McqQuestionBody>
             

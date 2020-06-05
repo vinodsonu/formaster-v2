@@ -7,4 +7,5 @@ export const CreateFormContainer = styled.div`
 `
 export const CreatePageBody = styled.div`
    ${tw`flex flex-wrap`}
+   min-height:100vh;
 `

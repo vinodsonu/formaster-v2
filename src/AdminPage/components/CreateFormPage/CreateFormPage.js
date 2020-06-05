@@ -37,8 +37,6 @@ class CreateFormPage extends React.Component {
          questionListSize,
          getQuestionNumber
       } = this.props
-
-     alert(currentQuestionPreview.questionText);
       
       return (
          

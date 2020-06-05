@@ -112,7 +112,7 @@ const  UserProfileDetails= observer((props) => {
   const {
           userProfileDetails
       } = props;
-      const { name } = userProfileDetails[0]
+      const { name } = userProfileDetails
   const { logoutText } = strings
   return (
     <UserProfile>

@@ -2,17 +2,20 @@ import React from 'react';
 import { observable, reaction ,action } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { withRouter } from 'react-router-dom';
-import { ToastProvider } from 'react-toast-notifications';
+
 
 import SignupPage from '../../components/SignupPage'
 
 import { validatePassword, validateUsername , validateConfirmPassword,validateName } from '../../utils/ValidationUtils'
 
-import { API_SUCCESS, API_FAILURE } from '@ib/api-constants'
-
 import {SIGN_IN_PATH} from '../../constants/RouteConstants'
 
 import strings from '../../i18n/strings.json';
+import {success,error} from '../../../Common/utils/ToastUtils.js';
+import {getUserDisplayableErrorMessage} from '../../../Common/utils/APIUtils.js';
+
+
+//Todo:Shifing the sign in logic to its page
 
 @inject("authStore")
 @observer

@@ -3,7 +3,7 @@ import tw from 'tailwind.macro'
 
 import {
    thankyouIconButton
-} from '../themes/colors.js';
+} from '../../themes/colors.js';
 
 export const ScreenQuestion = styled.div`
    ${tw`flex flex-col items-center`}

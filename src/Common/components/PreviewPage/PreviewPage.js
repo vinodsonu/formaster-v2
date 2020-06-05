@@ -10,7 +10,7 @@ import {
    MULTIPLE_CHOICE
 } from '../../../User/constants/QuestionTypeContants.js'
 import McqTypeQuestion from '../McqTypeQuestion'
-import ScreentTypeQuestion from '../../ScreentTypeQuestion'
+import ScreentTypeQuestion from '../ScreentTypeQuestion'
 import TextTypeQuestion from '../TextTypeQuestion'
 import ProgressBar from './ProgressBar';
 import QuestionNavigator from './QuestionNavigator';
@@ -109,7 +109,13 @@ class PreviewPage extends React.Component {
    }
 
    render() {
-      const {totalQuestions , getNextQuestion,getPreviousQuestion,questionNumber} = this.props;
+      const {
+         totalQuestions , 
+         getNextQuestion,
+         getPreviousQuestion,
+         questionNumber,
+         totalScreens
+      } = this.props;
       
       return (
          <PreviewPageContainer>
@@ -121,6 +127,8 @@ class PreviewPage extends React.Component {
                   <QuestionNavigator
                      getNextQuestion={getNextQuestion}
                      getPreviousQuestion={getPreviousQuestion}
+                     totalScreens = {totalScreens}
+                     questionNumber = {questionNumber}
                   />
                </ProgressBarAndQuestionNavigator>
          </PreviewPageContainer>

@@ -1,29 +1,34 @@
 import { create } from 'apisauce'
-import { networkCallWithApisauce } from '../../../utils/APIUtils'
+import { networkCallWithApisauce } from '../../../Common/utils/APIUtils'
 import { apiMethods } from '../../../Common/constants/APIConstants'
 import endpoints from '../endpoints'
+import {BASE_URL} from '../../../Common/constants/UrlConstants';
 
 export default class QuestionApiService {
    api
    constructor() {
       this.api = create({
-         baseURL: 'https://5ea1a14db9f5ca00166c1f27.mockapi.io/api/'
+         baseURL: BASE_URL
       })
    }
 
    getCurrentFormDetails(formId) {
       const { questions } = endpoints
       const endpointData = `${questions[0]}${formId}${questions[1]}`
-      return networkCallWithApisauce(this.api, endpointData, {}, apiMethods.get)
+      return networkCallWithApisauce(
+         this.api, 
+         endpointData, 
+         {}, 
+         apiMethods.get)
    }
 
-   publishCurrentFormDetails(details) {
+   publishCurrentFormDetails(details,formId) {
       const { updateQuestions } = endpoints
-      const endpointData = `${updateQuestions[0]}${details.form_id}${updateQuestions[1]}`
+      const endpointData = `${updateQuestions[0]}${formId}${updateQuestions[1]}`
       return networkCallWithApisauce(
          this.api,
          endpointData,
-         { details },
+          details ,
          apiMethods.post
       )
    }
