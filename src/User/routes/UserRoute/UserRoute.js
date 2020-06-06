@@ -81,14 +81,14 @@ class UserRoute extends Component{
         history.push({pathname:`/forms/${formId}/preview`})
     }
 
-    userSignOut = () =>{
+    userSignOut = async() =>{
         const {
             userSignOut
         } = this.getAuthStore()
         const {
             history
         } = this.props;
-        userSignOut();
+        await userSignOut();
         history.replace({pathname:SIGN_IN_PATH})
     }
 

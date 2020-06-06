@@ -20,7 +20,7 @@ class CreateRoute extends React.Component {
    }
 
    async componentDidMount() {
-      // alert("create route")
+      console.log('componentDidMount');
       await this.getFormDetails()
    }
 
@@ -38,9 +38,9 @@ class CreateRoute extends React.Component {
       await getTheCurrentFormDetails(formId)
    }
 
-   userSignOut = () => {
+   userSignOut = async() => {
       const { userSignOut } = this.props.authStore
-      userSignOut()
+      await userSignOut()
       const { history } = this.props
       history.replace({ pathname: SIGN_IN_PATH })
    }

@@ -34,7 +34,7 @@ export default class QuestionApiService {
    }
 
    onDeleteQuestion(questionId){
-      const endpointData = `questions/${questionId}/v1`
+      const endpointData = `questions/${questionId}/v1/`
       return networkCallWithApisauce(
          this.api,
          endpointData,

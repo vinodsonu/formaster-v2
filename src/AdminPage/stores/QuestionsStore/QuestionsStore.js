@@ -70,6 +70,10 @@ class QuestionsStore {
 
    @action.bound
    onDeleteQuestion(questionId){
+      if(questionId<0){
+         this.questions.delete(questionId)
+         return true;
+      }
       const questionDeletePromise = this.questionService.onDeleteQuestion(questionId)
       return bindPromiseWithOnSuccess(questionDeletePromise)
          .to(this.setGetDeleteQuestionApiStatus,()=>{
@@ -189,8 +193,8 @@ class QuestionsStore {
 
    
    onClickQuestion = (questionId) =>{
-      
-      this.setCurrentPreviewQuestion(this.questions.get(questionId).getRequestObject());
+      if(this.questions.get(questionId)!==undefined)
+         this.setCurrentPreviewQuestion(this.questions.get(questionId).getRequestObject());
    }
 
    getNextQuestion = () =>{

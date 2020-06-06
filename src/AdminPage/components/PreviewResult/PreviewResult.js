@@ -2,7 +2,7 @@ import React from 'react'
 import {observer} from 'mobx-react';
 import {observable} from 'mobx';
 
-import { Preview } from './styledComponents.js';
+import { Preview,EmptyPreviewBottom } from './styledComponents.js';
 import PreviewPage from '../../../Common/components/PreviewPage';
 
 @observer
@@ -43,7 +43,9 @@ class PreviewResult extends React.Component {
          
             /></Preview>
          :
-         <Preview></Preview>
+         <Preview>
+            <EmptyPreviewBottom></EmptyPreviewBottom>
+         </Preview>
    }
 }
 

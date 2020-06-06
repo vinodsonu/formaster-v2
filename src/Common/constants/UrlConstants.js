@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://0b52b14f87e8.ngrok.io/api/formaster';
+export const BASE_URL = 'https://70c43e2816be.ngrok.io/api/formaster';

@@ -3,7 +3,7 @@ import tw from 'tailwind.macro'
 
 export const PreviewPageContainer = styled.div`
    ${tw`flex flex-col justify-center items-center h-screen`}
-   min-width:500px;
+  
    
    
 `
