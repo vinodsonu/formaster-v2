@@ -32,4 +32,14 @@ export default class QuestionApiService {
          apiMethods.post
       )
    }
+
+   onDeleteQuestion(questionId){
+      const endpointData = `questions/${questionId}/v1`
+      return networkCallWithApisauce(
+         this.api,
+         endpointData,
+          {} ,
+         apiMethods.delete
+      )
+   }
 }

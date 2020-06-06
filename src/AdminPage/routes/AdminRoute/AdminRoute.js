@@ -1,5 +1,5 @@
 import React from 'react'
-import { action, reaction } from 'mobx'
+import { action, reaction,observable,computed } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
 
@@ -14,6 +14,10 @@ import {getUserDisplayableErrorMessage} from '../../../Common/utils/APIUtils.js'
 @inject('formStore', 'authStore', 'questionsStore')
 @observer
 class AdminRoute extends React.Component {
+   @observable formsOffset = -4;
+   @observable fromsLimit = 4;
+   @observable currentPageNumber = 0;
+
    getFormStore = () => {
       return this.props.formStore
    }
@@ -26,18 +30,46 @@ class AdminRoute extends React.Component {
       await this.getUserDetails()
    }
 
+
    componentWillUnmount() {
       this.onSuccessNewFormCreate()
       const {clearStore} = this.getFormStore();
       clearStore();
    }
 
+   @computed 
+   get currentPage(){
+      return this.currentPageNumber;
+   }
+
+   @computed
+   get totalPagesCount(){
+      const {totalFormsCount} = this.getFormStore();
+      return Math.ceil(totalFormsCount/this.fromsLimit);
+   }
+
+   @action
+   getNextForms = async() =>{
+      const { getUserForms } = this.getFormStore()
+      this.formsOffset+=(this.fromsLimit);
+      this.currentPageNumber++;
+      await getUserForms(this.fromsLimit,this.formsOffset) 
+   }
+
+   @action
+   getPreviousForms = async() =>{
+      const {setPreviousForms} = this.getFormStore();
+      this.formsOffset-=this.fromsLimit;
+      this.currentPageNumber--;
+      const { getUserForms } = this.getFormStore()
+      await getUserForms(this.fromsLimit,this.formsOffset)
+   }
 
    getUserDetails = async () => {
       const { getUserForms } = this.getFormStore()
       const { userProfile } = this.getAuthStore()
       await userProfile()
-      await getUserForms()
+      this.getNextForms();
    }
 
    @action
@@ -120,6 +152,11 @@ class AdminRoute extends React.Component {
                getCreateFormApiStatus === API_FETCHING
             }
             onDeleteForm = {this.onDeleteForm}
+            getNextForms = {this.getNextForms}
+            getPreviousForms = {this.getPreviousForms}
+            currentPage = {this.currentPage}
+            totalPagesCount = {this.totalPagesCount}
+
          />
       )
    }

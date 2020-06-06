@@ -1,5 +1,5 @@
 import { observable, action,computed } from 'mobx'
-import { API_INITIAL} from '@ib/api-constants'
+import { API_INITIAL,API_FETCHING} from '@ib/api-constants'
 
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 
@@ -25,7 +25,8 @@ class QuestionsStore {
    @observable form
    @observable getPublishStatus
    @observable getPublishError
-   @observable publishedLink
+   @observable getDeleteQuestionApiStatus
+   @observable getDeleteQuestionError
    newQuestionCount
 
    constructor(questionService) {
@@ -41,6 +42,10 @@ class QuestionsStore {
       this.currentFormId = null
       this.currentQuestionPreview = {}
       this.newQuestionCount = -1
+      this.getDeleteQuestionApiStatus = API_INITIAL
+      this.getDeleteQuestionError = null
+      this.getPublishStatus = API_INITIAL;
+      this.getPublishError = null;
       this.form = {
          formId: '',
          formName: ''
@@ -50,6 +55,27 @@ class QuestionsStore {
    @action.bound
    clearStore() {
       this.init()
+   }
+
+   @action.bound
+   setGetDeleteQuestionApiStatus(status){
+      this.getDeleteQuestionApiStatus = status;
+   }
+
+   @action.bound
+   setGetDeleteQuestionError(e){
+      this.getDeleteQuestionError = e;
+      error(getUserDisplayableErrorMessage(e))
+   }
+
+   @action.bound
+   onDeleteQuestion(questionId){
+      const questionDeletePromise = this.questionService.onDeleteQuestion(questionId)
+      return bindPromiseWithOnSuccess(questionDeletePromise)
+         .to(this.setGetDeleteQuestionApiStatus,()=>{
+            this.questions.delete(questionId)
+         })
+         .catch(this.setGetDeleteQuestionError)
    }
 
    @action.bound
@@ -96,7 +122,7 @@ class QuestionsStore {
    }
    @action
    setPublishResponse = async(response) => {
-      success("successfully published")
+      success()
       this.publishedLink = response
       const {formId} = this.form;
       await this.getTheCurrentFormDetails(formId);
@@ -106,14 +132,51 @@ class QuestionsStore {
    onPublish = () => {
       let posi =1;
      
-      const details = Array.from(this.questions.values()).map(each =>
+      let details = Array.from(this.questions.values()).map(each =>
          each.getRequestObject()
       )
 
+      
+
+      let thankYouScreens = [];
+      let welcomeScreens = [];
+
+      details.forEach(each=>{
+         if(each.question_type===WELCOME_SCREEN)
+            welcomeScreens.push(each);
+         else if(each.question_type===THANK_YOU_SCREEN)
+            thankYouScreens.push(each)
+      })
+
+      let filteredQuestionDetails  =  details.filter(each=>each.question_type!==WELCOME_SCREEN&&each.question_type!==THANK_YOU_SCREEN);
+      
+      const screen = new QuestionModel({
+         question_id: this.newQuestionCount--,
+         question_type: '',
+         description: '',
+         question_text: '',
+         image_url: '',
+         required: false,
+         multiple_choice_question_details: null
+      })
+      
+      if(welcomeScreens.length===0) 
+      {   
+         screen.questionType=WELCOME_SCREEN;
+         screen.questionText="Welcome";
+         welcomeScreens.push(screen.getRequestObject());
+      }
+      if(thankYouScreens.length===0)
+      {
+         screen.questionType=THANK_YOU_SCREEN;
+         screen.questionText="Thank You";
+         thankYouScreens.push(screen.getRequestObject())
+      }
+
+      details = welcomeScreens.concat(filteredQuestionDetails).concat(thankYouScreens)
       details.forEach(each=>{
          each.position = posi++;
       })
-
       const {formId} = this.form;
       const formQuestionsPublishPromise = this.questionService.publishCurrentFormDetails(
          details,
@@ -265,6 +328,11 @@ class QuestionsStore {
       const current = this.questions.get(this.newQuestionCount+1);
       this.setCurrentPreviewQuestion(current.getRequestObject());
       
+   }
+
+   @computed
+   get isPublishing(){
+      return this.getPublishStatus===API_FETCHING;
    }
 }
 

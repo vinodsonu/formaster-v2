@@ -20,6 +20,8 @@ class FormsStore {
    @observable getDeleteFormApiStatus
    @observable getDeleteFormApiError
    @observable forms
+   @observable previousForms
+   @observable totalFormsCount
 
    constructor(formService, questionsStore) {
       this.formService = formService
@@ -30,6 +32,7 @@ class FormsStore {
    @action.bound
    init() {
       this.forms = new Map()
+      this.previousForms = new Map();
       this.getFormsApiStatus = API_INITIAL
       this.getFormApiError = null
       this.getCreateFormApiStatus = API_INITIAL
@@ -57,17 +60,25 @@ class FormsStore {
 
    @action.bound
    setGetFromsApiResponse(response) {
-      
+      this.forms = new Map();
+      this.totalFormsCount = response.total_count
       response.forms.forEach(form => {
          this.forms.set(form.form_id, new FormModel(form))
       })
    }
 
    @action.bound
-   getUserForms() {
-      const userFromsPromise = this.formService.getForms()
+   setPreviousForms(offset){
+      this.forms = this.previousForms.get(offset);
+   }
+
+   @action.bound
+   getUserForms(limit,offset) {
+      const userFromsPromise = this.formService.getForms(limit,offset)
       return bindPromiseWithOnSuccess(userFromsPromise)
-         .to(this.setGetFormApiStatus, this.setGetFromsApiResponse)
+         .to(this.setGetFormApiStatus, (response)=>{
+            this.setGetFromsApiResponse(response)
+         })
          .catch(this.setGetFormApiError)
    }
 

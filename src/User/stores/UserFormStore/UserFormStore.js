@@ -11,6 +11,7 @@ class UserFormStore {
    @observable getFormsApiStatus
    @observable getFormApiError
    @observable forms
+   @observable totalFormsCount
 
    constructor(formService) {
       this.formService = formService
@@ -42,15 +43,17 @@ class UserFormStore {
 
    @action.bound
    setGetFromsApiResponse(response) {
+      this.forms = new Map();
+      this.totalFormsCount = response.total_count;
       response.forms.forEach(form => {
          this.forms.set(form.form_id, new FormModel(form))
       })
    }
 
    @action.bound
-   getUserForms() {
+   getUserForms(limit,offset) {
        console.log(this.formService)
-      const userFromsPromise = this.formService.getForms()
+      const userFromsPromise = this.formService.getForms(limit,offset)
       return bindPromiseWithOnSuccess(userFromsPromise)
          .to(this.setGetFormApiStatus, this.setGetFromsApiResponse)
          .catch(this.setGetFormApiError)

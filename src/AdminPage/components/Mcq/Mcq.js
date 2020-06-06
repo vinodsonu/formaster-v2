@@ -107,7 +107,11 @@ class Mcq extends React.Component {
             mcqscreen: { placeholder, type,choicePlaceholder }
          }
       } = strings
-      const {question:{ questionText, questionId,questionType},getQuestionNumber } = this.props
+      const {
+         question:{ questionText, questionId,questionType},
+         getQuestionNumber,
+         onDeleteQuestion
+       } = this.props
       const questionNumber = getQuestionNumber(questionId)
       return (
          <McqScreen onClick={this.handleOnFocus}>
@@ -139,7 +143,10 @@ class Mcq extends React.Component {
                   </AddMcqSection>
                </Choices>
             </ScreenText>
-            <QuestionEditOptions/>
+            <QuestionEditOptions
+               onDeleteQuestion={onDeleteQuestion}
+               questionId = {questionId}
+            />
          </McqScreen>
       )
    }

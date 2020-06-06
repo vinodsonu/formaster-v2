@@ -47,7 +47,7 @@ class PreviewRoute extends React.Component {
    }
 
    renderSuccessUi = observer(() => {
-      const { question ,totalQuestions} = this.getPreviewStore()
+      const { question,question:{questionType} ,totalQuestions} = this.getPreviewStore()
       const {totalAnswerableQuestions} = this.getPreviewStore();
       return (
          <PreviewPage
@@ -57,6 +57,7 @@ class PreviewRoute extends React.Component {
             totalQuestions = {totalAnswerableQuestions}
             getPreviousQuestion = {this.getPreviousQuestion}
             totalScreens = {totalQuestions}
+            questionType = {questionType}
          />
       )
    })

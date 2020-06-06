@@ -64,7 +64,7 @@ class SignupRoute extends React.Component{
      @action
     onChangeUsername = (event) =>{
         this.username = event.target.value;
-        this.checkForUsernameError();
+        // this.checkForUsernameError();
     }
     
      @action
@@ -73,13 +73,16 @@ class SignupRoute extends React.Component{
             enterKeyCode
         }} = strings;
         if(event.keyCode===enterKeyCode)
+        {   this.checkForUsernameError(); 
             this.signupPageRef.current.passwordRef.current.inputFeildRef.current.focus();
+            
+        }
     }
     
      @action
     onChangeName = event =>{
         this.name = event.target.value;
-        this.checkForNameError();
+        // this.checkForNameError();
     }
     @action
     onKeyDownName = event =>{
@@ -87,13 +90,16 @@ class SignupRoute extends React.Component{
             enterKeyCode
         }} = strings;
         if(event.keyCode===enterKeyCode)
+        {   this.checkForNameError(); 
             this.signupPageRef.current.usernameRef.current.inputFeildRef.current.focus();
+             
+        }
     }
     
      @action
     onChangePassword = event =>{
         this.password = event.target.value;
-        this.checkForPasswordError();
+        // this.checkForPasswordError();
     }
     
      @action
@@ -102,13 +108,16 @@ class SignupRoute extends React.Component{
             enterKeyCode
         }} = strings;
         if(event.keyCode===enterKeyCode)
+        {   this.checkForPasswordError(); 
             this.signupPageRef.current.confirmPasswordRef.current.inputFeildRef.current.focus();
+            
+        }
     }
     
      @action
     onChangeConfirmPassword = event =>{
         this.confirmPassword = event.target.value;
-        this.checkForConfirmPasswordError();
+        // this.checkForConfirmPasswordError();
     }
     
      @action
@@ -117,7 +126,9 @@ class SignupRoute extends React.Component{
             enterKeyCode
         }} = strings;
         if(event.keyCode===enterKeyCode && !this.isValidationError())
+        {   this.checkForConfirmPasswordError(); 
             this.onClickSignUp();
+        }
     }
     
      @action

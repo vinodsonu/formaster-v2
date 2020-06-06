@@ -114,7 +114,8 @@ class PreviewPage extends React.Component {
          getNextQuestion,
          getPreviousQuestion,
          questionNumber,
-         totalScreens
+         totalScreens,
+         questionType
       } = this.props;
       
       return (
@@ -123,12 +124,14 @@ class PreviewPage extends React.Component {
                <ProgressBarAndQuestionNavigator>
                   <ProgressBar totalQuestions={totalQuestions}
                                questionNumber = {questionNumber}
+                               questionType = {questionType}
                   />
                   <QuestionNavigator
                      getNextQuestion={getNextQuestion}
                      getPreviousQuestion={getPreviousQuestion}
                      totalScreens = {totalScreens}
                      questionNumber = {questionNumber}
+                     questionType = {questionType}
                   />
                </ProgressBarAndQuestionNavigator>
          </PreviewPageContainer>

@@ -27,22 +27,23 @@ class AddQuestionsPanel extends React.Component {
 
    questionsEndRef = React.createRef()
 
-//   componentDidMount () {
-//     this.scrollToBottom()
-//   }
-//   componentDidUpdate () {
-//     this.scrollToBottom()
-//   }
-//   scrollToBottom = () => {
-//     this.questionsEndRef.current.scrollIntoView({ behavior: 'smooth' })
-//   }
+  componentDidMount () {
+    this.scrollToBottom()
+  }
+  componentDidUpdate () {
+    this.scrollToBottom()
+  }
+  scrollToBottom = () => {
+    this.questionsEndRef.current.scrollIntoView({ behavior: 'smooth' })
+  }
 
    renderListOfQuestions = () => {
       const { 
          questions, 
          onToggleShouldShowSettings,
          onClickQuestion,
-         getQuestionNumber
+         getQuestionNumber,
+         onDeleteQuestion
       } = this.props
       return (
          <Questions
@@ -50,6 +51,7 @@ class AddQuestionsPanel extends React.Component {
             onToggleShouldShowSettings={onToggleShouldShowSettings}
             onClickQuestion={onClickQuestion}
             getQuestionNumber = {getQuestionNumber}
+            onDeleteQuestion = {onDeleteQuestion}
          />
       )
    }

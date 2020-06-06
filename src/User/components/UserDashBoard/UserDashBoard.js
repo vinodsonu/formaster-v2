@@ -12,13 +12,24 @@ class UserDashBoard extends Component{
             userProfileDetails,
             forms,
             onClickForm,
-            userSignOut
+            userSignOut,
+            currentPage,
+            totalPagesCount,
+            getNextForms,
+            getPreviousForms
         } = this.props;
         return (
 
             <UserDashBoardContainer>
                 <DashBoardHeader userProfileDetails={userProfileDetails} userSignOut={userSignOut}/>
-                <DashBoardBody forms={forms} onClickForm={onClickForm}/>
+                <DashBoardBody 
+                    forms={forms} 
+                    onClickForm={onClickForm}
+                    currentPage = {currentPage}
+                    totalPagesCount = {totalPagesCount}
+                    getNextForms = {getNextForms}
+                    getPreviousForms = {getPreviousForms}
+                />
             </UserDashBoardContainer>
 
         );

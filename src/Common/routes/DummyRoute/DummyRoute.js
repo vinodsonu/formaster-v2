@@ -58,6 +58,7 @@ class DummyRoute extends React.Component {
       return null;
    }
    render() {
+      
       const { userProfile,getUserProfileAPIStatus, getUserProfileAPIError} = this.getStore()
       return <LoadingWrapperWithFailure
                   apiStatus={getUserProfileAPIStatus}

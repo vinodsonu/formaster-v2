@@ -39,7 +39,11 @@ class TextScreen extends React.Component {
             shortTextScreen: { placeholder, type }
          }
       } = strings
-      const { question:{questionText, questionId,questionType},getQuestionNumber} = this.props
+      const { 
+         question:{questionText, questionId,questionType},
+         getQuestionNumber,
+         onDeleteQuestion
+      } = this.props
       const questionNumber = getQuestionNumber(questionId)
       return (
          <TextScreenContainer onClick = {this.onFocusQuestion}>
@@ -56,7 +60,10 @@ class TextScreen extends React.Component {
                   handleOnFocus = {()=>{}}
                />
             </ScreenText>
-            <QuestionEditOptions/>
+            <QuestionEditOptions
+               onDeleteQuestion={onDeleteQuestion}
+               questionId = {questionId}
+            />
          </TextScreenContainer>
       )
    }

@@ -1,5 +1,5 @@
 import { create } from 'apisauce'
-import { networkCallWithApisauce } from '../../../utils/APIUtils'
+import { networkCallWithApisauce } from '../../../Common/utils/APIUtils'
 import { apiMethods } from '../../../constants/APIConstants'
 import endpoints from '../endpoints'
 

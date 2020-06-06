@@ -55,7 +55,8 @@ class NavBar extends React.Component {
          formName,
          userProfileDetails,
          userSignOut,
-         onPublish
+         onPublish,
+         isPublishing
       } = this.props
 
       return (
@@ -74,6 +75,7 @@ class NavBar extends React.Component {
                <PrimaryButton
                   displayText={publishButtonText}
                   handleOnClick={onPublish}
+                  loadingStatus = {isPublishing}
                />
                {userProfileDetails !== null ? (
                   <UserProfileDetails

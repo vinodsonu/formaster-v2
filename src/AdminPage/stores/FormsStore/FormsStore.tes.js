@@ -12,7 +12,7 @@ import FormApiService from '../../services/FormService/FormApi'
 import QuestionService from '../../services/QuestionService/QuesttionApi'
 import getFormResponse from '../../fixtures/getFormResponse.json'
 
-import FormsStore from '.'
+import {FormsStore} from './FormsStore'
 import QuestionsStore from '../QuestionsStore'
 
 describe('Form Store test', () => {

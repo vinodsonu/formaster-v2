@@ -6,3 +6,6 @@ export const QuestionEdit = styled.div`
     width:50px;
     align-self:flex-end;
 `
+export const DeleteButton = styled.button`
+    cursur:pointer;
+`

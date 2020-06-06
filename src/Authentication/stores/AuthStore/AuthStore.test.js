@@ -137,13 +137,7 @@ describe('AuthStore Test', () => {
       expect(authStore.getUserProfileAPIStatus).toBe(API_FAILED)
    })
 
-   it('should test user sign-out', () => {
-      authStore.userSignOut()
-      expect(mockRemoveCookie).toBeCalled()
-      expect(authStore.getUserSignInAPIStatus).toBe(API_INITIAL)
-      expect(authStore.getUserSignInAPIError).toBe(null)
-   })
-
+   
    it('Should test for clearStore success', () => {
       authStore.clearStore()
       expect(authStore.getUserSignInAPIStatus).toBe(API_INITIAL)

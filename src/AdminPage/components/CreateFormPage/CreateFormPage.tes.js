@@ -17,6 +17,7 @@ describe('Admin CreateFormPage test', () => {
             <CreateFormPage
                form={{ formId: 1, formName: 'snack form' }}
                userProfileDetails={userProfileDetails}
+               currentQuestionPreview = {{questionId:1}}
             />
          </Router>
       )

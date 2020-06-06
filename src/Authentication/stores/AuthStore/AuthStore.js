@@ -128,7 +128,7 @@ export default class AuthStore {
    
    @action.bound
    setSignUpResponse(response){
-      success("successfully completed!")
+      success()
    }
    
    @action.bound
@@ -136,7 +136,6 @@ export default class AuthStore {
       this.getSignupApiError = e;
       error(getUserDisplayableErrorMessage(e))
    }
-   
    @action.bound
    userSignUp(details){
       const userSignUpPromise = this.authAPIService.onUserSignup(details);

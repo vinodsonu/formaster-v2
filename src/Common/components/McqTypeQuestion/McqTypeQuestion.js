@@ -58,7 +58,8 @@ class McqTypeQuestion extends React.Component {
          textResponseDetails}, 
       questionNumber,
       totalQuestions,
-      questionPosition
+      questionPosition,
+      getNextQuestion
    } = this.props
 
       
@@ -76,7 +77,7 @@ class McqTypeQuestion extends React.Component {
                questionType = {questionType}
                questionNumber = {questionNumber}
                totalQuestions = {totalQuestions}
-               handleOnClick = {this.getNextQuestion}
+               handleOnClick = {getNextQuestion}
                questionResponseText = {textResponseDetails}
                questionChoiceResponse = {responseChoice}
                questionPosition = {questionPosition}

@@ -20,6 +20,7 @@ class CreateRoute extends React.Component {
    }
 
    async componentDidMount() {
+      // alert("create route")
       await this.getFormDetails()
    }
 
@@ -60,7 +61,9 @@ class CreateRoute extends React.Component {
          currentQuestionNumber,
          totalQuestions,
          questionListSize,
-         getQuestionNumber
+         getQuestionNumber,
+         onDeleteQuestion,
+         isPublishing
       } = this.getQuestionStore()
 
       const { userProfileDetails } = this.getAuthStore()
@@ -85,9 +88,9 @@ class CreateRoute extends React.Component {
             questionListSize = {questionListSize}
             getQuestionNumber = {getQuestionNumber}
             key = {currentQuestionPreview.questionId}
-
-
-         />
+            onDeleteQuestion = {onDeleteQuestion}
+            isPublishing = {isPublishing}
+         /> 
       )
    })
 

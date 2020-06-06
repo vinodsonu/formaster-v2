@@ -3,6 +3,7 @@ import FormCards from '../FormCards'
 import CreateForm from '../CreateForm'
 
 import { DashBoard, FormSection } from './styledComponents.js'
+import Paginator from '../../../Common/components/Paginator';
 
 class DashBoardBody extends React.Component {
    render() {
@@ -11,7 +12,11 @@ class DashBoardBody extends React.Component {
          onCreateNewForm,
          onFormClick,
          createNewQuestionLoadingStatus,
-         onDeleteForm
+         onDeleteForm,
+         getNextForms,
+         getPreviousForms,
+         currentPage,
+         totalPagesCount
       } = this.props
       return (
          <DashBoard>
@@ -24,6 +29,14 @@ class DashBoardBody extends React.Component {
                />
                <FormCards forms={forms} onFormClick={onFormClick} onDeleteForm={onDeleteForm} />
             </FormSection>
+
+            <Paginator
+               getNextForms={getNextForms}
+               getPreviousForms = {getPreviousForms}
+               currentPage = {currentPage}
+               totalPagesCount = {totalPagesCount}
+            />
+
          </DashBoard>
       )
    }

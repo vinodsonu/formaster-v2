@@ -16,7 +16,13 @@ import Mcq from '../Mcq'
 @observer
 class Questions extends React.Component {
    renderQuestions = () => {
-      const { questions, onToggleShouldShowSettings,onClickQuestion,getQuestionNumber } = this.props
+      const { 
+         questions, 
+         onToggleShouldShowSettings,
+         onClickQuestion,
+         getQuestionNumber,
+         onDeleteQuestion
+      } = this.props
       return Array.from(questions.values()).map(each => {
          switch (each.questionType) {
             case WELCOME_SCREEN:
@@ -26,7 +32,7 @@ class Questions extends React.Component {
                      question={each}
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
                      onClickQuestion={onClickQuestion}
-                     
+                     onDeleteQuestion={onDeleteQuestion}
                   />
                )
             case THANK_YOU_SCREEN:
@@ -36,7 +42,7 @@ class Questions extends React.Component {
                      question={each}
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
                      onClickQuestion={onClickQuestion}
-                     
+                     onDeleteQuestion={onDeleteQuestion}
                   />
                )
             case SHORT_TEXT:
@@ -47,6 +53,7 @@ class Questions extends React.Component {
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
                      onClickQuestion={onClickQuestion}
                      getQuestionNumber={getQuestionNumber}
+                     onDeleteQuestion={onDeleteQuestion}
                   />
                )
             case LONG_TEXT:
@@ -57,6 +64,7 @@ class Questions extends React.Component {
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
                      onClickQuestion={onClickQuestion}
                      getQuestionNumber={getQuestionNumber}
+                     onDeleteQuestion={onDeleteQuestion}
                   />
                )
             case MULTIPLE_CHOICE:
@@ -67,6 +75,7 @@ class Questions extends React.Component {
                      onToggleShouldShowSettings={onToggleShouldShowSettings}
                      onClickQuestion={onClickQuestion}
                      getQuestionNumber={getQuestionNumber}
+                     onDeleteQuestion={onDeleteQuestion}
                   />
                )
          }

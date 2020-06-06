@@ -77,7 +77,7 @@ class GreetingScreen extends React.Component {
      
       
       
-      const { question:{questionId, questionText,questionType} } = this.props
+      const { question:{questionId, questionText,questionType},onDeleteQuestion} = this.props
 
       const placeholder = this.getQuestionPlaceholder();
 
@@ -100,7 +100,10 @@ class GreetingScreen extends React.Component {
                   handleOnFocus = {()=>{}}
                />
             </ScreenText>
-         <QuestionEditOptions/>
+         <QuestionEditOptions
+            onDeleteQuestion={onDeleteQuestion}
+            questionId = {questionId}
+         />
       </GreetingsFeild>
 
       );

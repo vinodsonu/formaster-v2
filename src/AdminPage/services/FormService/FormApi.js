@@ -12,10 +12,10 @@ export default class FormApiService {
       })
    }
 
-   getForms() {
+   getForms(limit,offset) {
       return networkCallWithApisauce(
          this.api,
-         endpoints.forms,
+         `/admin_forms/v1/?limit=${limit}&offset=${offset}`,
          {},
          apiMethods.get
       )

@@ -33,7 +33,7 @@ class PreviewNavButton extends Component{
         if(questionType===welcomeScreen)
                 buttonText = startButtonText;
         else if(questionType===thankyouScreen)
-                buttonText = submitButtonText;
+                buttonText = '';
         if(questionPosition+1 === questionListSize)
                 buttonText = submitButtonText;
         return buttonText!==''?<Button onClick={handleOnClick}>

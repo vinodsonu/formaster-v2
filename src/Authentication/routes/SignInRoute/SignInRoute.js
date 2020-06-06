@@ -116,17 +116,8 @@ class SignInRoute extends React.Component {
    componentWillUnmount() {
       this.onSuccessUserLogin()
       this.onSuccessUserProfile()
-      // this.onFailureSuccessLogin()
       this.onFailureUserProfile()
    }
-
-   // onSuccessUserLogin = () =>{
-   //    history.replace({ pathname: ADMIN_PAGE_PATH })
-   // }
-
-   // onFailureUserLogin = (e) =>{
-   //    error(getUserDisplayableErrorMessage(e))
-   // }
 
    onSignOutStatuses = reaction(
 
@@ -158,21 +149,6 @@ class SignInRoute extends React.Component {
       }
    )
 
-   // onFailureSuccessLogin = reaction(
-   //    () => {
-   //       try {
-   //          const { getUserSignInAPIStatus } = this.getAuthStore()
-   //          return  getUserSignInAPIStatus === API_FAILED
-   //       } catch (e) {}
-   //    },
-   //    status => {
-   //       const { getUserSignInAPIError } = this.getAuthStore()
-   //       if (status) {
-   //          error(getUserDisplayableErrorMessage(getUserSignInAPIError))
-   //       }
-   //    }
-   // )
-
    onSuccessUserProfile = reaction(
       () => {
          try {
@@ -190,7 +166,7 @@ class SignInRoute extends React.Component {
          if (status) {
             if(role===admin)
                history.replace({ pathname: ADMIN_PAGE_PATH })
-            else if(user)
+            else if(role===user)
             history.replace({ pathname: USER_PAGE_PATH })
          }
          

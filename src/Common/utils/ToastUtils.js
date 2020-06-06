@@ -1,8 +1,8 @@
 import { ToastContainer, toast } from 'react-toastify';
 
 
-export function success(msg){
-    toast.success(msg,{
+export function success(){
+    toast.success('successfully completed !',{
         hideProgressBar: true,
         closeOnClick: true
     });

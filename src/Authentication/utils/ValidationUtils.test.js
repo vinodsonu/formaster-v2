@@ -15,7 +15,7 @@ describe('Authentication Utils Test', () => {
 
    it("Should test confirm password with password",()=>{
       expect(validateConfirmPassword('password123','password123')).toBe(false);
-      expect(validateConfirmPassword('password123','password12')).toBe(false);
+      expect(validateConfirmPassword('password123','password12')).toBe(true);
    })
 
    it("Should test the name",()=>{

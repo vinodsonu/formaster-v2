@@ -34,7 +34,6 @@ describe('Form Store test', () => {
 
       expect(getFormDetailsApiStatus).toBe(API_INITIAL)
       expect(getFormDetailsApiError).toBe(null)
-      expect(currentQuestionPreview).toBe(null)
       expect(currentFormId).toBe(null)
       expect(questions).toMatchObject({})
       expect(newQuestionCount).toBe(-1)
@@ -90,7 +89,6 @@ describe('Form Store test', () => {
 
       expect(getFormDetailsApiStatus).toBe(API_INITIAL)
       expect(getFormDetailsApiError).toBe(null)
-      expect(currentQuestionPreview).toBe(null)
       expect(currentFormId).toBe(null)
       expect(questions).toMatchObject({})
       expect(newQuestionCount).toBe(-1)

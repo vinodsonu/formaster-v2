@@ -35,26 +35,21 @@ class CreateFormPage extends React.Component {
          questionNumber,
          totalQuestions,
          questionListSize,
-         getQuestionNumber
+         getQuestionNumber,
+         onDeleteQuestion
       } = this.props
       
       return (
          
          <CreatePageBody>
-            {this.shouldShowSettings ? (
-               <Settings
-                  shouldShowSettings={this.shouldShowSettings}
-                  onToggleShouldShowSettings={this.onToggleShouldShowSettings}
-               />
-            ) : null}
             <AddQuestionsPanel
                questions={questions}
                addNewQuestion={addNewQuestion}
-               onToggleShouldShowSettings={this.onToggleShouldShowSettings}
                form={form}
                onClickQuestion = {onClickQuestion}
                getQuestionNumber={getQuestionNumber}
-
+               onDeleteQuestion={onDeleteQuestion}
+               
             />
             <PreviewResult 
                   currentQuestionPreview={currentQuestionPreview}
@@ -74,7 +69,8 @@ class CreateFormPage extends React.Component {
          userSignOut,
          form: { formName },
          userProfileDetails,
-         onPublish
+         onPublish,
+         isPublishing
       } = this.props
       return (
          <CreateFormContainer>
@@ -83,6 +79,7 @@ class CreateFormPage extends React.Component {
                userSignOut={userSignOut}
                userProfileDetails={userProfileDetails}
                onPublish={onPublish}
+               isPublishing = {isPublishing}
             />
             {this.renderBody()}
             
