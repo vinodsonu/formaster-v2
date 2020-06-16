@@ -52,7 +52,6 @@ class UserFormStore {
 
    @action.bound
    getUserForms(limit,offset) {
-       console.log(this.formService)
       const userFromsPromise = this.formService.getForms(limit,offset)
       return bindPromiseWithOnSuccess(userFromsPromise)
          .to(this.setGetFormApiStatus, this.setGetFromsApiResponse)

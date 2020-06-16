@@ -2,7 +2,6 @@ import signInAPIResponse from '../../fixtures/signInAPIResponse.json'
 
 export default class AuthFixtureService {
    getAuth(authDetails) {
-      
       return new Promise((resolve, reject) => {
          setTimeout(() => {
             resolve(signInAPIResponse)
@@ -19,4 +18,12 @@ export default class AuthFixtureService {
          }, 2000)
       })
    }
+   
+   onUserSignOut(){
+      return new Promise((resolve,reject)=>{
+         resolve();
+      })
+   }
+   
+   
 }

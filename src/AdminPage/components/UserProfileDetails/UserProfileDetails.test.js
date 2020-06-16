@@ -8,13 +8,13 @@ import userProfileDetails from '../../../Authentication/fixtures/getUserProfileR
 /*global jest*/
 /*global expect*/
 
-import DashBoardHeader from '.'
+import UserProfileDetails from '.'
 
-describe('Admin DashBoardHeader test', () => {
-   it('should DashBoardHeader success', () => {
-      const { getByText } = render(
-         <DashBoardHeader userProfileDetails={userProfileDetails} />
+describe('Admin UserProfileDetails test', () => {
+   it('should UserProfileDetails success', () => {
+      const { getAllByText, getByTestId } = render(
+         <UserProfileDetails userProfileDetails={userProfileDetails} />
       )
-      getByText(/Muneera Shaik/)
+      getAllByText(/Muneera Shaik/)
    })
 })

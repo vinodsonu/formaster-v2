@@ -12,7 +12,7 @@ import NavBar from '.'
 
 describe('Admin NavBar test', () => {
    it('should NavBar success', () => {
-      const { getByText } = render(
+      const { getAllByText,getByText } = render(
          <Router history={createMemoryHistory()}>
             <NavBar
                formName={'Form Name'}
@@ -20,7 +20,7 @@ describe('Admin NavBar test', () => {
             />
          </Router>
       )
-      getByText(/Muneera Shaik/)
+      getAllByText(/Muneera Shaik/)
       getByText(/publish/)
    })
 })

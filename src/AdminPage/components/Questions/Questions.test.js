@@ -16,6 +16,7 @@ import Questions from '.'
 describe('Admin Questions test', () => {
    it(' Questions success render', () => {
       let questions = new Map()
+      const getQuestionNumber = jest.fn();
       questionsResponse.questions.forEach(each => {
          if (each.question_type === 'MULTIPLE_CHOICE')
             questions.set(each.question_id, new McqTypeModel(each))
@@ -23,9 +24,11 @@ describe('Admin Questions test', () => {
       })
 
       const { getByPlaceholderText } = render(
-         <Questions questions={questions} />
+         <Questions questions={questions}
+                     getQuestionNumber={getQuestionNumber}
+         />
       )
-
+      
       getByPlaceholderText('Type welcome message here...')
    })
 })

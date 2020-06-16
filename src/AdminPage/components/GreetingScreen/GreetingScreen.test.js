@@ -11,12 +11,27 @@ import QuestionModel from '../../stores/Models/QuestionModel'
 import GreetingScreen from '.'
 
 describe('Admin GreetingScreen test', () => {
-   it('should GreetingScreen success', () => {
-      const { getByText } = render(
+   it('should welcome GreetingScreen success', () => {
+      const { getByPlaceholderText  } = render(
          <GreetingScreen
             question={new QuestionModel(questionsResponse.questions[0])}
          />
       )
-      // getByText(/Welcom to our Website/)
+      
+      expect(getByPlaceholderText("Type welcome message here...").value).toBe("Welcom to our Website")
+   })
+   
+   it('should Thank you GreetingScreen success', () => {
+      const { getByPlaceholderText  } = render(
+         <GreetingScreen
+            question={new QuestionModel(questionsResponse.questions[3])}
+         />
+      )
+      const thankyoufield = getByPlaceholderText("Type Thank You message here...")
+      const thankYouMessage = 'Thanks'
+      expect(thankyoufield.value).toBe("Thank You")
+      fireEvent.change(thankyoufield, { target: { value: thankYouMessage } });
+      expect(thankyoufield.value).toBe(thankYouMessage)
+      
    })
 })

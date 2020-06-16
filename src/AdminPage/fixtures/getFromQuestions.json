@@ -44,6 +44,15 @@
                 ]
         }
         
+        },
+        {
+          "question_id": 3,
+          "question_type": "THANK_YOU_SCREEN",
+          "description":"thank you screen text",
+          "question_text":"Thank You",
+          "image_url":"./",
+          "required":true,
+          "multiple_choice_question_details": "null"
         }
       ]
 }

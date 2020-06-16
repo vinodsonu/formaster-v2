@@ -18,11 +18,15 @@ describe('Admin CreateFormPage test', () => {
                form={{ formId: 1, formName: 'snack form' }}
                userProfileDetails={userProfileDetails}
                currentQuestionPreview = {{questionId:1}}
+               questions = {new Map()}
             />
          </Router>
       )
 
-      getByText(/publish/)
-      getByText(/Muneera Shaik/)
+      getByText(/THANK_YOU_SCREEN/)
+      getByText(/WELCOME_SCREEN/)
+      getByText(/SHORT_TEXT/)
+      getByText(/LONG_TEXT/)
+       getByText(/MULTIPLE_CHOICE/)
    })
 })
