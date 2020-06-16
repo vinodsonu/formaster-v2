@@ -4,7 +4,7 @@ import AuthServiceFixture from '../services/AuthService/AuthFixture'
 import UserProfileService from '../services/UserProfileService/UserProfileAPI'
 import UserProfileFixture from '../services/UserProfileService/UserProfileFixture'
 
-const isServerResponce = true;
+const isServerResponce = false;
 
 const authService = isServerResponce
    ? new AuthService()

@@ -92,5 +92,13 @@
       "jest-environment-jsdom-sixteen": "1.0.3",
       "react-app-rewired": "2.1.5",
       "tailwindcss": "^1.2.0"
+   },
+   "jest": {
+      "testEnvironment": "node",
+      "collectCoverageFrom": [
+         "!src/App.{ts,tsx,js,jsx}",
+         "!src/index.{ts,tsx,js,jsx}",
+         "!src/serviceWorker.{ts,tsx,js,jsx}"
+      ]
    }
 }

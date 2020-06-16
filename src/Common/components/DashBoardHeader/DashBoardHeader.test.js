@@ -12,9 +12,9 @@ import DashBoardHeader from '.'
 
 describe('Admin DashBoardHeader test', () => {
    it('should DashBoardHeader success', () => {
-      const { getByText } = render(
+      const { getAllByText } = render(
          <DashBoardHeader userProfileDetails={userProfileDetails} />
       )
-      getByText(/Muneera Shaik/)
+      getAllByText(/Muneera Shaik/)
    })
 })

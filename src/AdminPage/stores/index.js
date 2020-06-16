@@ -5,7 +5,7 @@ import QuestionApiService from '../services/QuestionService/QuesttionApi'
 import QuestionFixtureService from '../services/QuestionService/QuestionFixture'
 import QuestionsStore from './QuestionsStore'
 
-const isServerMode = true;
+const isServerMode = false;
 const formService = isServerMode
    ? new FormApiService()
    : new FormFixtureService()
