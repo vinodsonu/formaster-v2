@@ -17,14 +17,10 @@ describe('Admin DashBoard test', () => {
    it('should test the list of forms', () => {
       const { getByText } = render(
          <AdminDashBoardPage
-            froms={getFormResponse.map(each => new FormModel(each))}
+            forms={getFormResponse.forms.map(each => new FormModel(each))}
             userProfileDetails={userProfileDetails}
          />
       )
-
-      waitFor(() => {
-         getByText(/Muneera Shaik/)
-         getByText(/New Form/)
-      })
+      getByText(/Accomidation Kit/)
    })
 })

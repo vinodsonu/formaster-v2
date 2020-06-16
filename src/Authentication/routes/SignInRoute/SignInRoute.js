@@ -167,7 +167,9 @@ class SignInRoute extends React.Component {
             if(role===admin)
                history.replace({ pathname: ADMIN_PAGE_PATH })
             else if(role===user)
-            history.replace({ pathname: USER_PAGE_PATH })
+            {  
+               history.replace({ pathname: USER_PAGE_PATH })
+            }
          }
          
          }

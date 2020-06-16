@@ -12,4 +12,9 @@ export default class QuestionFixtureService {
          resolve('')
       })
    }
+   onDeleteQuestion(){
+      return new Promise((resolve, reject) => {
+         resolve('')
+      })
+   }
 }

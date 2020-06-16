@@ -19,8 +19,8 @@ describe('Authentication Utils Test', () => {
    })
 
    it("Should test the name",()=>{
-      expect(validateUsername('Muneera')).toBe(false);
-      expect(validateUsername('   ')).toBe(true);
+      expect(validateName('Muneera')).toBe(false);
+      expect(validateName('   ')).toBe(true);
    })
 
 })

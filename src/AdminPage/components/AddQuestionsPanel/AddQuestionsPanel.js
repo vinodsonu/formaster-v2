@@ -25,17 +25,17 @@ import {
 @observer
 class AddQuestionsPanel extends React.Component {
 
-   questionsEndRef = React.createRef()
+//    questionsEndRef = React.createRef()
 
-  componentDidMount () {
-    this.scrollToBottom()
-  }
-  componentDidUpdate () {
-    this.scrollToBottom()
-  }
-  scrollToBottom = () => {
-    this.questionsEndRef.current.scrollIntoView({ behavior: 'smooth' })
-  }
+//  componentDidMount () {
+//     this.scrollToBottom()
+//  }
+//  componentDidUpdate () {
+//     this.scrollToBottom()
+//  }
+//  scrollToBottom = () => {
+//     this.questionsEndRef.current.scrollIntoView({ behavior: 'smooth' })
+//  }
 
    renderListOfQuestions = () => {
       const { 

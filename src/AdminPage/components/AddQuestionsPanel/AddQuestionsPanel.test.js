@@ -16,8 +16,9 @@ describe('AddQuestionsPanel test', () => {
                   return new McqTypeModel(each)
                else return new QuestionModel(each)
             })}
+            getQuestionNumber={()=>{}}
          />
       )
-      expect(getByTestId('list-of-questions').children.length).toBe(4)
+      expect(getByTestId('list-of-questions').children.length).toBe(6)
    })
 })

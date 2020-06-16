@@ -22,15 +22,9 @@ import {
 class GreetingScreen extends React.Component {
    handleOnChange = event => {
       const { question } = this.props
-
       question.onChangeQuestionText(event.target.value)
    }
 
-   onToggleShouldShowSettings = () => {
-      const { onToggleShouldShowSettings, question } = this.props
-
-      onToggleShouldShowSettings(question)
-   }
 
    handleOnFocus = () =>{
       const {
@@ -77,13 +71,12 @@ class GreetingScreen extends React.Component {
      
       
       
-      const { question:{questionId, questionText,questionType},onDeleteQuestion} = this.props
+      const {question, question:{questionId, questionText,questionType},onDeleteQuestion} = this.props
 
       const placeholder = this.getQuestionPlaceholder();
 
       const type = this.getQuestionType()
 
-      
 
       return (
 

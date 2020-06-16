@@ -14,7 +14,7 @@ const questionService = isServerCommunication
 const previewStore = new PreviewStore(questionService)
 
 
-const isServerResponce = false
+const isServerResponce = false;
 
 const formService = isServerResponce
    ? new FormService()

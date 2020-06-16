@@ -6,4 +6,9 @@ export default class QuestionPreviewService {
          resolve(getPreviewDetails[offset])
       })
    }
+   submitQuestion(details,formId) {
+      return new Promise((resolve, reject) => {
+         resolve()
+      })
+   }
 }
