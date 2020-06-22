@@ -56,36 +56,40 @@ class AddQuestionsPanel extends React.Component {
       )
    }
 
+   addNewQuestion = event =>{
+      const {  addNewQuestion } = this.props
+      addNewQuestion(event.target.value)
+   }
+
    renderTypeOptions = () => {
       const {
          createRoute: { questionTypeOptions }
       } = strings
-      const {  addNewQuestion } = this.props
 
       return <MenuList>
             <MenuItem >
-               <Option value={questionTypeOptions[0]} onClick={addNewQuestion}>
+               <Option value={questionTypeOptions[0]} onClick={this.addNewQuestion}>
                 {questionTypeOptions[0]}
              </Option>
                
             </MenuItem>  
             <MenuItem>
-            <Option value={questionTypeOptions[1]} onClick={addNewQuestion}>
+            <Option value={questionTypeOptions[1]} onClick={this.addNewQuestion}>
                 {questionTypeOptions[1]}
              </Option>
             </MenuItem>
             <MenuItem >
-            <Option value={questionTypeOptions[2]} onClick={addNewQuestion}>
+            <Option value={questionTypeOptions[2]} onClick={this.addNewQuestion}>
                 {questionTypeOptions[2]}
              </Option>
             </MenuItem>
             <MenuItem>
-            <Option value={questionTypeOptions[3]} onClick={addNewQuestion}>
+            <Option value={questionTypeOptions[3]} onClick={this.addNewQuestion}>
                 {questionTypeOptions[3]}
              </Option>
             </MenuItem>
             <MenuItem>
-            <Option value={questionTypeOptions[4]} onClick={addNewQuestion}>
+            <Option value={questionTypeOptions[4]} onClick={this.addNewQuestion}>
                 {questionTypeOptions[4]}
              </Option>
             </MenuItem>      

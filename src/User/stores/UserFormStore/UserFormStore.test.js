@@ -13,6 +13,8 @@ import getFormResponse from '../../fixtures/getFormResponse.json'
 
 import UserFormStore from '.'
 import FormFixtureService from '../../services/FormService/FormFixture'
+import PaginationStore from "../../../Common/stores/PaginationStore"
+
 
 
 describe('User Form Store test', () => {
@@ -21,7 +23,7 @@ describe('User Form Store test', () => {
 
    beforeEach(() => {
       formApi = new FormFixtureService()
-      formStore = new UserFormStore(formApi)
+      formStore = new UserFormStore(formApi,PaginationStore)
    })
 
    it('Should test initializong the form store', () => {
@@ -51,7 +53,7 @@ describe('User Form Store test', () => {
    })
 
    it('Should test user GetFromApi Success', async () => {
-      const mockSuccessPromise = Promise.resolve(getFormResponse)
+      const mockSuccessPromise = Promise.resolve(getFormResponse[0])
 
       const mockSignInAPI = jest.fn()
 

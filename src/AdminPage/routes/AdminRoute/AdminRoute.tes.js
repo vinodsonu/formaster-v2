@@ -11,7 +11,7 @@ import { SIGN_IN_PATH, ADMIN_PAGE_PATH } from '../../constants/RouteConstants'
 
 import FormApi from '../../services/FormService/FormApi'
 
-import FormStore from '../../stores/FormsStore'
+import FormsStore from '../../stores/FormsStore'
 import QuestionService from '../../services/QuestionService/QuesttionApi'
 import AuthStore from '../../../Authentication/stores/AuthStore'
 import AuthService from '../../../Authentication/services/AuthService/AuthAPI'
@@ -33,7 +33,8 @@ describe('AdminRoute test', () => {
    beforeEach(() => {
       questionsStore = new QuestionsStore(new QuestionService())
       formApi = new FormApi()
-      formStore = new FormStore(formApi, questionsStore)
+      console.log("......................",new FormsStore());
+      // formStore = new FormsStore(formApi, questionsStore)
       authStore = new AuthStore(new AuthService(), new UserProfileService())
    })
 

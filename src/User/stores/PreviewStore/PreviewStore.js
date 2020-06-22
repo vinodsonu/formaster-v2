@@ -50,8 +50,6 @@ class PreviewStore {
 
    @action.bound
    setPreviewQuestionResponse(response) {
-      console.log("previewQuestion",response.total_questions)
-      console.log(response.question.question_type)
       this.totalAnswerableQuestions = response.answerable_questions;
       this.totalQuestions = response.total_questions;
       const {
@@ -82,12 +80,12 @@ class PreviewStore {
 
    @action.bound
    setGetPreviewQuestionsApitatus(status) {
+      console.log("status ...... ",status)
       this.getPreviewQuestionsApitatus = status
    }
 
    @action.bound
    setGetPreviewQuestionsApiError(error) {
-      console.log(error)
       this.getPreviewQuestionsApiError = error
    }
 
@@ -97,8 +95,7 @@ class PreviewStore {
          formId,
          offset
       )
-      return bindPromiseWithOnSuccess(userPreviewPromise)
-         .to(
+      return bindPromiseWithOnSuccess(userPreviewPromise).to(
             this.setGetPreviewQuestionsApitatus,
             this.setPreviewQuestionResponse
          )

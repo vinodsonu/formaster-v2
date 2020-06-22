@@ -112,7 +112,7 @@ describe('AuthStore Test', () => {
       expect(authStore.getUserSignInAPIStatus).toBe(API_FAILED)
    })
 
-   it('Should test userProfile API failure status', async () => {
+   it('Should test userProfile API success status', async () => {
       const mockSuccessPromise = Promise.resolve(getUserSignInResponse)
 
       const mockUserProfileApi = jest.fn()
@@ -128,7 +128,7 @@ describe('AuthStore Test', () => {
       expect(mockSetCookie).toBeCalled()
    })
 
-   it('Should test userProfile API data success', async () => {
+   it('Should test userProfile API data failure', async () => {
       jest
          .spyOn(userProfileApi, 'getUserProfile')
          .mockImplementation(() => Promise.reject())

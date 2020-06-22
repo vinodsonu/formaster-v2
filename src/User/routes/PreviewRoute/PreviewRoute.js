@@ -100,7 +100,6 @@ class PreviewRoute extends React.Component {
          getPreviewQuestionsApitatus,
          getPreviewQuestionsApiError
       } = this.getPreviewStore()
-
       return (
          <LoadingWrapperWithFailure
             apiStatus={getPreviewQuestionsApitatus}

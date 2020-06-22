@@ -284,27 +284,25 @@ class QuestionsStore {
                response_text : ''
             }
             this.currentQuestionPreview = new TextqPreviewModel(question)
-            console.log(this.currentQuestionPreview)
             break
          case LONG_TEXT:
             question.text_response_details = {
                response_text : ''
             }
             this.currentQuestionPreview = new TextqPreviewModel(question)
-            console.log(this.currentQuestionPreview)
             break
       }
    }
 
    @action
-   addNewQuestion = event => {
-      switch (event.target.value) {
+   addNewQuestion = type => {
+      switch (type) {
          case MULTIPLE_CHOICE:
             this.questions.set(
                this.newQuestionCount,
                new McqTypeModel({
                   question_id: this.newQuestionCount--,
-                  question_type: event.target.value,
+                  question_type: type,
                   description: '',
                   question_text: '',
                   image_url: '',
@@ -320,7 +318,7 @@ class QuestionsStore {
                this.newQuestionCount,
                new QuestionModel({
                   question_id: this.newQuestionCount--,
-                  question_type: event.target.value,
+                  question_type: type,
                   description: '',
                   question_text: '',
                   image_url: '',

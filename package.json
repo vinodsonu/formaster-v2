@@ -36,6 +36,7 @@
       "react-progressbar": "15.4.1",
       "react-router-dom": "^5.1.2",
       "react-scripts": "3.4.0",
+      "react-select-event": "4.1.4",
       "react-toast-notifications": "2.4.0",
       "react-toastify": "6.0.5",
       "semantic-ui-react": "0.88.2",
@@ -47,7 +48,7 @@
       "watch:css": "postcss src/index.css -o src/styles/tailwind.css",
       "start": "npm run watch:css & react-app-rewired start",
       "build": "npm run build:css & react-app-rewired build",
-      "test": "react-app-rewired test",
+      "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
       "eject": "react-app-rewired eject",
       "ts:start": "npm run watch:css & react-scripts start",
       "ts:build": "npm run build:css & react-scripts build",
@@ -94,16 +95,38 @@
       "react-app-rewired": "2.1.5",
       "tailwindcss": "^1.2.0"
    },
-    "jest": {
+   "jest": {
       "testEnvironment": "node",
       "collectCoverageFrom": [
          "!src/App.{ts,tsx,js,jsx}",
+         "!scr/**/*.{stories.js}",
          "!src/index.{ts,tsx,js,jsx}",
          "!src/serviceWorker.{ts,tsx,js,jsx}",
          "!src/AdminPage/constants/RouteConstants.{ts,tsx,js,jsx}",
          "!src/Common/constants/RouteConstants.{ts,tsx,js,jsx}",
          "!src/User/constants/RouteConstants.{ts,tsx,js,jsx}",
-         "!src/Authentication/constants/RouteConstants.{ts,tsx,js,jsx}"
+         "!src/Authentication/constants/RouteConstants.{ts,tsx,js,jsx}",
+         "!src/User/themes/**/*.{ts,tsx,js,jsx}",
+         "!src/User/styleGuide/**/*.{ts,tsx,js,jsx}",
+         "!src/Common/utils/**/*.{ts,tsx,js,jsx}",
+         "!src/User/services/**/*.{ts,tsx,js,jsx}",
+         "!src/Common/components/icons/**/*.{ts,tsx,js,jsx}",
+         "!src/AdminPage/services/**/*.{ts,tsx,js,jsx}",
+         "!src/Authentication/services/**/*.{ts,tsx,js,jsx}",
+         "!src/AdminPage/components/Settings/**/*.{ts,tsx,js,jsx}",
+         "!src/AdminPage/components/icons/**/*.{ts,tsx,js,jsx}",
+         "!src/AdminPage/styleGuide/Typos/**/*.{ts,tsx,js,jsx}",
+         "!src/Authentication/routes/index.{ts,tsx,js,jsx}",
+         "!src/Authentication/routes/Practice/**/*.{ts,tsx,js,jsx}",
+         "!src/Authentication/styleGuide/Typos/**/*.{ts,tsx,js,jsx}",
+         "!src/Common/hocs/ProtectedRoute/**/*.{ts,tsx,js,jsx}",
+         "!src/Common/routes/**/*.{ts,tsx,js,jsx}",
+         "!src/User/stores/index.{ts,tsx,js,jsx}",
+         "!src/AdminPage/stores/FormsStore/**/*.{ts,tsx,js,jsx}",
+         "!src/AdminPage/routes/**/*.{ts,tsx,js,jsx}",
+         "!src/**/*.{stories.js}",
+         "!src/Common/components/SvgComponent/**/*.{ts,tsx,js,jsx}",
+         "!src/User/routes/index.{ts,tsx,js,jsx}"
       ]
    }
 }

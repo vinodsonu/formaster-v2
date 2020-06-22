@@ -13,8 +13,9 @@ class UserFormStore {
    @observable forms
    @observable totalFormsCount
 
-   constructor(formService) {
+   constructor(formService,PaginationStore) {
       this.formService = formService
+      this.paginationStore = new PaginationStore(formService.getForms,FormModel,3)
       this.init()
    }
 
@@ -38,14 +39,15 @@ class UserFormStore {
 
    @action.bound
    setGetFormApiError(error) {
+      
       this.getFormApiError = error
    }
 
    @action.bound
    setGetFromsApiResponse(response) {
       this.forms = new Map();
-      this.totalFormsCount = response.total_count;
-      response.forms.forEach(form => {
+      this.totalFormsCount = response.total;
+      response.result.forEach(form => {
          this.forms.set(form.form_id, new FormModel(form))
       })
    }
@@ -54,7 +56,7 @@ class UserFormStore {
    getUserForms(limit,offset) {
       const userFromsPromise = this.formService.getForms(limit,offset)
       return bindPromiseWithOnSuccess(userFromsPromise)
-         .to(this.setGetFormApiStatus, this.setGetFromsApiResponse)
+         .to(this.setGetFormApiStatus,this.setGetFromsApiResponse)
          .catch(this.setGetFormApiError)
    }
 

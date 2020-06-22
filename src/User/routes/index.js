@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { USER_PAGE_PATH,PREVIEW_FORM} from '../constants/RouteConstants'
 
-import { ProtectedRoute } from '../../Common/hocs/ProtectedRoute'
+import { ProtectedRoute } from '../../Common/components/common/ProtectedRoute'
 
 import UserRoute from './UserRoute';
 import PreviewRoute from './PreviewRoute'

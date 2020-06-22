@@ -4,6 +4,7 @@ import FormFixture from '../services/FormService/FormFixture'
 import QuestionPreviewServiceApi from '../services/QuestionPreviewService/QuetionPreviewApi'
 import QuestionPreviewServiceFixture from '../services/QuestionPreviewService/QuetionPreviewFixtures'
 import PreviewStore from './PreviewStore'
+import PaginationStore from '../../Common/stores/PaginationStore';
 
 const isServerCommunication = false;
 
@@ -20,7 +21,7 @@ const formService = isServerResponce
    ? new FormService()
    : new FormFixture()
 
-const userFormStore = new UserFormStore(formService)
+const userFormStore = new UserFormStore(formService,PaginationStore)
 
 export  {
    userFormStore,

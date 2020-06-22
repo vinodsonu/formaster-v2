@@ -7,7 +7,7 @@ import EachFormCard from '../EachFormCard'
 class FormCards extends React.Component {
    renderForms = () => {
       const { forms,onClickForm } = this.props
-      return Array.from(forms.values()).map(form => (
+      return forms.map(form => (
          <EachFormCard
             key={form.formId}
             form={form}

@@ -63,7 +63,7 @@ export default class AuthStore {
 
    @action.bound
    setGetUserSignInAPIError(e) {
-      
+      console.log("error............",e)
       this.getUserSignInAPIError = e;
       error(getUserDisplayableErrorMessage(this.getUserSignInAPIError))
       
@@ -96,6 +96,7 @@ export default class AuthStore {
 
    @action.bound
    setGetUserProfileAPIError(error){
+      console.log("error............",error)
       this.getUserProfileAPIError = error
    }
 
@@ -122,7 +123,7 @@ export default class AuthStore {
    
    @action.bound
    setGetSignupApiStatus(status){
-      
+      console.log("setGetSignupApiStatus........",status)
       this.getSignupApiStatus = status;
    }
    
@@ -133,6 +134,7 @@ export default class AuthStore {
    
    @action.bound
    setGetSignupApiError(e){
+      console.log("error............",e)
       this.getSignupApiError = e;
       error(getUserDisplayableErrorMessage(e))
    }

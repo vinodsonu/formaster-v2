@@ -8,12 +8,17 @@ import FormModel from '../../stores/Models/FormModel'
 /*global jest*/
 /*global expect*/
 
-import EachFormCard from '.'
+import FormCards from '.'
 
-describe('Admin EachFormCard test', () => {
-   it('should EachFormCard success', () => {
+describe('Admin FormCards test', () => {
+   it('should FormCards success', () => {
+       let forms = [];
+       getFormResponse[0].result.forEach
+         (each=>{
+             forms.push(new FormModel(each))
+         })
       const { getByText } = render(
-         <EachFormCard form={new FormModel(getFormResponse[0])} />
+         <FormCards forms={forms} />
       )
       getByText(/Feedback Form/)
    })

@@ -38,6 +38,17 @@ describe('CreateRoute test', () => {
    })
 
    it('Should test Retry success', async () => {
+      
+      const mockSuccessPromise = new Promise(function(resolve, reject) {
+         reject()
+      })
+      const mockGetForm = jest.fn()
+      mockGetForm.mockReturnValue(mockSuccessPromise)
+
+      queApi.getCurrentFormDetails = mockGetForm
+
+      await questionsStore.getTheCurrentFormDetails();
+      
       const { getByText } = render(
          <Provider authStore={authStore} questionsStore={questionsStore}>
             <Router history={createMemoryHistory()}>
@@ -45,17 +56,8 @@ describe('CreateRoute test', () => {
             </Router>
          </Provider>
       )
+      
+         getByText('Retry')
 
-      const mockSuccessPromise = new Promise(function(resolve, reject) {
-         resolve(questionsResponse)
-      })
-      const mockGetForm = jest.fn()
-      mockGetForm.mockReturnValue(mockSuccessPromise)
-
-      queApi.getFormDetails = mockGetForm
-
-      // waitFor(() => {
-      //    getByText('Something went wrong please try again')
-      // })
    })
 })

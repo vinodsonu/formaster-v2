@@ -11,10 +11,6 @@ import {PREVIEW_FORM,SIGN_IN_PATH} from '../../constants/RouteConstants'
 @observer
 class UserRoute extends Component{
 
-    @observable formsOffset = -4;
-    @observable formsLimit = 4;
-    @observable currentPageNumber = 0;
-
     async componentDidMount(){
         await this.doNetworkCalls();
     }
@@ -26,6 +22,10 @@ class UserRoute extends Component{
     }
     getUserFormStore = () =>{
         return this.props.userFormStore;
+    }
+
+    getPaginationStore = () =>{
+        return this.getUserFormStore().paginationStore;
     }
 
     getUserProfileDetails = async() =>{
@@ -40,38 +40,33 @@ class UserRoute extends Component{
     }
 
     getUserForms = async() =>{
-        const {
-            getUserForms
-        } = this.getUserFormStore();
-        this.getNextForms()
-        console.log(this.getUserFormStore().forms);
+        const {getEntities} = this.getPaginationStore();
+        await getEntities();
     }
 
-    @computed 
-    get currentPage(){
-       return this.currentPageNumber;
+    @action.bound
+    currentPage(){
+        const {currentPageNumber} = this.getPaginationStore();
+        return currentPageNumber;
+        
     }
  
     @computed
     get totalPagesCount(){
-       const {totalFormsCount} = this.getUserFormStore();
-       return Math.ceil(totalFormsCount/this.formsLimit);
+        const {totalPages} = this.getPaginationStore();
+        return totalPages;
     }
 
     @action
    getNextForms = async() =>{
-      const { getUserForms } = this.getUserFormStore()
-      this.formsOffset+=(this.formsLimit);
-      this.currentPageNumber++;
-      await getUserForms(this.formsLimit,this.formsOffset) 
+    const {getNextEntities} = this.getPaginationStore();
+    await getNextEntities();
    }
 
    @action
    getPreviousForms = async() =>{
-      this.formsOffset-=this.formsLimit;
-      this.currentPageNumber--;
-      const { getUserForms } = this.getUserFormStore()
-      await getUserForms(this.formsLimit,this.formsOffset)
+    const {getPreviousEntities} = this.getPaginationStore();
+    await getPreviousEntities();
    }
 
     onClickForm = (formId) =>{
@@ -92,36 +87,36 @@ class UserRoute extends Component{
         history.replace({pathname:SIGN_IN_PATH})
     }
 
-    renderSuccessUi = () =>{
+    renderSuccessUi = observer(() =>{
         const {
-            forms,
-        } = this.getUserFormStore()
+            currentEntities
+        } = this.getPaginationStore()
         const {
             userProfileDetails
         } = this.getAuthStore();
         return <UserDashBoard
         
                 userProfileDetails = {userProfileDetails}
-                forms = {forms}
+                forms = {currentEntities}
                 onClickForm = {this.onClickForm}
                 userSignOut = {this.userSignOut}
-                currentPage = {this.currentPage}
+                currentPage = {this.currentPage()}
                 totalPagesCount = {this.totalPagesCount}
                 getNextForms = {this.getNextForms}
                 getPreviousForms = {this.getPreviousForms}
                 />
-    }
+    })
 
         render(){
             const {
-                getFormsApiStatus,
-                getFormApiError
-            } = this.getUserFormStore();
+                getEntitiesApiStatus,
+                getEntitiesApiError
+            } = this.getPaginationStore();
                     return <LoadingWrapperWithFailure
-                                apiStatus={getFormsApiStatus}
+                                apiStatus={getEntitiesApiStatus}
                                 renderSuccessUI={this.renderSuccessUi}
                                 onRetryClick={this.doNetworkCalls}
-                                apiError={getFormApiError}
+                                apiError={getEntitiesApiError}
                           />
         }
 }

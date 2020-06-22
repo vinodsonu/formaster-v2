@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 
 import { ADMIN_PAGE_PATH, CREATE_FORM_PATH } from '../constants/RouteConstants'
-import { ProtectedRoute } from '../../Common/hocs/ProtectedRoute'
+import { ProtectedRoute } from '../../Common/components/common/ProtectedRoute'
 import AdminRoute from './AdminRoute'
 import CreateRoute from './CreateRoute'
 

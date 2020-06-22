@@ -9,6 +9,7 @@ import {
 } from '@ib/api-constants'
 
 
+
 import getPreviewResponse from '../../fixtures/getPreviewDetails.json'
 
 import PreviewStore from '.'
@@ -57,13 +58,9 @@ describe('PreviewStore test', () => {
 
    it('Should test previewStore data success state', async() => {
     const mockLoadingPromise = Promise.resolve(getPreviewResponse[0])
-
     const mockSignInAPI = jest.fn()
-
     mockSignInAPI.mockReturnValue(mockLoadingPromise)
-
     questionApi.getPreviewQuestion = mockSignInAPI
-
     await previewStore.userPreview()
 
     expect(previewStore.getPreviewQuestionsApitatus).toBe(API_SUCCESS)
@@ -95,5 +92,57 @@ describe('PreviewStore test', () => {
       expect(getPreviewQuestionsApiError).toBe(null)
       expect(getSubmitQuestionApiError).toBe(null)
       expect(question).toMatchObject({})
+   })
+
+   it("setPreviewQuestionResponse",()=>{
+      getPreviewResponse.forEach(each=>{
+         previewStore.setPreviewQuestionResponse(each);
+      })
+      expect(previewStore.question.questionId).toBe(4)
+   })
+
+   it("submitQuestion loading status",async()=>{
+      const mockLoadingPromise = Promise.resolve(getPreviewResponse[0])
+      const fetchQuestionPromise = jest.fn()
+      fetchQuestionPromise.mockReturnValue(mockLoadingPromise)
+      questionApi.getPreviewQuestion = fetchQuestionPromise
+      await previewStore.userPreview()
+
+      const submitLoadingPromise = new Promise(function(resolve, reject) {})
+      const submitQuestionPromise = jest.fn()
+      submitQuestionPromise.mockReturnValue(submitLoadingPromise)
+      questionApi.submitQuestion = submitQuestionPromise
+      previewStore.submitQuestion()
+      expect(previewStore.getSubmitQuestionApiStatus).toBe(API_FETCHING)
+   })
+
+   it("submitQuestion failure status",async()=>{
+      const mockLoadingPromise = Promise.resolve(getPreviewResponse[0])
+      const fetchQuestionPromise = jest.fn()
+      fetchQuestionPromise.mockReturnValue(mockLoadingPromise)
+      questionApi.getPreviewQuestion = fetchQuestionPromise
+      await previewStore.userPreview()
+
+      const submitLoadingPromise = new Promise(function(resolve, reject) {reject()})
+      const submitQuestionPromise = jest.fn()
+      submitQuestionPromise.mockReturnValue(submitLoadingPromise)
+      questionApi.submitQuestion = submitQuestionPromise
+      await previewStore.submitQuestion()
+      expect(previewStore.getSubmitQuestionApiStatus).toBe(API_FAILED)
+   })
+
+   it("submitQuestion success status",async()=>{
+      const mockLoadingPromise = Promise.resolve(getPreviewResponse[0])
+      const fetchQuestionPromise = jest.fn()
+      fetchQuestionPromise.mockReturnValue(mockLoadingPromise)
+      questionApi.getPreviewQuestion = fetchQuestionPromise
+      await previewStore.userPreview()
+
+      const submitLoadingPromise = new Promise(function(resolve, reject) {resolve()})
+      const submitQuestionPromise = jest.fn()
+      submitQuestionPromise.mockReturnValue(submitLoadingPromise)
+      questionApi.submitQuestion = submitQuestionPromise
+      await previewStore.submitQuestion()
+      expect(previewStore.getSubmitQuestionApiStatus).toBe(API_SUCCESS)
    })
 })
