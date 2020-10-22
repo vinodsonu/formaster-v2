@@ -1,68 +1,68 @@
 {
-    "webTitle":"formaster",
-    "signInpage":{
-        "greetingMessage":"Hello, who’s this?",
-        "usernameFeild":{
-            "type":"text",
-            "label":"username",
-            "placeholder":"muneeraShaik"
-        },
-        "passwordFeild":{
-            "type":"password",
-            "label":"password",
-            "placeholder":"At least 8 charactors"
-        },
-        "primaryButtonText":{
-            "displayText":"Log in to formaster"
-        },
-        "ibhubsLogo":"ibhubs-logo",
-        "inValidUsernameOrPasswordMsg":"invalid username or password",
-        "usernameEmptyMsg":"username should not be empty",
-        "passwordErrorDisplay":"contains at least 8 charactors",
-        "enterKeyCode":13,
-        "dontHaveAnAccountText":"Don’t have an account?",
-        "signUpText":"Signup"
-    },
-    
-    "signUpPage":{
-        "greetingText":"Hi there, please sign up",
-        "nameField":{
-            "type":"text",
-            "label":"full name",
-            "placeholder":"Muneera Shaik",
-            "defaultName":"",
-            "fieldErrorMsg":"name should not be empty"
-        },
-        "usernameField":{
-            "type":"text",
-            "label":"username",
-            "placeholder":"muneeraShaik",
-            "defaultUsername":"",
-            "fieldErrorMsg":"username should not be empty"
-        },
-        "passwordField":{
-            "type":"password",
-            "label":"password",
-            "placeholder":"At least 8 charactors",
-            "defaultPassword":"",
-            "fieldErrorMsg":"contains at least 8 charactors"
-        },
-        "confirmPasswordField":{
-            "type":"password",
-            "label":"confirm password",
-            "placeholder":"At least 8 charactors",
-            "defaultConfirmPassword":"",
-            "fieldErrorMsg":"doesn't matched with password"
-        },
-        "enterKeyCode":13,
-        "signUpButton":{
-            "displayText":"sign up"
-        },
-        "alreadyHaveAnAccountText":"Already have an account?",
-        "signInText":"sign in",
-        "ibhubsLogo":"ibhubs-logo"
-    },
-    "emptyString":"",
-    "user":"USER",
-    "admin":"ADMIN"
+   "webTitle": "formaster",
+   "signInpage": {
+      "greetingMessage": "Hello, who’s this?",
+      "usernameFeild": {
+         "type": "text",
+         "label": "username",
+         "placeholder": "vinod"
+      },
+      "passwordFeild": {
+         "type": "password",
+         "label": "password",
+         "placeholder": "At least 8 charactors"
+      },
+      "primaryButtonText": {
+         "displayText": "Log in to formaster"
+      },
+      "ibhubsLogo": "ibhubs-logo",
+      "inValidUsernameOrPasswordMsg": "invalid username or password",
+      "usernameEmptyMsg": "username should not be empty",
+      "passwordErrorDisplay": "contains at least 8 charactors",
+      "enterKeyCode": 13,
+      "dontHaveAnAccountText": "Don’t have an account?",
+      "signUpText": "Signup"
+   },
+
+   "signUpPage": {
+      "greetingText": "Hi there, please sign up",
+      "nameField": {
+         "type": "text",
+         "label": "full name",
+         "placeholder": "Vinod",
+         "defaultName": "",
+         "fieldErrorMsg": "name should not be empty"
+      },
+      "usernameField": {
+         "type": "text",
+         "label": "username",
+         "placeholder": "Vinod",
+         "defaultUsername": "",
+         "fieldErrorMsg": "username should not be empty"
+      },
+      "passwordField": {
+         "type": "password",
+         "label": "password",
+         "placeholder": "At least 8 charactors",
+         "defaultPassword": "",
+         "fieldErrorMsg": "contains at least 8 charactors"
+      },
+      "confirmPasswordField": {
+         "type": "password",
+         "label": "confirm password",
+         "placeholder": "At least 8 charactors",
+         "defaultConfirmPassword": "",
+         "fieldErrorMsg": "doesn't matched with password"
+      },
+      "enterKeyCode": 13,
+      "signUpButton": {
+         "displayText": "sign up"
+      },
+      "alreadyHaveAnAccountText": "Already have an account?",
+      "signInText": "sign in",
+      "ibhubsLogo": "ibhubs-logo"
+   },
+   "emptyString": "",
+   "user": "USER",
+   "admin": "ADMIN"
 }
