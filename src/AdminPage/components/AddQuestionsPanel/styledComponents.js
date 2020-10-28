@@ -7,7 +7,7 @@ export const AddQuestion = styled.div`
    overflow: scroll;
    flex: 1 1 0;
    margin-top: 64px;
-   min-width:500px;
+   min-width: 500px;
 `
 export const BottomDiv = styled.div``
 
@@ -16,9 +16,9 @@ export const AddButtonWithText = styled.div`
 `
 export const AddButton = styled.button`
    padding: 10px;
-   margin: 10px;
-   border-radius: 100%;
+   border-radius: 50%;
    color: white;
+   font-size: 25px;
    background-color: black;
 `
 export const AddText = styled.span``
@@ -32,9 +32,8 @@ export const TypeOptions = styled.div`
 export const Option = styled.button`
    ${tw``}
    width:100%;
-   height:100%;
-   
-   &:hover{
-      
+   height: 100%;
+
+   &:hover {
    }
 `

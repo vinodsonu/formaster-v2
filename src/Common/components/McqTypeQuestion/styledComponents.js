@@ -1,17 +1,13 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
-import {
-   thankyouIconButton
-} from '../../themes/colors.js';
-
+import { thankyouIconButton } from '../../themes/colors.js'
 
 export const McqQuestion = styled.div`
    ${tw`flex items-center justify-start`}
    font-size:30px;
-   color:${thankyouIconButton};
-   
-   
+   color: ${thankyouIconButton};
+   padding: 10px;
 `
 
 export const QuestionText = styled.span`
@@ -20,24 +16,23 @@ export const QuestionText = styled.span`
    font-weight: unset;
    font-size: 30px;
    line-height: 32px;
-   
 `
 export const ChoiceWithChoiceText = styled.div`
    ${tw`flex items-center ml-5`}
    font-size:20px;
    color: ${thankyouIconButton};
    cursor: pointer;
+   padding: 10px;
 `
 export const ChoiceCheckBox = styled.input``
-export const ChoiceText = styled.span`
-`
+export const ChoiceText = styled.span``
 export const McqQuestionBody = styled.div`
    ${tw`flex flex-col items-start`}
 `
-export const QuestionNumber = styled.span`${tw`flex items-center`}
+export const QuestionNumber = styled.span`
+   ${tw`flex items-center`}
 
    font-size:20px;
-
 `
 
 export const NextButton = styled.button`

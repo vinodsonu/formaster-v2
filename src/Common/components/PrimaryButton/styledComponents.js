@@ -4,9 +4,7 @@ import tw from 'tailwind.macro'
 const PrimaryButtonElement = styled.button`
    ${tw`flex items-center justify-center`}
    width: 320px;
-
-   height: 40px;
-
+   padding: 10px;
    border-radius: 4px;
 
    background-color: #0b69ff;
@@ -17,7 +15,7 @@ const ButtonText = styled.span`
 
    font-family: Rubik;
 
-   font-size: 14px;
+   font-size: 18px;
 
    font-weight: 500;
 

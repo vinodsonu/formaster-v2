@@ -1,11 +1,13 @@
 import styled from '@emotion/styled'
-import tw from 'tailwind.macro';
+import tw from 'tailwind.macro'
 
-import {darkBlueGrey,brightBlue,iceBlue,white} from '../../themes/colors';
+import { darkBlueGrey, brightBlue, iceBlue, white } from '../../themes/colors'
 
 export const LoginFormContainer = styled.div`
    ${tw`flex  justify-center`}
    background-color:${iceBlue};
+   height:100vh;
+   align-items:center;
 `
 
 export const LoginForm = styled.div`
@@ -17,7 +19,7 @@ export const LoginForm = styled.div`
 
    border-radius: 8px;
 
-   background-color:${white} ;
+   background-color: ${white};
 `
 
 export const WebTitle = styled.img`
@@ -59,39 +61,32 @@ export const ErrorMessage = styled.span`
 `
 
 export const SignUpFeild = styled.div`
-
    ${tw`flex justify-center items-center`}
 
-   
+   height: 24px;
 
-  height: 24px;
+   font-family: HKGrotesk;
 
-  font-family: HKGrotesk;
+   font-size: 14px;
 
-  font-size: 14px;
+   font-weight: normal;
 
-  font-weight: normal;
+   font-stretch: normal;
 
-  font-stretch: normal;
+   font-style: normal;
 
-  font-style: normal;
+   line-height: 1.71;
 
-  line-height: 1.71;
+   letter-spacing: normal;
 
-  letter-spacing: normal;
+   color: ${darkBlueGrey};
 
-  color: ${darkBlueGrey};
-  
-  margin-top:32px;
+   margin-top: 32px;
 `
-export const SignUpText = styled.span`
-
-
-   
-`
+export const SignUpText = styled.span``
 
 export const SignUpLink = styled.a`
-   color:${brightBlue};
-   text-decoration:none;
-   cursor:pointer;
+   color: ${brightBlue};
+   text-decoration: none;
+   cursor: pointer;
 `

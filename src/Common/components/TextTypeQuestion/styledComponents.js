@@ -1,13 +1,11 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
-import {
-   thankyouIconButton
-} from '../../themes/colors.js';
+import { thankyouIconButton } from '../../themes/colors.js'
 
 export const TextQuestion = styled.div`
    ${tw`flex items-center justify-start  flex-col `}
-   height:300px;
+   padding: 20px;
 `
 export const QuestionNumber = styled.span`
    ${tw`flex items-center`}
@@ -15,7 +13,7 @@ export const QuestionNumber = styled.span`
 export const QuestionDetails = styled.div`
    ${tw`flex  items-center`}
    font-size:20px;
-   color:${thankyouIconButton}
+   color: ${thankyouIconButton};
 `
 export const NextButton = styled.button`
    border: none;
@@ -37,4 +35,5 @@ export const QuestionText = styled.span`
 
 export const QuestionResponse = styled.div`
    ${tw`ml-5`}
+   margin:20px;
 `
